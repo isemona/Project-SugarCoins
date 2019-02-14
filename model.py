@@ -38,8 +38,8 @@ class Gender(db.Model):
 
     __tablename__ = "gender"
 
-    gender_code = db.Column(db.String(1), nullable=True, primary_key=True)
-    allowance = db.Column(db.Integer, nullable=True)
+    gender_code = db.Column(db.String(1), nullable=True, primary_key=True) # nullable False gender is required
+    allowance = db.Column(db.Integer, nullable=True) # can this be null? 
 
     def __repr__(self):
         """Provide helpful representation when printed."""
@@ -48,13 +48,13 @@ class Gender(db.Model):
 
 
 class Weight(db.Model):
-    '''Weight of user'''
+    '''Weight of user.'''
 
     __tablename__ = "weight"
 
     weight_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     current_weight = db.Column(db.Integer, nullable=True)
-    date_time = #  FIX ME!
+    date_time = db.Column(db.DateTime)
 
     def __repr__(self):
         """Provide helpful representation when printed."""
@@ -62,13 +62,13 @@ class Weight(db.Model):
         return f"<Weight weight_id={self.weight_id} current_weight={self.current_weight}>"
 
 class Glucose(db.Model):
-    '''Blood-glucose level of user'''
+    '''Blood-glucose level of user.'''
 
     __tablename__ = "glucose"
 
     glucose_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     current_glucose = db.Column(db.Integer, nullable=True)
-    date_time = #  FIX ME!
+    date_time = db.Column(db.DateTime)
 
     def __repr__(self):
         """Provide helpful representation when printed."""
@@ -76,34 +76,33 @@ class Glucose(db.Model):
         return f"<Glucose glucose_id={self.glucose_id} current_glucose={self.current_glucose}>"
 
 class Food(db.Model):
-    '''This table tracks food intake'''
+    '''This table tracks food intake.'''
 
     food_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     food = db.Column(db.String(64), nullable=True) 
-    cost = db.Column(db.Integer, nullable=True) # This will always change if you put it in the consumption table, here it is static
+    cost = db.Column(db.Integer, nullable=True) # This will always change if you put it in the intake table, but here it is static
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return f"<Food food_id={self.food_id} cost={self.cost}>"
+        return f"<Food food={self.food} cost={self.cost}>"
 
 
 class Sugar(db.Model):
-    '''Sugar consumption of each user'''
+    '''Sugar intake of each user.'''
 
-    __tablename__ = "sugar_consumption"
+    __tablename__ = "sugar_intake"
 
-    consumption_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), index=True)
+    intake_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), index=True)
     food_id = db.Column(db.Integer, db.ForeignKey('food.food_id'), index=True)
-    
-    date_time = # FIX ME!
+    date_time = db.Column(db.DateTime)
     notes = db.Column(db.String(64), nullable=True) # FIX ME, IS THIS A DROP DOWN OPTION?
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return f"<Sugar consumption_id={self.consumption_id} notes={self.notes}>"
+        return f"<Sugar intake_id={self.intake_id} notes={self.notes}>"
 
 
 
@@ -127,5 +126,8 @@ if __name__ == "__main__":
 
     from server import app
     connect_to_db(app)
+
+    # you specified db.create_all() here to create the database no need to type this command on the terminal
     db.create_all()
+
     print("Connected to DB.")
