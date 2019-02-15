@@ -24,6 +24,7 @@ class User(db.Model):
                         primary_key=True)
     name = db.Column(db.String(64), nullable=True)
     password = db.Column(db.String(64), nullable=True)
+    email = db.Column(db.String(64), nullable=True)
     gender_code = db.Column(db.String(1), db.ForeignKey('gender.gender_code'), index=True)
 
     def __repr__(self):
@@ -99,6 +100,8 @@ class Sugar(db.Model):
     date_time = db.Column(db.DateTime)
     notes = db.Column(db.String(64), nullable=True) # FIX ME, IS THIS A DROP DOWN OPTION?
 
+    food = db.relationship("Food", backref="intakes")
+    user = db.relationship("User", backref="intakes")
     def __repr__(self):
         """Provide helpful representation when printed."""
 

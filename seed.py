@@ -48,14 +48,17 @@ def load_users():
     # accessing properties in individual objects
     sugarholics = []
     for user in user_profiles:
-        sugarholics.append([user['name'],user['sex']])
+        sugarholics.append([user['name'], user['mail'], user['sex']])
 
 
     for person in sugarholics:
         name = person[0]
-        gender = person[1]
+        email = person[1]
+        gender = person[2]
+        # age = person[3], user['birthdate'] => datetime.date(1991, 9, 22)
 
         user = User(name=name,
+                email=email,
                 gender_code=gender,
                 )
         # We need to add to the session or it won't ever be stored
@@ -76,7 +79,7 @@ def load_gender():
                     )
 
     male = Gender(gender_code='M',
-                    allowance=25,
+                    allowance=38,
                     )
 
     
