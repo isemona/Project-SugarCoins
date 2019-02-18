@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="well spaced" style="width:40%;">
+<h1>Track Your Sugar Spending</h1>
+
+<form action="user_dashboard" method="POST">
+
+  <div class="form-group">
+    <label>
+      Sweet food
+        <input type="text" name="food" class="form-control"></br>
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>
+      Price
+      <input type="number" name="cost" class="form-control">
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>
+      Notes
+      <select name="notes" value="Why?">
+        <option value="tired">Tired</option>
+        <option value="hangry">Hangry</option>
+        <option value="anxious">Anxious</option>
+        <option value="stressed">Stressed</option>
+        <option value="special-event">Special event</option>
+        <option value="peer-pressure">Peer Pressure</option>
+        <option value="experiencing-loss">Experiencing Loss</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" value="Submit" class="btn btn-sugar">
+  </div>
+
+</form>
+
+<!--
+
+<form>
+  <div class="form-group">
+    <input type="submit" value="Submit" class="btn btn-sugar">
+  </div>
+</form>
+  
+generate alternative sugars here from the USDA API using AJAX-->
+
+
+</div>
+{% endblock %}
