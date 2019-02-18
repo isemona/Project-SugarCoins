@@ -1,6 +1,6 @@
 '''Project Sugar Coins'''
 
-from flask import Flask, redirect, request, render_template, session
+from flask import Flask, flash, redirect, request, render_template, session
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
 
@@ -15,15 +15,13 @@ app.jinja_env.auto_reload = True
 app.secret_key = "willywonka"
 
 # Normally, if you use an undefined variable in Jinja2, it fails silently.
-# This is horrible. Fix this so that, instead, it raises an error.
-app.jinja_env.undefined = StrictUndefined
 
 @app.route('/')
 def index():
-    '''Homepage'''
+    """Homepage"""
 
 
-    return render_template('homepage.html')
+    return render_template("homepage.html")
 
 
 
@@ -32,21 +30,30 @@ def register_form():
     """Show form for user signup and process."""
 
     if request.method == 'POST':
-        name = request.form["fname"]
+        fname = request.form["fname"]
+        print(fname)
         lname = request.form["lname"]
+        print(lname)
         email = request.form["email"]
+        print(email)
         password = request.form["password"]
+        print(password)
         gender = request.form["gender"]
+
         # age = int(request.form["age"]) maybe this should be a view?
         # weight = request.form["weight"]
         # blood_glucose = request.form["blood-glucose"]
+        name = " ".join([fname,lname])
+        print(name)
 
-        new_user = User(name=name, email=email, password=password, gender=gender)
+        new_user = User(name=name, email=email, password=password, gender_code=gender)
+
+        print(new_user)
 
         db.session.add(new_user)
         db.session.commit()
 
-        flash(f"User {fname} added.")
+        flash(f"User {name} added.")
         return redirect(f"/user_dashboard/{new_user.user_id}")
 
     return render_template("register_form.html")
@@ -73,7 +80,7 @@ def login_form():
         session["user_id"] = user.user_id
 
         flash("Logged in")
-        return redirect(f"/user_dashboard/{new_user.user_id}")
+        return redirect(f"/user_dashboard/{user.user_id}")
 
     return render_template("login_form.html")
 
@@ -92,21 +99,44 @@ def intake_form():
     """Show intake form and process."""
 
     if request.method == 'POST':
-        food = request.form["food"]
-        cost = request.form["cost"]
-        notes = request.form["notes"] # this should go into sugar table
 
-        user_food = Food(food=food, cost=cost)
+
+        if 'name' in session:
+            user = User.query.filter_by(name=name).first()
+            user_id = user.user_id
+
+        user_food = request.form["food"]
+
+        if 'user_food' not in session:
+            session['user_food'] = sugar.food
+        
+        cost = request.form["cost"]
+
+        date_time = request.form["date_time"]
+        date_time = datetime.datetime("%Y-%m-%d")
+
+        notes = request.form["notes"] 
+
+    
+        sugar = Sugar(user_id=sugar.user_id,
+                    user_food=sugar.food,
+                    cost=cost,
+                    date_time=date_time,
+                    notes=notes,
+                    )
+
         # user = query.get from session user logged in 
-        # once your have the food and user you'll create a Sugar(notes=notes) to add the notes 
+        # once you have the food and user you'll create a Sugar(notes=notes) to add the notes 
         # sugar.user = user in session to query for 
         # sugar.food = user_food
         # use sql magic to figure out the variables and their values for you
+
+
         db.session.add(sugar)
         
         db.session.commit()
 
-        flash(f"User {fname} added.")
+        flash(f"User {name} added.")
         return redirect(f"/user_dashboard/{new_user.user_id}")
 
     return render_template("user_intake.html")
@@ -126,7 +156,6 @@ if __name__ == "__main__":
 
     # Do not debug for demo
     app.debug = True
-
     connect_to_db(app)
 
     # Use the DebugToolbar
