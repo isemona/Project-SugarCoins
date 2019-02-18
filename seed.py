@@ -1,5 +1,16 @@
 """Utility file to seed sugarcoins database from Faker Python"""
 
+# to randomize on list of sweets and list of grams spent per day
+# https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/, arguments is a range i.e. from 1 to 26
+import random
+
+# to use the datetime library and syntax is datetime.datetime
+import datetime
+
+# necessary imports to extract data from Faker library
+from faker import Faker
+from faker.providers import profile
+
 
 from sqlalchemy import func #  WHAT IS THIS??
 
@@ -9,16 +20,7 @@ from model import connect_to_db, db, Gender, User, Food, Sugar
 # connecting to database aka SQL i.e. connect_to_db(app) has 'app' app comes from ther server so this needs to be imported too
 from server import app
 
-# to randomize on list of sweets and list of grams spent per day
-# https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/, arguments is a range i.e. from 1 to 26
-import random
 
-# to use the datetime libary and syntax is datetime.datetime
-import datetime 
-
-# necessary imports to extract data from Faker library
-from faker import Faker
-from faker.providers import profile
 
 fake = Faker()
 
@@ -29,8 +31,6 @@ reason = ['tired', 'hangry', 'anxious', 'stressed', 'special event', 'peer-press
 # notes would be different for woman - ['tired', 'hungry', 'anxious', 'stressed', 'special event', 'peer-pressure', 'hormonal-related', 'experiencing-loss']
 
 # keeping 'hormonal-related' out because this is past data
-
-
 
 
 def load_users():
@@ -94,16 +94,16 @@ def load_food():
     # print statement for testing
     print('Food')
 
-
-    food = random.choice(sweets)
-    cost = random.randint(1,26) # FIX ME! Not sure how to differentiate between genders men should have 38g per day
+    for _ in range(10):
+        food = random.choice(sweets)
+        cost = random.randint(1,71) 
     
-    sweet_food = Food(food=food,
+        sweet_food = Food(food=food,
                 cost=cost,
                 )
+        db.session.add(sweet_food)
 
-    db.session.add(sweet_food)
-
+    
     db.session.commit()
 
 
@@ -112,7 +112,7 @@ def load_sugar_intake():
 
     print('Sugar Intake')
 
-    notes = random.choice(reason)
+    # notes = random.choice(reason)
 
     time = []
     for _ in range(10):
@@ -120,9 +120,14 @@ def load_sugar_intake():
     
     for dt in time:
         date_time = dt
+        notes = random.choice(reason)
+        user_id = random.randint(1,10)
+        food_id = random.randint(1,10)
 
         sugar_intake = Sugar(notes=notes,
                             date_time=date_time,
+                            user_id=user_id,
+                            food_id=food_id,
                             )
 
         db.session.add(sugar_intake)

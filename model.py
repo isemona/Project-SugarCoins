@@ -25,22 +25,27 @@ class User(db.Model):
     name = db.Column(db.String(64), nullable=True)
     password = db.Column(db.String(64), nullable=True)
     email = db.Column(db.String(64), nullable=True)
-    gender_code = db.Column(db.String(1), db.ForeignKey('gender.gender_code'), index=True)
+    gender_code = db.Column(db.String(1), db.ForeignKey('gender.gender_code'))
+
+    gender = db.relationship("Gender", backref="user")
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return f"<User user_id={self.user_id} gender_code={self.gender_code}>"
+        return f"<User user_id={self.user_id} name = {self.name} password = {self.password} " \
+            f"gender = {self.gender_code} email = {self.email}>"
+
+
 
 
 
 class Gender(db.Model):
-    """Gender of user."""
+    """Table to hold user gender."""
 
     __tablename__ = "gender"
 
-    gender_code = db.Column(db.String(1), nullable=True, primary_key=True) # nullable False gender is required
-    allowance = db.Column(db.Integer, nullable=True) # can this be null? 
+    gender_code = db.Column(db.String(1), nullable=False, primary_key=True)
+    allowance = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         """Provide helpful representation when printed."""
@@ -49,7 +54,7 @@ class Gender(db.Model):
 
 
 class Weight(db.Model):
-    '''Weight of user.'''
+    """Table to hold user weight."""
 
     __tablename__ = "weight"
 
@@ -63,7 +68,7 @@ class Weight(db.Model):
         return f"<Weight weight_id={self.weight_id} current_weight={self.current_weight}>"
 
 class Glucose(db.Model):
-    '''Blood-glucose level of user.'''
+    """Table to hold user blood-glucose level."""
 
     __tablename__ = "glucose"
 
@@ -77,10 +82,12 @@ class Glucose(db.Model):
         return f"<Glucose glucose_id={self.glucose_id} current_glucose={self.current_glucose}>"
 
 class Food(db.Model):
-    '''This table tracks food intake.'''
+    """Table to track food intake."""
+
+    __tablename__ = "food"
 
     food_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    food = db.Column(db.String(64), nullable=True) 
+    food = db.Column(db.String(64), nullable=True)
     cost = db.Column(db.Integer, nullable=True) # This will always change if you put it in the intake table, but here it is static
 
     def __repr__(self):
@@ -90,7 +97,7 @@ class Food(db.Model):
 
 
 class Sugar(db.Model):
-    '''Sugar intake of each user.'''
+    """Table to track sugar intake of each user."""
 
     __tablename__ = "sugar_intake"
 
@@ -102,6 +109,7 @@ class Sugar(db.Model):
 
     food = db.relationship("Food", backref="intakes")
     user = db.relationship("User", backref="intakes")
+
     def __repr__(self):
         """Provide helpful representation when printed."""
 
