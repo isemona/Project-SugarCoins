@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d67e72c-c147-4602-9810-cfc71b7e0fbe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seed.py" beforeDir="false" afterPath="$PROJECT_DIR$/seed.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/javascript.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/javascript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/success.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/sucess.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_intake.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_intake.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitigore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/secrets.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/javascript.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/success.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/success.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -103,8 +97,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/user_dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="46" column="9" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
+            <state relative-caret-position="154">
+              <caret line="31" column="39" lean-forward="true" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -233,12 +227,12 @@
       <updated>1550273014679</updated>
       <workItem from="1550273028756" duration="42000" />
       <workItem from="1550443552534" duration="329000" />
-      <workItem from="1550443903084" duration="39159000" />
+      <workItem from="1550443903084" duration="39410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39530000" />
+    <option name="totallyTimeSpent" value="39781000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -374,8 +368,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/user_dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="46" column="9" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
+        <state relative-caret-position="154">
+          <caret line="31" column="39" lean-forward="true" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
         </state>
       </provider>
     </entry>
