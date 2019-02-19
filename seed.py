@@ -95,15 +95,15 @@ def load_food():
     print('Food')
 
     for _ in range(10):
-        food = random.choice(sweets)
-        cost = random.randint(1,71) 
-    
-        sweet_food = Food(food=food,
+        food_name = random.choice(sweets)
+        cost = random.randint(1,38)
+
+        sweet_food = Food(food_name=food_name,
                 cost=cost,
                 )
         db.session.add(sweet_food)
 
-    
+
     db.session.commit()
 
 

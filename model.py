@@ -87,13 +87,13 @@ class Food(db.Model):
     __tablename__ = "food"
 
     food_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    food = db.Column(db.String(64), nullable=True)
+    food_name = db.Column(db.String(64), nullable=True)
     cost = db.Column(db.Integer, nullable=True) # This will always change if you put it in the intake table, but here it is static
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return f"<Food food={self.food} cost={self.cost}>"
+        return f"<Food food={self.food_name} cost={self.cost}>"
 
 
 class Sugar(db.Model):
@@ -113,9 +113,8 @@ class Sugar(db.Model):
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return f"<Sugar intake_id={self.intake_id} notes={self.notes}>"
-
-
+        return f"<Sugar intake_id={self.intake_id} user_id={self.user_id} food_id={self.food_id} " \
+            f"notes={self.notes}>"
 
 #####################################################################
 # Helper functions

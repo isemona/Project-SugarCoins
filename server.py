@@ -3,6 +3,7 @@
 from flask import Flask, flash, redirect, request, render_template, session
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
+from datetime import datetime
 
 # need to allow access to database
 from model import connect_to_db, db, Gender, User, Food, Sugar
@@ -31,20 +32,15 @@ def register_form():
 
     if request.method == 'POST':
         fname = request.form["fname"]
-        print(fname)
         lname = request.form["lname"]
-        print(lname)
         email = request.form["email"]
-        print(email)
         password = request.form["password"]
-        print(password)
         gender = request.form["gender"]
 
         # age = int(request.form["age"]) maybe this should be a view?
         # weight = request.form["weight"]
         # blood_glucose = request.form["blood-glucose"]
         name = " ".join([fname,lname])
-        print(name)
 
         new_user = User(name=name, email=email, password=password, gender_code=gender)
 
@@ -54,7 +50,9 @@ def register_form():
         db.session.commit()
 
         flash(f"User {name} added.")
-        return redirect(f"/user_dashboard/{new_user.user_id}")
+
+        return redirect("/user_intake")
+        #return redirect(f"/user_intake/{new_user.user_id}")
 
     return render_template("register_form.html")
 
@@ -80,7 +78,7 @@ def login_form():
         session["user_id"] = user.user_id
 
         flash("Logged in")
-        return redirect(f"/user_dashboard/{user.user_id}")
+        return redirect("/user_intake")
 
     return render_template("login_form.html")
 
@@ -98,54 +96,55 @@ def logout():
 def intake_form():
     """Show intake form and process."""
 
+
+
     if request.method == 'POST':
 
-
-        if 'name' in session:
-            user = User.query.filter_by(name=name).first()
+        if 'user_id' in session:
+            user = User.query.filter_by(user_id=session["user_id"]).first()
             user_id = user.user_id
 
-        user_food = request.form["food"]
+            cost = request.form["cost"]
+            print(cost)
+            food = request.form["food"]
+            print(food)
 
-        if 'user_food' not in session:
-            session['user_food'] = sugar.food
-        
-        cost = request.form["cost"]
 
-        date_time = request.form["date_time"]
-        date_time = datetime.datetime("%Y-%m-%d")
+            user_food = Food.query.filter(Food.food_name==food,Food.cost==cost).first()
+            if user_food:
+                print(user_food)
+                print(user_food.food_id)
 
-        notes = request.form["notes"] 
+            if not user_food: # if the query comes out empty
+                user_food = Food(food_name=food,cost=cost)
+                print(user_food)
+                db.session.add(user_food)
+                db.session.commit()
 
-    
-        sugar = Sugar(user_id=sugar.user_id,
-                    user_food=sugar.food,
-                    cost=cost,
-                    date_time=date_time,
+            #date_time = datetime("%Y-%m-%d")
+
+            notes = request.form["notes"]
+
+        sugar = Sugar(user_id=user_id,
+                    food_id=user_food.food_id,
                     notes=notes,
                     )
 
-        # user = query.get from session user logged in 
-        # once you have the food and user you'll create a Sugar(notes=notes) to add the notes 
-        # sugar.user = user in session to query for 
-        # sugar.food = user_food
-        # use sql magic to figure out the variables and their values for you
-
+        print(sugar)
 
         db.session.add(sugar)
-        
         db.session.commit()
 
-        flash(f"User {name} added.")
-        return redirect(f"/user_dashboard/{new_user.user_id}")
+        flash(f"Food {food} added.")
+        return redirect("/user_dashboard")
+        #return redirect(f"/user_dashboard/{new_user.user_id}")
 
     return render_template("user_intake.html")
 
-
-@app.route('/user_dashboard', methods=['GET'])
+#@app.route('/user_dashboard/<int:user_id>', methods=['GET'])
+@app.route('/user_dashboard', methods=['GET','POST'])
 def user_dashboard():
     """Show user dashboard."""
-
 
     return render_template("user_dashboard.html")
 
