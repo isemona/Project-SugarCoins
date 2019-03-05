@@ -25,17 +25,24 @@ class User(db.Model):
     name = db.Column(db.String(64), nullable=True)
     password = db.Column(db.String(64), nullable=True)
     email = db.Column(db.String(64), nullable=True)
+    phone = db.Column(db.String(64), nullable=True)
+    #date_time = db.Column(db.DateTime)
     gender_code = db.Column(db.String(1), db.ForeignKey('gender.gender_code'))
+    #weight_id = db.Column(db.Integer, db.ForeignKey('weight.weight_id'))
+    #glucose_id = db.Column(db.Integer, db.ForeignKey('glucose.glucose_id'))
+
 
     gender = db.relationship("Gender", backref="user")
+    weight = db.relationship("Weight", backref="user")
+    glucose = db.relationship("Glucose", backref="user")
+
+
+
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return f"<User user_id={self.user_id} name = {self.name} password = {self.password} " \
-            f"gender = {self.gender_code} email = {self.email}>"
-
-
+        return f"<User user_id={self.user_id} name = {self.name} password = {self.password} gender = {self.gender_code} email = {self.email} phone = {self.phone}>"
 
 
 
@@ -59,13 +66,16 @@ class Weight(db.Model):
     __tablename__ = "weight"
 
     weight_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id')) # one user to one weight at a time
     current_weight = db.Column(db.Integer, nullable=True)
     date_time = db.Column(db.DateTime)
+
+    #user = db.relationship("User", backref="weight")
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return f"<Weight weight_id={self.weight_id} current_weight={self.current_weight}>"
+        return f"<Weight weight_id={self.weight_id} current_weight={self.current_weight} date_time={self.date_time}>"
 
 class Glucose(db.Model):
     """Table to hold user blood-glucose level."""
@@ -73,13 +83,16 @@ class Glucose(db.Model):
     __tablename__ = "glucose"
 
     glucose_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     current_glucose = db.Column(db.Integer, nullable=True)
     date_time = db.Column(db.DateTime)
+
+    #user = db.relationship("User", backref="glucose")
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return f"<Glucose glucose_id={self.glucose_id} current_glucose={self.current_glucose}>"
+        return f"<Glucose glucose_id={self.glucose_id} current_glucose={self.current_glucose} date_time={self.date_time}>"
 
 class Food(db.Model):
     """Table to track food intake."""
@@ -102,19 +115,19 @@ class Sugar(db.Model):
     __tablename__ = "sugar_intake"
 
     intake_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), index=True)
-    food_id = db.Column(db.Integer, db.ForeignKey('food.food_id'), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), index=True) # one user to one food_id at a time
+    food_id = db.Column(db.Integer, db.ForeignKey('food.food_id'), index=True) # one food to many users
     date_time = db.Column(db.DateTime)
     notes = db.Column(db.String(64), nullable=True) # FIX ME, IS THIS A DROP DOWN OPTION?
 
-    food = db.relationship("Food", backref="intakes")
+    food = db.relationship("Food", backref="intakes") # not necessary for instantiating a sugar object
     user = db.relationship("User", backref="intakes")
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
         return f"<Sugar intake_id={self.intake_id} user_id={self.user_id} food_id={self.food_id} " \
-            f"notes={self.notes}>"
+            f"date_time={self.date_time} notes={self.notes}>"
 
 #####################################################################
 # Helper functions
