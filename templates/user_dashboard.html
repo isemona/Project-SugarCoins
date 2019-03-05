@@ -1,50 +1,123 @@
 {% extends 'base.html' %}
 {% block content %}
-<br>
-<div class="" style="">
+    <br>
+    <div class="" style="">
 
- <h2>SugarCoins Dashboard</h2>
+    <h1>SugarCoins Dashboard</h1>
+    <div>
+        <form action="/" method="GET">
+            <input type="submit" value="Log Out">
+        </form>
+    </div>
 
-<canvas id="myChart" width="400" height="400"></canvas>
-<script>
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
-</script>
+    <div>
+        <form action="/user_intake/{{ user_id }}" method="POST">
+            <input type="submit" value="Sugar Intake Form">
+        </form>
+    </div>
+
+    <div>
+        <form action="/trends/{{ user_id }}" method="POST">
+            <input type="submit" value="Health Trends">
+        </form>
+    </div>
+
+    <div>
+        <form action="/user_dashboard/{{ user_id }}" method="POST">
+            <div class="form-group">
+                <label>
+                    Weight
+                    <input type="number" name="weight" class="form-control">
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    Blood-glucose level
+                    <input type="number" name="blood-glucose" class="form-control">
+                </label>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-sugar">
+            </div>
+        </form>
+    </div>
+
+
+    <h3>Summary of Daily Intake</h3>
+    <p>List of Foods</p>{{ foods }}
+    <p>Daily Allowance</p>{{ allowance }}
+    <p>Daily Intake</p>{{ daily_in }}
+    <p>Weight</p>{{ weight }}
+    <p>Glucose</p>{{ glucose }}
+
+
+    <h3>Percent Daily Intake</h3>
+
+    <div>
+        <canvas id="myChart" width="300px" height="100px"></canvas>
+    </div>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        const options = {
+            responsive: true
+        };
+
+        let ctx_pie = $("#myChart").get(0).getContext('2d');
+
+        $.get('/user_percent_intake.json', function (data) {
+            let myChart = new Chart(ctx_pie, {
+                type: 'pie',
+                data: data,
+                options: options
+            })
+        });
+    </script>
+
+
+    <h3>Monthly Sugar Intake</h3>
+
+    <div>
+        <canvas id="barChart" width="300px" height="100px"></canvas>
+    </div>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        let ctx_bar = $("#barChart").get(0).getContext('2d');
+
+        $.get('/user_monthly_intake.json', function (data) {
+            let barChart = new Chart(ctx_bar, {
+                type: 'bar',
+                data: data,
+                options: options
+            })
+        });
+    </script>
+
+    <h3>Weight Trends</h3>
+
+    <div>
+        <canvas id="lineChart" width="300px" height="100px"></canvas>
+    </div>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+
+        let ctx_line = $("#lineChart").get(0).getContext('2d');
+
+        $.get('/user_weight.json', function (data) {
+            let myChart = new Chart(ctx_line, {
+                type: 'line',
+                data: data,
+                options: options
+            })
+        });
+    </script>
+
+
+    {#<script type="text/javascript" src="/static/user_dashboard.js"></script>#}
 
 {% endblock %}
 

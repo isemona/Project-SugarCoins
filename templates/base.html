@@ -5,7 +5,10 @@
   <title>SugarCoins</title>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="static/styles.css">
+  <script src = https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js></script>
+
 </head>
+
 <body class="container">
 
       {% with messages = get_flashed_messages() %}
@@ -18,12 +21,9 @@
          {% endif %}
       {% endwith %}
 
-    {% block content %} 
+    {% block content %}
+
+
     {% endblock %}
-
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/static/javascript.js"></script>
-
 </body>
 </html>
