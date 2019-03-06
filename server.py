@@ -6,6 +6,8 @@ from jinja2 import StrictUndefined
 from datetime import datetime
 
 # need to allow access to database
+from typing import Any
+
 from model import connect_to_db, db, Gender, User, Food, Sugar, Weight, Glucose
 
 from query import *
@@ -162,11 +164,10 @@ def user_dashboard_main(user_id):
         db.session.add(user_glucose)
         db.session.commit()
 
-    weight = get_user_weight(session)[-1]
-    glucose = get_user_glucose(session)[-1]
+    weight = get_user_current_weight(session)
 
-    # print(user_weight)
-    # print(user_glucose)
+    glucose = get_user_current_glucose(session)
+
 
     return render_template("user_dashboard.html", foods=foods, allowance=allowance, user_id=user_id, daily_in=daily_in,
                            weight=weight, glucose=glucose)
@@ -192,19 +193,85 @@ def user_weight_trends():
     }
 
     weights = get_user_weight(session)
-    monthly_labels = []
+
+    month_day = []
     monthly_values = []
 
     for weight in weights:
-        monthly_labels.append(month_dict[weight[1]])
-        monthly_values.append(weight[2])
+        months = month_dict[weight[1]]
+        days = str(int(weight[2])) # int() will floor your float
+        month_day.append(months + " " + days)
+        monthly_values.append(weight[3])
 
     data_dict = {
-        "labels": monthly_labels,
+        "labels": month_day,
 
         "datasets": [
             {
                 "label": 'Weight Over Time',
+                "data": monthly_values,
+                "backgroundColor": [
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                ],
+                "borderColor": [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                ],
+                "borderWidth": 1
+            }],
+
+        "options": {
+            "scales": {
+                "yAxes": [{
+                    "ticks": {
+                        "beginAtZero": "true"
+                    }
+                }]
+            }
+        }
+
+    }
+
+    return jsonify(data_dict)
+
+@app.route('/user_glucose.json', methods=['GET', 'POST'])
+def user_glucose_trends():
+    """Show user dashboard."""
+
+    month_dict = {
+        1.0: 'Jan',
+        2.0: 'Feb',
+        3.0: 'Mar',
+        4.0: 'Apr',
+        5.0: 'May',
+        6.0: 'Jun',
+        7.0: 'Jul',
+        8.0: 'Aug',
+        9.0: 'Sep',
+        10.0: 'Oct',
+        11.0: 'Nov',
+        12.0: 'Dec'
+    }
+
+    glucose = get_user_glucose(session)
+    month_day = []
+    monthly_values = []
+
+    for level in glucose:
+        months = month_dict[level[1]]
+        days = str(int(level[2]))  # int() will floor your float
+        month_day.append(months + " " + days)
+        monthly_values.append(level[3])
+
+
+
+    data_dict = {
+        "labels": month_day,
+
+        "datasets": [
+            {
+                "label": 'Glucose Over Time',
                 "data": monthly_values,
                 "backgroundColor": [
                     'rgba(75, 192, 192, 0.2)',
@@ -324,8 +391,7 @@ def user_monthly_intake():
         12.0: 'Dec'
     }
 
-    months = get_monthly_spending(
-        session)  # this is currently a tuple needs to be a list so you can index over the list, also datetime 01 needs to be formatted as jan
+    months = get_monthly_spending(session)
     monthly_labels = []
     monthly_values = []
 
@@ -374,7 +440,7 @@ def sms_ahoy_reply():
     resp = MessagingResponse()
 
     # Add a message
-    resp.message("Ahoy! Thanks so much for your message.")
+    resp.message("Ahoy! Thanks so much for your message.") # message sent when you need a response from the user
 
     return str(resp)
 

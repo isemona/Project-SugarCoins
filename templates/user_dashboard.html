@@ -99,13 +99,13 @@
     <h3>Weight Trends</h3>
 
     <div>
-        <canvas id="lineChart" width="300px" height="100px"></canvas>
+        <canvas id="weightChart" width="300px" height="100px"></canvas>
     </div>
 
     <script src="http://code.jquery.com/jquery.js"></script>
     <script>
 
-        let ctx_line = $("#lineChart").get(0).getContext('2d');
+        let ctx_line = $("#weightChart").get(0).getContext('2d');
 
         $.get('/user_weight.json', function (data) {
             let myChart = new Chart(ctx_line, {
@@ -116,6 +116,25 @@
         });
     </script>
 
+    <h3>Glucose Trends</h3>
+
+    <div>
+        <canvas id="glucoseChart" width="300px" height="100px"></canvas>
+    </div>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+
+        let ctx_glucose_line = $("#glucoseChart").get(0).getContext('2d');
+
+        $.get('/user_glucose.json', function (data) {
+            let my_Chart = new Chart(ctx_glucose_line, {
+                type: 'line',
+                data: data,
+                options: options
+            })
+        });
+    </script>
 
     {#<script type="text/javascript" src="/static/user_dashboard.js"></script>#}
 
