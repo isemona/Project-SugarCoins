@@ -12,8 +12,8 @@ def send_msg():
         phone_number = user.phone
         # Your Account Sid and Auth Token from twilio.com/console
 
-        account_sid = 'AC8c90676a4ed1ff99e843ad9bfe5139d5'
-        auth_token = 'edf191b3c972e3ed941a7270d83956ef'
+        account_sid = ''
+        auth_token = ''
         client = Client(account_sid, auth_token)
 
 
