@@ -3,12 +3,10 @@ from twilio.rest import Client
 import schedule
 import time
 from model import connect_to_db, db, User
-from query import get_user_daily_balance(session) as remaining
+from query import get_user_daily_balance(session) as remaining get_users(session) as users
 
 
 def send_msg():
-
-    users = User.query.
 
     for user in users:
         phone_number = user.phone
@@ -24,7 +22,7 @@ def send_msg():
                         .create(
                              body=f"You have {remaining} coins left in your SugarWallet. Spend wisely! ",
                              from_='+14244003773',
-                             to='+14084124657' # phone_number user phone number here from data base
+                             to='+14084124657' # phone_number variable here
                          )
 
         print(message.sid)

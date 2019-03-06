@@ -21,9 +21,18 @@ def get_user_list_of_food(session):
         list_of_foods.append((entry.food.food_name, entry.food.cost))
 
     return list_of_foods
-    # for item in list_of_foods:
-    #     return item
 
+def get_users(session):
+    """Info on daily spending"""
+    users = User.query.all()
+
+    return users
+
+def get_user(session):
+    """Info on daily spending"""
+    user = User.query.filter(User.user_id == session['user_id']).first()
+
+    return user
 
 def get_user_allowance(session):
     """Info on daily spending"""
@@ -65,12 +74,6 @@ def get_monthly_spending(session):
                          .filter(Sugar.user_id == session['user_id'])
                          .join(Food).group_by(Sugar.user_id, extract('month', Sugar.date_time)).all())
 
-    # new_list = []
-
-    # for tup in new_list:
-    #     return tup
-    #     new_list.append(list(tup))
-
     return user_monthly_info
 
 
@@ -84,14 +87,6 @@ def get_user_notes(session):
 def get_user_moods(session):
     moods = get_user_notes(session)
 
-    # for mood in moods:
-    #     if mood not in user_moods:
-    #         user_moods[mood] = 1
-    #     else:
-    #         user_moods[mood] += 1
-
-    # return user_moods
-
     user_moods = {}
     for mood in moods:
         if mood not in user_moods:
@@ -104,7 +99,7 @@ def get_user_moods(session):
         RESULTS['children'].append({
             'name': item,
             'symbol': item,
-            'price': 0,
+            'price': user_moods[item],
             'net_change': 0,
             'percent_change': 0,
             'volume': 0,
@@ -113,19 +108,47 @@ def get_user_moods(session):
 
     return RESULTS
 
-
 def get_user_weight(session):
-    user_monthly_weight = (db.session.query(Weight.user_id, extract('month', Weight.date_time), Weight.current_weight)
+
+    weekday = func.extract('isodow', Weight.date_time).label('weekday')
+
+    user_monthly_weight = (db.session.query(Weight.user_id, extract('month', Weight.date_time), weekday, Weight.current_weight)
                            .filter(Weight.user_id == session['user_id'])
-                           .join(User).group_by(Weight.user_id, extract('month', Weight.date_time),
-                                                Weight.current_weight).all())
+                           .join(User).group_by(Weight.user_id, extract('month', Weight.date_time), weekday, Weight.current_weight).all())
+
 
     return user_monthly_weight
 
 
 def get_user_glucose(session):
-    glucose_list = db.session.query(Glucose).filter(Glucose.user_id == session["user_id"]).all()
 
-    user_glucose = [user.current_glucose for user in glucose_list]
+    weekday = func.extract('isodow', Glucose.date_time).label('weekday')
 
-    return user_glucose
+    user_monthly_glucose = (db.session.query(Glucose.user_id, extract('month', Glucose.date_time), weekday, Glucose.current_glucose)
+                           .filter(Glucose.user_id == session['user_id'])
+                           .join(User).group_by(Glucose.user_id, extract('month', Glucose.date_time), weekday, Glucose.current_glucose).all())
+
+
+    return user_monthly_glucose
+
+
+
+def get_user_current_weight(session):
+    user_weight_list = get_user_weight(session)
+
+    current_weight = []
+    for weight in user_weight_list:
+        current_weight.append(weight.current_weight)
+
+    return current_weight[-1]
+
+def get_user_current_glucose(session):
+    glucose_list = get_user_glucose(session)
+
+    current_glucose = []
+    for level in glucose_list:
+        current_glucose.append(level.current_glucose)
+
+    return current_glucose[-1]
+
+

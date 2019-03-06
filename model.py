@@ -26,24 +26,16 @@ class User(db.Model):
     password = db.Column(db.String(64), nullable=True)
     email = db.Column(db.String(64), nullable=True)
     phone = db.Column(db.String(64), nullable=True)
-    #date_time = db.Column(db.DateTime)
     gender_code = db.Column(db.String(1), db.ForeignKey('gender.gender_code'))
-    #weight_id = db.Column(db.Integer, db.ForeignKey('weight.weight_id'))
-    #glucose_id = db.Column(db.Integer, db.ForeignKey('glucose.glucose_id'))
-
 
     gender = db.relationship("Gender", backref="user")
     weight = db.relationship("Weight", backref="user")
     glucose = db.relationship("Glucose", backref="user")
 
-
-
-
     def __repr__(self):
         """Provide helpful representation when printed."""
 
         return f"<User user_id={self.user_id} name = {self.name} password = {self.password} gender = {self.gender_code} email = {self.email} phone = {self.phone}>"
-
 
 
 class Gender(db.Model):
