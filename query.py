@@ -41,14 +41,12 @@ def get_user_allowance(session):
 
     return user_allowance
 
-
 def get_user_daily_spending(session):
     """Info on daily spending"""
 
     total = sum([cost for _, cost in get_user_list_of_food(session)])
 
     return get_user_allowance(session) - total
-
 
 def get_user_daily_balance(session):
     """Info on remaining"""
@@ -57,7 +55,6 @@ def get_user_daily_balance(session):
         return 0
     else:
         return get_user_allowance(session) - total
-
 
 def calculate_user_daily_spending_percentage(session):
     """Info on daily spending as a percentage"""
@@ -76,13 +73,35 @@ def get_monthly_spending(session):
 
     return user_monthly_info
 
+def get_average_spending(session):
+    """Info on average spending"""
+
+    user_spending = (db.session.query(Sugar.user_id, extract('year', Sugar.date_time), func.sum(Food.cost))
+                         .filter(Sugar.user_id == session['user_id'])
+                         .join(Food).group_by(Sugar.user_id, extract('year', Sugar.date_time)).all())
+
+    user_date_time = (db.session.query(Sugar.user_id, Sugar.date_time)
+                    .filter(Sugar.user_id == session['user_id'])
+                    .join(Food).group_by(Sugar.user_id, Sugar.date_time).all())
+
+    dates = []
+
+    for date in user_date_time:
+        dates.append(date)
+
+    spent = 0
+    for item in user_spending:
+        spent = item[2]
+
+    user_average = spent/len(dates)
+
+    return int(user_average)
 
 def get_user_notes(session):
     user_sugar = db.session.query(Sugar).filter(Sugar.user_id == session['user_id']).all()
     user_notes = [object.notes for object in user_sugar]
 
     return user_notes
-
 
 def get_user_moods(session):
     moods = get_user_notes(session)
@@ -96,13 +115,15 @@ def get_user_moods(session):
 
     RESULTS = {'children': []}
     for item in user_moods:
+        print(item)
+        print(user_moods[item])
         RESULTS['children'].append({
             'name': item,
             'symbol': item,
             'price': user_moods[item],
-            'net_change': 0,
-            'percent_change': 0,
-            'volume': 0,
+            'net_change': 1,
+            'percent_change': 1,
+            'volume': 1,
             'value': user_moods[item]
         })
 
@@ -116,9 +137,7 @@ def get_user_weight(session):
                            .filter(Weight.user_id == session['user_id'])
                            .join(User).group_by(Weight.user_id, extract('month', Weight.date_time), weekday, Weight.current_weight).all())
 
-
     return user_monthly_weight
-
 
 def get_user_glucose(session):
 
@@ -130,8 +149,6 @@ def get_user_glucose(session):
 
 
     return user_monthly_glucose
-
-
 
 def get_user_current_weight(session):
     user_weight_list = get_user_weight(session)

@@ -3,7 +3,17 @@
 <div class="well spaced" style="width:40%;">
 <h1>Track Your Sugar Spending</h1>
 
+    <div>
+        <form action="/trends/{{ user_id }}" method="GET">
+            <input type="submit" value="Health Trends">
+        </form>
+    </div>
 
+    <div>
+        <form action="/user_dashboard/{{ user_id }}" method="GET">
+            <input type="submit" value="User Dashboard">
+        </form>
+    </div>
 
 <form action="/user_intake/{{user_id}}" method="POST">
 
@@ -58,7 +68,7 @@ generate alternative sugars here from the USDA API using AJAX-->
 
 </div>
     <div>
-    <form action="logout" method="GET">
+    <form action="/" method="GET">
     <input type="submit" value="Log Out" >
     </form>
     </div>

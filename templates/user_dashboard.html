@@ -11,13 +11,13 @@
     </div>
 
     <div>
-        <form action="/user_intake/{{ user_id }}" method="POST">
+        <form action="/user_intake/{{ user_id }}" method="GET">
             <input type="submit" value="Sugar Intake Form">
         </form>
     </div>
 
     <div>
-        <form action="/trends/{{ user_id }}" method="POST">
+        <form action="/trends/{{ user_id }}" method="GET">
             <input type="submit" value="Health Trends">
         </form>
     </div>
@@ -31,6 +31,14 @@
                 </label>
             </div>
 
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-sugar">
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <form action="/user_dashboard/{{ user_id }}" method="POST">
             <div class="form-group">
                 <label>
                     Blood-glucose level
@@ -51,7 +59,7 @@
     <p>Daily Intake</p>{{ daily_in }}
     <p>Weight</p>{{ weight }}
     <p>Glucose</p>{{ glucose }}
-
+    <p>Average spending</p>{{ average }}
 
     <h3>Percent Daily Intake</h3>
 

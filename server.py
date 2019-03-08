@@ -65,9 +65,11 @@ def login_form():
 
     if request.method == 'POST':
         email = request.form["email"]
+        print(email)
         password = request.form["password"]
-
+        print(password)
         user = User.query.filter_by(email=email).first()
+        print(user)
 
         if not user:
             flash("No such user")
@@ -90,9 +92,9 @@ def login_form():
 @app.route('/logout')
 def logout():
     """Log out."""
-
-    del session["user_id"]
     flash("Logged Out.")
+    del session["user_id"]
+
     return redirect("/")
 
 
@@ -150,27 +152,48 @@ def user_dashboard_main(user_id):
     allowance = get_user_allowance(session)
     daily_in = get_user_daily_spending(session)
 
+    # if request.method == 'POST':
+    #     weight = int(request.form["weight"])
+    #     glucose = int(request.form["blood-glucose"])
+    #
+    #     date_time = datetime.utcnow()
+    #
+    #     user_weight = Weight(user_id=user_id, current_weight=weight, date_time=date_time)
+    #     db.session.add(user_weight)
+    #     db.session.commit()
+    #
+    #     user_glucose = Glucose(user_id=user_id, current_glucose=glucose, date_time=date_time)
+    #     db.session.add(user_glucose)
+    #     db.session.commit()
+
     if request.method == 'POST':
-        weight = int(request.form["weight"])
-        glucose = int(request.form["blood-glucose"])
+        if request.form.get('weight'):
+            weight = int(request.form["weight"])
 
-        date_time = datetime.utcnow()
+            date_time = datetime.utcnow()
 
-        user_weight = Weight(user_id=user_id, current_weight=weight, date_time=date_time)
-        db.session.add(user_weight)
-        db.session.commit()
+            user_weight = Weight(user_id=user_id, current_weight=weight, date_time=date_time)
+            db.session.add(user_weight)
+            db.session.commit()
 
-        user_glucose = Glucose(user_id=user_id, current_glucose=glucose, date_time=date_time)
-        db.session.add(user_glucose)
-        db.session.commit()
+        if request.form.get("blood-glucose"):
+
+            glucose = int(request.form["blood-glucose"])
+
+            date_time = datetime.utcnow()
+
+            user_glucose = Glucose(user_id=user_id, current_glucose=glucose, date_time=date_time)
+            db.session.add(user_glucose)
+            db.session.commit()
 
     weight = get_user_current_weight(session)
 
     glucose = get_user_current_glucose(session)
 
+    average = get_average_spending(session)
 
     return render_template("user_dashboard.html", foods=foods, allowance=allowance, user_id=user_id, daily_in=daily_in,
-                           weight=weight, glucose=glucose)
+                           weight=weight, glucose=glucose, average=average)
 
 
 @app.route('/user_weight.json', methods=['GET', 'POST'])
