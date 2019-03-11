@@ -1,4 +1,4 @@
-'''Project Sugar Coins'''
+"""Project Sugar Coins"""
 
 from flask import Flask, flash, redirect, request, render_template, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
@@ -12,6 +12,7 @@ from model import connect_to_db, db, Gender, User, Food, Sugar, Weight, Glucose
 
 from query import *
 from twilio.twiml.messaging_response import MessagingResponse
+#from send_sms import *
 
 app = Flask(__name__)
 app.jinja_env.undefined = StrictUndefined
@@ -20,6 +21,20 @@ app.jinja_env.auto_reload = True
 # Required to use Flask sessions and the debug toolbar
 app.secret_key = "willywonka"
 
+month_dict = {
+        1.0: 'Jan',
+        2.0: 'Feb',
+        3.0: 'Mar',
+        4.0: 'Apr',
+        5.0: 'May',
+        6.0: 'Jun',
+        7.0: 'Jul',
+        8.0: 'Aug',
+        9.0: 'Sep',
+        10.0: 'Oct',
+        11.0: 'Nov',
+        12.0: 'Dec'
+    }
 
 # Normally, if you use an undefined variable in Jinja2, it fails silently.
 
@@ -142,13 +157,15 @@ def intake_form(user_id):
 
     return render_template("user_intake.html", user_id=user_id)
 
+# @app.route('/user_weight.json', methods=['GET', 'POST'])
+# def user_weight_trends():
 
 @app.route('/user_dashboard/<int:user_id>', methods=['GET', 'POST'])
 def user_dashboard_main(user_id):
     """Show user dashboard."""
 
     # user_id = session["user_id"] # no need this here because it is already passed in as a variable
-    foods = get_user_list_of_food(session)
+    foods = get_lists_of_food(session)
     allowance = get_user_allowance(session)
     daily_in = get_user_daily_spending(session)
 
@@ -200,20 +217,6 @@ def user_dashboard_main(user_id):
 def user_weight_trends():
     """Show user dashboard."""
 
-    month_dict = {
-        1.0: 'Jan',
-        2.0: 'Feb',
-        3.0: 'Mar',
-        4.0: 'Apr',
-        5.0: 'May',
-        6.0: 'Jun',
-        7.0: 'Jul',
-        8.0: 'Aug',
-        9.0: 'Sep',
-        10.0: 'Oct',
-        11.0: 'Nov',
-        12.0: 'Dec'
-    }
 
     weights = get_user_weight(session)
 
@@ -262,20 +265,6 @@ def user_weight_trends():
 def user_glucose_trends():
     """Show user dashboard."""
 
-    month_dict = {
-        1.0: 'Jan',
-        2.0: 'Feb',
-        3.0: 'Mar',
-        4.0: 'Apr',
-        5.0: 'May',
-        6.0: 'Jun',
-        7.0: 'Jul',
-        8.0: 'Aug',
-        9.0: 'Sep',
-        10.0: 'Oct',
-        11.0: 'Nov',
-        12.0: 'Dec'
-    }
 
     glucose = get_user_glucose(session)
     month_day = []
@@ -399,21 +388,6 @@ def user_monthly_intake():
     # del session["user_id"]
     session["user_id"]
 
-    month_dict = {
-        1.0: 'Jan',
-        2.0: 'Feb',
-        3.0: 'Mar',
-        4.0: 'Apr',
-        5.0: 'May',
-        6.0: 'Jun',
-        7.0: 'Jul',
-        8.0: 'Aug',
-        9.0: 'Sep',
-        10.0: 'Oct',
-        11.0: 'Nov',
-        12.0: 'Dec'
-    }
-
     months = get_monthly_spending(session)
     monthly_labels = []
     monthly_values = []
@@ -472,11 +446,17 @@ if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the point
     # that we invoke the DebugToolbarExtension
 
+    # turn off schedule.every and schedule.run_continuously(1) bec Twilio will charge per text
+    # run the schedule time first
+    #schedule.every().day.at("12:00").do(send_msg)
+
     # Do not debug for demo
     app.debug = True
     connect_to_db(app)
 
     # Use the DebugToolbar
     DebugToolbarExtension(app)
+
+    #schedule.run_continuously(1)
 
     app.run(host="0.0.0.0")

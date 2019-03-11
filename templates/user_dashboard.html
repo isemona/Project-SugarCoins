@@ -54,7 +54,16 @@
 
 
     <h3>Summary of Daily Intake</h3>
-    <p>List of Foods</p>{{ foods }}
+    <form action="/delete/{{ user_id }}" method="POST">
+    <p>List of Foods</p>
+    <ul id="navigation">
+    {% for food in foods %}
+        <p>{{ food }} </p>
+
+    {% endfor %}
+    <input type="submit" value="Edit" class="edit-food">
+    </ul>
+    </form>
     <p>Daily Allowance</p>{{ allowance }}
     <p>Daily Intake</p>{{ daily_in }}
     <p>Weight</p>{{ weight }}
@@ -147,4 +156,3 @@
     {#<script type="text/javascript" src="/static/user_dashboard.js"></script>#}
 
 {% endblock %}
-

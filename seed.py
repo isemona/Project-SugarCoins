@@ -25,6 +25,11 @@ sweets = ['snickers', 'soda', 'juice', 'M&Ms', 'yogurt', 'cereal']
 alternative = ['stevia', 'orange', 'strawberry', 'blueberry', 'plum']
 reason = ['tired', 'hangry', 'anxious', 'stressed', 'special event', 'peer-pressure', 'experiencing-loss']
 password = 'testing123'
+name = 'Demo'
+email = 'demo@gmail.com'
+gender = 'F'
+user_id = 1
+#phone = '+14084124657'
 
 # notes would be different for woman - ['tired', 'hungry', 'anxious', 'stressed', 'special event', 'peer-pressure', 'hormonal-related', 'experiencing-loss']
 
@@ -38,28 +43,32 @@ def load_users():
     print('Users')
 
     # generating 10 user profile objects
-    user_profiles = []
-    for _ in range(10):
-        user_profiles.append(fake.profile())
+    # user_profiles = []
+    # for _ in range(10):
+    #     user_profiles.append(fake.profile())
+    #
+    # print(user_profiles)
+    #
+    # # accessing properties in individual objects
+    # sugarholics = []
+    # for user in user_profiles:
+    #     sugarholics.append([user['name'], user['mail'], user['sex']])
+    #
+    # print(sugarholics)
+    #
+    # for person in sugarholics:
+    #     name = person[0]
+    #     email = person[1]
+    #     gender = person[2]
+    #     # age = person[3], user['birthdate'] => datetime.date(1991, 9, 22)
 
-    # accessing properties in individual objects
-    sugarholics = []
-    for user in user_profiles:
-        sugarholics.append([user['name'], user['mail'], user['sex']])
-
-    for person in sugarholics:
-        name = person[0]
-        email = person[1]
-        gender = person[2]
-        # age = person[3], user['birthdate'] => datetime.date(1991, 9, 22)
-
-        user = User(name=name,
-                    email=email,
-                    gender_code=gender,
-                    password=password,
-                    )
-        # We need to add to the session or it won't ever be stored
-        db.session.add(user)
+    user = User(name=name,
+                email=email,
+                gender_code=gender,
+                password=password,
+                )
+    # We need to add to the session or it won't ever be stored
+    db.session.add(user)
 
     # Once we're done, we should commit our work
     db.session.commit()
@@ -110,23 +119,26 @@ def load_sugar_intake():
 
     # notes = random.choice(reason)
 
-    time = []
-    for _ in range(10):
-        time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
+    #time = []
+    # for _ in range(10):
+    #     time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
+    #
+    # for dt in time:
+    #     date_time = dt
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+    date_time = datetime.datetime(2019, 1, 22, 19, 12, 22)
+    notes = random.choice(reason)
+    food_id = random.randint(1, 10)
 
-    for dt in time:
-        date_time = dt
-        notes = random.choice(reason)
-        user_id = random.randint(1, 10)
-        food_id = random.randint(1, 10)
+    sugar_intake = Sugar(notes=notes,
+                         date_time=date_time,
+                         user_id=user_id,
+                         food_id=food_id,
+                         )
 
-        sugar_intake = Sugar(notes=notes,
-                             date_time=date_time,
-                             user_id=user_id,
-                             food_id=food_id,
-                             )
-
-        db.session.add(sugar_intake)
+    db.session.add(sugar_intake)
 
     db.session.commit()
 
@@ -135,21 +147,27 @@ def load_weight():
 
     print('Weight')
 
-    time = []
-    for _ in range(10):
-        time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
+    # time = []
+    # for _ in range(10):
+    #     time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
+    #
+    # for dt in time:
+    #     date_time = dt
+    #     user_id = 1
+    #     #user_id = random.randint(1, 10)
+    #     #current_weight = random.randint(100,250)
+    #     user_id = 1
+    #     current_weight = 133
 
-    for dt in time:
-        date_time = dt
-        user_id = random.randint(1, 10)
-        current_weight = random.randint(100,250)
+    date_time = datetime.datetime(2019, 1, 22, 19, 12, 22)
+    current_weight = 133
 
-        user_weight = Weight(current_weight=current_weight,
-                             date_time=date_time,
-                             user_id=user_id,
-                             )
+    user_weight = Weight(current_weight=current_weight,
+                         date_time=date_time,
+                         user_id=user_id,
+                         )
 
-        db.session.add(user_weight)
+    db.session.add(user_weight)
 
     db.session.commit()
 
@@ -158,21 +176,26 @@ def load_weight_two():
 
     print('Weight')
 
-    time = []
-    for _ in range(10):
-        time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
+    # time = []
+    # for _ in range(10):
+    #     time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
+    #
+    # for dt in time:
+    #     date_time = dt
+    #     #user_id = random.randint(1, 10)
+    #     #current_weight = random.randint(100,250)
+    #     user_id = 1
+    #     current_weight = 123
 
-    for dt in time:
-        date_time = dt
-        user_id = random.randint(1, 10)
-        current_weight = random.randint(100,250)
+    date_time = datetime.datetime(2019, 2, 22, 19, 12, 22)
+    current_weight = 123
 
-        user_weight = Weight(current_weight=current_weight,
-                             date_time=date_time,
-                             user_id=user_id,
-                             )
+    user_weight = Weight(current_weight=current_weight,
+                         date_time=date_time,
+                         user_id=user_id,
+                         )
 
-        db.session.add(user_weight)
+    db.session.add(user_weight)
 
     db.session.commit()
 
@@ -182,21 +205,26 @@ def load_glucose():
 
     print('Glucose')
 
-    time = []
-    for _ in range(10):
-        time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
+    # time = []
+    # for _ in range(10):
+    #     time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
+    #
+    # for dt in time:
+    #     date_time = dt
+    #     #user_id = random.randint(1, 10)
+    #     user_id = 1
+    #     #current_glucose = random.randint(70, 125)
+    #     current_glucose = 115
 
-    for dt in time:
-        date_time = dt
-        user_id = random.randint(1, 10)
-        current_glucose = random.randint(70, 125)
+    date_time = datetime.datetime(2019, 1, 22, 19, 12, 22)
+    current_glucose = 115
 
-        user_glucose = Glucose(current_glucose=current_glucose,
-                             date_time=date_time,
-                             user_id=user_id,
-                             )
+    user_glucose = Glucose(current_glucose=current_glucose,
+                         date_time=date_time,
+                         user_id=user_id,
+                         )
 
-        db.session.add(user_glucose)
+    db.session.add(user_glucose)
 
     db.session.commit()
 
@@ -205,21 +233,26 @@ def load_glucose_two():
 
     print('Glucose')
 
-    time = []
-    for _ in range(10):
-        time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
+    # time = []
+    # for _ in range(10):
+    #     time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
+    #
+    # for dt in time:
+    #     date_time = dt
+    #     # user_id = random.randint(1, 10)
+    #     # current_glucose = random.randint(70, 125)
+    #     user_id = 1
+    #     current_glucose = 100
 
-    for dt in time:
-        date_time = dt
-        user_id = random.randint(1, 10)
-        current_glucose = random.randint(70, 125)
+    date_time = datetime.datetime(2019, 2, 22, 19, 12, 22)
+    current_glucose = 100
 
-        user_glucose = Glucose(current_glucose=current_glucose,
-                             date_time=date_time,
-                             user_id=user_id,
-                             )
+    user_glucose = Glucose(current_glucose=current_glucose,
+                         date_time=date_time,
+                         user_id=user_id,
+                         )
 
-        db.session.add(user_glucose)
+    db.session.add(user_glucose)
 
     db.session.commit()
 

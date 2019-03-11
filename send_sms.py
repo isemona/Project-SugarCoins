@@ -7,10 +7,10 @@ import os
 #from query import *
 
 
-account_sid = os.getenv('TWILIO_ACCOUNT_SID')
-auth_token = os.getenv('TWILIO_AUTH_TOKEN')
-my_number = os.getenv('MY_NUMBER')
-twilio_number = os.getenv('TWILIO_NUMBER')
+account_sid = os.environ.get('TWILIO_ACCOUNT_ID')
+auth_token = os.environ.get('TWILIO_AUTH_TOKEN')
+my_number = os.environ.get('MY_NUMBER')
+twilio_number = os.environ.get('TWILIO_NUMBER')
 
 def send_msg():
 
@@ -25,46 +25,10 @@ def send_msg():
 
     print(message.sid)
 
-# def send_msg():
-#
-#     users = get_users(session)
-#     remaining = get_user_daily_balance(session)
-#
-#     for user in users:
-#         phone_number = user.phone
-#         # Your Account Sid and Auth Token from twilio.com/console
-#         account_sid = process.secrets.sh.TWILIO_ACCOUNT_ID;
-#         auth_token = process.secrets.sh.TWILIO_AUTH_TOKEN;
-#
-#         client = Client(account_sid, auth_token)
-#
-#         message = client.messages \
-#                         .create(
-#                              body=f"You have {remaining} coins left in your SugarWallet. Spend wisely! ",
-#                              from_='+14244003773',
-#                              to='+14084124657' # phone_number variable here
-#                          )
-#
-#         print(message.sid)
-
-def job():
-
-
-    # schedule.every(10).minutes.do(job)
-    # schedule.every().hour.do(job)
-    # schedule.every().day.at("12:00").do(send_msg)
-    # schedule.every(5).to(10).minutes.do(job)
-    # schedule.every().monday.do(job)
-    # schedule.every().wednesday.at("13:15").do(job)
-    # schedule.every().minute.at(":17").do(job)
-    schedule.every(20).seconds.do(job)
-
-# while True:
-#     schedule.run_pending()
-#     time.sleep(1)
-
 
 
 if __name__ == "__main__":
 
+    # only use when you are running send_sms_pyg
+    schedule.every(20).seconds.do(send_msg)
     schedule.run_continuously(1)

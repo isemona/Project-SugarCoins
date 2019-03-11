@@ -22,6 +22,20 @@ def get_user_list_of_food(session):
 
     return list_of_foods
 
+def get_lists_of_food(session):
+    """Listing of food and price"""
+
+    # todays_sugar is a list of objects
+    todays_sugar = db.session.query(Sugar).filter(cast(Sugar.date_time, Date) == date.today(),
+                                                  Sugar.user_id == session['user_id']).all()
+
+    foods = []
+    for entry in todays_sugar:
+        foods.append(entry.food.food_name + " " + str(entry.food.cost))
+
+    return foods
+
+
 def get_users(session):
     """Info on daily spending"""
     users = User.query.all()
@@ -98,8 +112,11 @@ def get_average_spending(session):
     return int(user_average)
 
 def get_user_notes(session):
-    user_sugar = db.session.query(Sugar).filter(Sugar.user_id == session['user_id']).all()
-    user_notes = [object.notes for object in user_sugar]
+    #user_sugar = db.session.query(Sugar).filter(Sugar.user_id == session['user_id']).all()
+    todays_sugar = db.session.query(Sugar).filter(cast(Sugar.date_time, Date) == date.today(),
+                                                  Sugar.user_id == session['user_id']).all()
+
+    user_notes = [object.notes for object in todays_sugar]
 
     return user_notes
 
