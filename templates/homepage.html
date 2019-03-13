@@ -2,28 +2,146 @@
 {% block content %}
 
 
-    <div id="homepage-block">
-    <h1 id="homepage-title"></h1>
-    </div>
 
-    <div>
-    <img src = "https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552330920/sugar_coin logo.png"
-         alt = "sugar_coin logo height="300"  width="300" align="center">
-    </div>
+    {#<body>#}
+    {##}
+    {#  <!-- Static navbar -->#}
+    {#  <nav class="navbar navbar-default">#}
+    {#    <div class="container-fluid">#}
+    {#      <div class="navbar-header">#}
+    {#        <button type="button"#}
+    {#                class="navbar-toggle collapsed"#}
+    {#                data-toggle="collapse"#}
+    {#                data-target="#navbar"#}
+    {#                aria-expanded="false"#}
+    {#                aria-controls="navbar">#}
+    {#            <span class="sr-only">Toggle navigation</span>#}
+    {#            <span class="icon-bar"></span>#}
+    {#            <span class="icon-bar"></span>#}
+    {#            <span class="icon-bar"></span>#}
+    {#        </button>#}
+    {#        <a class="navbar-brand" href="#"></a>#}
+    {#      </div>#}
+    {#      <div id="navbar" class="navbar-collapse collapse">#}
+    {#        <ul class="nav navbar-nav">#}
+    {#          <li><a href="#">About Us</a></li>#}
+    {#          <li><a href="#">Contact</a></li>#}
+    {#        </ul>#}
+    {#        <ul class="nav navbar-nav navbar-right">#}
+    {#          <li><a href="/login">Log In</a></li>#}
+    {#        </ul>#}
+    {#      </div>#}
+    {#    </div>#}
+    {#  </nav>#}
+    {##}
+    {#  <main class="container-fluid">#}
+    {##}
+    {#    <div class="row">#}
+    {#      <section class="splash-header col-xs-12 col-sm-12 col-md-6 col-lg-6 left">#}
+    {#        <p>Track your sugar coin spending today</p>#}
+    {##}
+    {#        <img class=logo src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552330920/sugar_coin logo.png"#}
+    {#         alt="sugar coin logo" height="300" width="300">#}
+    {#      </section>#}
+    {##}
+    {#      <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 right">#}
+    {#          <h2 id="signup">Sign Up Today</h2>#}
+    {#          <form>#}
+    {#            <input name="username" type="text" class="form-control" placeholder="Your Username">#}
+    {#            <input name="password" type="password" class="form-control" placeholder="Your Password">#}
+    {#            <div>#}
+    {#              <a href="#" class="btn">Sign Up</a>#}
+    {#            </div>#}
+    {#          </form>#}
+    {#      </section>#}
+    {#    </div>#}
+    {##}
+    {#  </main>#}
+    {##}
+    {##}
+    {#</body>#}
+    {#</html>#}
 
 
-    <div>
-    <form action="login" method="GET">
-    <input type="submit" value="Login" >
-    </form>
-    </div>
 
-    <div>
-    <form action="register" method="GET">
-    <input type="submit" value="Register" >
-    </form>
-    </div>
 
-    </div>
+
+
+
+
+
+
+
+
+
+    {##}
+    {#    <div id="homepage-block">#}
+    {#    <h1 id="homepage-title"></h1>#}
+    {#    <h3 align="center">Track your sugar coin spending today.</h3>#}
+    {#        <img class=logo src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552330920/sugar_coin logo.png"#}
+    {#         alt="sugar coin logo" height="300" width="300">#}
+    {#    </div>#}
+
+
+
+    <main class="container-fluid">
+
+        {#    <div class="row">#}
+        {#        <section class="splash-header col-xs-12 col-sm-12 col-md-6 col-lg-6 left">#}
+        {##}
+        {##}
+        {#      </section>#}
+
+        {#<section class="splash-header col-xs-12 col-sm-12 col-md-6 col-lg-6 right">#}
+        <section class="splash-header">
+            <h2 id="signup">Track your sugar coin spending today</h2>
+            {#          <p>Track your sugar coin spending today</p>#}
+            <img class=logo src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552330920/sugar_coin logo.png"
+                 alt="sugar coin logo" height="400" width="400">
+
+            <form action="/login" method="POST">
+                {#            <input name="email" type="text" class="form-control" placeholder="Email">#}
+                {#            <input name="password" type="password" class="form-control" placeholder="Password">#}
+
+                {#                <input type="submit" value="Login" class="btn">#}
+                <a href="/login" class="btn">Login</a>
+                <a href="/register" class="btn">Register</a>
+            </form>
+        </section>
+        </div>
+
+    </main>
+
+
+
+    {#       <div class="well spaced" style="width:40%;">#}
+    {#    <h1>Sign in</h1>#}
+    {##}
+    {#    <form action="/login" method="POST">#}
+    {#    Email: <input type="text" name="email" placeholder="Email address">#}
+    {#    <br>#}
+    {#    Password: <input type="text" placeholder="Password" name="password">#}
+    {#    <br>#}
+    {#    <input type="submit" value="Submit">#}
+    {#    </form>#}
+    {##}
+    {#     <div class="" align="center">#}
+    {#    <form action="login" method="GET">#}
+    {#    <input type="submit" value="Login" class="button button1">#}
+    {#    </form>#}
+    {#    </div>#}
+    {##}
+    {#    <div id=register align="center" >#}
+    {#    <form action="register hello" method="GET">#}
+    {#    <input type="submit" value="Register" class="button button1">#}
+    {#    </form>#}
+    {#    </div>#}
+    {#    </div>#}
+
+
+
+
+
+
 
 {% endblock %}

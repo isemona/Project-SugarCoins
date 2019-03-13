@@ -1,59 +1,85 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="well spaced" style="width:40%;">
-<h1>Track Your Sugar Spending</h1>
 
-    <div>
-        <form action="/trends/{{ user_id }}" method="GET">
-            <input type="submit" value="Health Trends">
+<h1>Profile</h1>
+
+     <div>
+        <form action="/user_dashboard/{{ user_id }}" method="POST">
+            <div class="well-spaced">
+                <label>
+                    <p>Weight</p>
+                    <input type="number" name="weight" class="form-control">
+                    <input type="submit" value="Submit" class="btn">
+                </label>
+            </div>
         </form>
     </div>
 
     <div>
-        <form action="/user_dashboard/{{ user_id }}" method="GET">
-            <input type="submit" value="User Dashboard">
+        <form action="/user_dashboard/{{ user_id }}" method="POST">
+            <div class="well-spaced">
+                <label>
+                    <p>Blood-glucose level</p>
+                    <input type="number" name="blood-glucose" class="form-control">
+                    <input type="submit" value="Submit" class="btn">
+                </label>
         </form>
     </div>
 
-<form action="/user_intake/{{user_id}}" method="POST">
-
-
-  <div class="form-group">
-    <label>
-      Sweet food
-        <input type="text" name="food" class="form-control"></br>
-    </label>
-  </div>
-
-  <div class="form-group">
-    <label>
-      Price
-      <input type="number" name="cost" class="form-control">
-    </label>
-  </div>
-
-  <div class="form-group">
-    <label>
-      Notes
-      <select name="notes" value="Why?">
-        <option value="tired">Tired</option>
-        <option value="hangry">Hangry</option>
-        <option value="anxious">Anxious</option>
-        <option value="stressed">Stressed</option>
-        <option value="special-event">Special event</option>
-        <option value="peer-pressure">Peer Pressure</option>
-        <option value="experiencing-loss">Experiencing Loss</option>
-      </select>
-    </label>
-  </div>
-
-  <div class="form-group">
-    <input type="submit" value="Submit" class="btn btn-sugar">
-  </div>
-
-
-
-</form>
+{#<h1>Track Your Sugar Spending</h1>#}
+{##}
+{#    <div>#}
+{#        <form action="/trends/{{ user_id }}" method="GET">#}
+{#            <input type="submit" value="Health Trends">#}
+{#        </form>#}
+{#    </div>#}
+{##}
+{#    <div>#}
+{#        <form action="/user_dashboard/{{ user_id }}" method="GET">#}
+{#            <input type="submit" value="User Dashboard">#}
+{#        </form>#}
+{#    </div>#}
+{##}
+{#<form action="/user_intake/{{user_id}}" method="POST">#}
+{##}
+{##}
+{#  <div class="form-group">#}
+{#    <label>#}
+{#      Sweet food#}
+{#        <input type="text" name="food" class="form-control"></br>#}
+{#    </label>#}
+{#  </div>#}
+{##}
+{#  <div class="form-group">#}
+{#    <label>#}
+{#      Price#}
+{#      <input type="number" name="cost" class="form-control">#}
+{#    </label>#}
+{#  </div>#}
+{##}
+{#  <div class="form-group">#}
+{#    <label>#}
+{#      Notes#}
+{#      <select name="notes" value="Why?">#}
+{#        <option value="tired">Tired</option>#}
+{#        <option value="hangry">Hangry</option>#}
+{#        <option value="anxious">Anxious</option>#}
+{#        <option value="stressed">Stressed</option>#}
+{#        <option value="special-event">Special event</option>#}
+{#        <option value="peer-pressure">Peer Pressure</option>#}
+{#        <option value="experiencing-loss">Experiencing Loss</option>#}
+{#      </select>#}
+{#    </label>#}
+{#  </div>#}
+{##}
+{#  <div class="form-group">#}
+{#    <input type="submit" value="Submit" class="btn btn-sugar">#}
+{#  </div>#}
+{##}
+{##}
+{##}
+{#</form>#}
 
 <!--
 
@@ -66,10 +92,10 @@
 generate alternative sugars here from the USDA API using AJAX-->
 
 
-</div>
-    <div>
-    <form action="/" method="GET">
-    <input type="submit" value="Log Out" >
-    </form>
-    </div>
+{#</div>#}
+{#    <div>#}
+{#    <form action="/" method="GET">#}
+{#    <input type="submit" value="Log Out" >#}
+{#    </form>#}
+{#    </div>#}
 {% endblock %}

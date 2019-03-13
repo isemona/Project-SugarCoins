@@ -1,55 +1,108 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="well spaced" style="width:40%;">
-        <h1>Register</h1>
+{#    <div class="well spaced" style="width:40%;">#}
+{#        <h1>Register</h1>#}
+{##}
+{#        <form action="register" method="POST">#}
+{##}
+{#            <div class="form-group">#}
+{#                <label>#}
+{#                    Firstname#}
+{#                    <input type="text" name="fname" class="form-control"></br>#}
+{#                    Lastname#}
+{#                    <input type="text" name="lname" class="form-control">#}
+{#                </label>#}
+{#            </div>#}
+{##}
+{#            <div class="form-group">#}
+{#                <label>#}
+{#                    Email#}
+{#                    <input type="email" name="email" class="form-control">#}
+{#                </label>#}
+{#            </div>#}
+{##}
+{#            <div class="form-group">#}
+{#                <label>#}
+{#                    Password#}
+{#                    <input type="password" name="password" class="form-control">#}
+{#                </label>#}
+{#            </div>#}
+{##}
+{#            <div class="form-group">#}
+{#                <label>#}
+{#                    Gender#}
+{#                    <input type="radio" name="gender" value="M"> Male#}
+{#                    <input type="radio" name="gender" value="F"> Female#}
+{#                </label>#}
+{#            </div>#}
+{##}
+{##}
+{##}
+{#            <div class="form-group">#}
+{#                <label>#}
+{#                    Phone number#}
+{#                    <input type="text" name="pnum" class="form-control">#}
+{#                </label>#}
+{#            </div>#}
+{##}
+{#            <div class="form-group">#}
+{#                <input type="submit" value="Track my sugar intake!" class="btn btn-sugar">#}
+{#            </div>#}
+{##}
+{##}
+{#        </form>#}
 
-        <form action="register" method="POST">
+
+{#    <div  class="well spaced" style="width:30%;">#}
+        <h1 id=register align="center">Sign up</h1>
+
+        <form action="/login" method="POST">
 
             <div class="form-group">
                 <label>
-                    Firstname
-                    <input type="text" name="fname" class="form-control"></br>
-                    Lastname
-                    <input type="text" name="lname" class="form-control">
+                    <input type="text" name="fname" placeholder="Firstname">
+                 </label>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="text" name="lname" placeholder="Lastname">
                 </label>
             </div>
 
             <div class="form-group">
                 <label>
-                    Email
-                    <input type="email" name="email" class="form-control">
+                    <input type="text" name="email" placeholder="Email">
                 </label>
             </div>
 
             <div class="form-group">
                 <label>
-                    Password
-                    <input type="password" name="password" class="form-control">
+                    <input type="password" name="password" placeholder="Password">
                 </label>
             </div>
 
             <div class="form-group">
                 <label>
-                    Gender
-                    <input type="radio" name="gender" value="M"> Male
-                    <input type="radio" name="gender" value="F"> Female
+                    <input type="text" name="pnum" placeholder="Phone number">
                 </label>
             </div>
-
-
 
             <div class="form-group">
                 <label>
-                    Phone number
-                    <input type="text" name="pnum" class="form-control">
+                    <input type="radio" name="gender" value="M"> Male <input type="radio" name="gender" value="F"> Female
+
                 </label>
             </div>
 
-            <div class="form-group">
-                <input type="submit" value="Track my sugar intake!" class="btn btn-sugar">
-            </div>
 
+
+            <div class="form-group" align="center">
+                <input type="submit" value="Track my sugar intake!" class="btn">
+            </div>
 
         </form>
     </div>
+
+
 {% endblock %}

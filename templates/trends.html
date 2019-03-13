@@ -6,7 +6,7 @@
     <head>
         <meta charset="UTF-8">
         <title>D3 Correlation Matrix</title>
-        <h1>{{ fname }}'s Mood Trends</h1>
+        <h1>{{ fname }}'s Sugar Dependency Trends</h1>
 
 
         <div id="chart"></div>
@@ -106,6 +106,69 @@
     </body>
 
     </html>
+
+    <div class="well-spaced">
+        <h3>Monthly Sugar Intake</h3>
+
+        <div>
+            <canvas id="barChart" width="300px" height="100px"></canvas>
+        </div>
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script>
+            let ctx_bar = $("#barChart").get(0).getContext('2d');
+
+            $.get('/user_monthly_intake.json', function (data) {
+                let barChart = new Chart(ctx_bar, {
+                    type: 'bar',
+                    data: data,
+                    options: options
+                })
+            });
+        </script>
+    </div>
+    <div class="well-spaced">
+        <h3>Weight Trends</h3>
+
+        <div>
+            <canvas id="weightChart" width="300px" height="100px"></canvas>
+        </div>
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script>
+
+            let ctx_line = $("#weightChart").get(0).getContext('2d');
+
+            $.get('/user_weight.json', function (data) {
+                let myChart = new Chart(ctx_line, {
+                    type: 'line',
+                    data: data,
+                    options: options
+                })
+            });
+        </script>
+    </div>
+    <div class="well-spaced">
+        <h3>Glucose Trends</h3>
+
+        <div>
+            <canvas id="glucoseChart" width="300px" height="100px"></canvas>
+        </div>
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script>
+
+            let ctx_glucose_line = $("#glucoseChart").get(0).getContext('2d');
+
+            $.get('/user_glucose.json', function (data) {
+                let my_Chart = new Chart(ctx_glucose_line, {
+                    type: 'line',
+                    data: data,
+                    options: options
+                })
+            });
+        </script>
+    </div>
 
 
 

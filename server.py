@@ -12,7 +12,8 @@ from model import connect_to_db, db, Gender, User, Food, Sugar, Weight, Glucose
 
 from query import *
 from twilio.twiml.messaging_response import MessagingResponse
-#from send_sms import *
+
+# from send_sms import *
 
 app = Flask(__name__)
 app.jinja_env.undefined = StrictUndefined
@@ -22,19 +23,20 @@ app.jinja_env.auto_reload = True
 app.secret_key = "willywonka"
 
 month_dict = {
-        1.0: 'Jan',
-        2.0: 'Feb',
-        3.0: 'Mar',
-        4.0: 'Apr',
-        5.0: 'May',
-        6.0: 'Jun',
-        7.0: 'Jul',
-        8.0: 'Aug',
-        9.0: 'Sep',
-        10.0: 'Oct',
-        11.0: 'Nov',
-        12.0: 'Dec'
-    }
+    1.0: 'Jan',
+    2.0: 'Feb',
+    3.0: 'Mar',
+    4.0: 'Apr',
+    5.0: 'May',
+    6.0: 'Jun',
+    7.0: 'Jul',
+    8.0: 'Aug',
+    9.0: 'Sep',
+    10.0: 'Oct',
+    11.0: 'Nov',
+    12.0: 'Dec'
+}
+
 
 # Normally, if you use an undefined variable in Jinja2, it fails silently.
 
@@ -99,7 +101,7 @@ def login_form():
         session['user'] = user.name  # this instantiates the session library to include user name
 
         flash("Logged in")
-        return redirect(f"/user_intake/{user.user_id}")
+        return redirect(f"/user_dashboard/{user.user_id}")
 
     return render_template("login_form.html")
 
@@ -157,6 +159,7 @@ def intake_form(user_id):
 
     return render_template("user_intake.html", user_id=user_id)
 
+
 # @app.route('/user_weight.json', methods=['GET', 'POST'])
 # def user_weight_trends():
 
@@ -194,7 +197,6 @@ def user_dashboard_main(user_id):
             db.session.commit()
 
         if request.form.get("blood-glucose"):
-
             glucose = int(request.form["blood-glucose"])
 
             date_time = datetime.utcnow()
@@ -217,7 +219,6 @@ def user_dashboard_main(user_id):
 def user_weight_trends():
     """Show user dashboard."""
 
-
     weights = get_user_weight(session)
 
     month_day = []
@@ -225,7 +226,7 @@ def user_weight_trends():
 
     for weight in weights:
         months = month_dict[weight[1]]
-        days = str(int(weight[2])) # int() will floor your float
+        days = str(int(weight[2]))  # int() will floor your float
         month_day.append(months + " " + days)
         monthly_values.append(weight[3])
 
@@ -261,10 +262,10 @@ def user_weight_trends():
 
     return jsonify(data_dict)
 
+
 @app.route('/user_glucose.json', methods=['GET', 'POST'])
 def user_glucose_trends():
     """Show user dashboard."""
-
 
     glucose = get_user_glucose(session)
     month_day = []
@@ -275,8 +276,6 @@ def user_glucose_trends():
         days = str(int(level[2]))  # int() will floor your float
         month_day.append(months + " " + days)
         monthly_values.append(level[3])
-
-
 
     data_dict = {
         "labels": month_day,
@@ -328,10 +327,10 @@ def user_mood_trends():
     print("hello")
     print(get_user_moods(session))
 
-    data_dict = get_user_moods(session) # array of objects
-
+    data_dict = get_user_moods(session)  # array of objects
 
     return jsonify(data_dict)
+
 
 @app.route('/user_percent_intake.json')
 def user_percent_intake():
@@ -437,7 +436,7 @@ def sms_ahoy_reply():
     resp = MessagingResponse()
 
     # Add a message
-    resp.message("Ahoy! Thanks so much for your message.") # message sent when you need a response from the user
+    resp.message("Ahoy! Thanks so much for your message.")  # message sent when you need a response from the user
 
     return str(resp)
 
@@ -448,15 +447,15 @@ if __name__ == "__main__":
 
     # turn off schedule.every and schedule.run_continuously(1) bec Twilio will charge per text
     # run the schedule time first
-    #schedule.every().day.at("12:00").do(send_msg)
+    # schedule.every().day.at("12:00").do(send_msg)
 
     # Do not debug for demo
-    app.debug = True
+    app.debug = False
     connect_to_db(app)
 
     # Use the DebugToolbar
     DebugToolbarExtension(app)
 
-    #schedule.run_continuously(1)
+    # schedule.run_continuously(1)
 
     app.run(host="0.0.0.0")
