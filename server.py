@@ -118,7 +118,6 @@ def logout():
 @app.route('/user_intake/<int:user_id>', methods=['GET', 'POST'])
 def intake_form(user_id):
     """Show intake form and process."""
-
     if request.method == 'POST':
 
         if 'user_id' in session:
@@ -211,8 +210,11 @@ def user_dashboard_main(user_id):
 
     average = get_average_spending(session)
 
+    name = session["user"].split(" ")
+    fname = name[0]
+
     return render_template("user_dashboard.html", foods=foods, allowance=allowance, user_id=user_id, daily_in=daily_in,
-                           weight=weight, glucose=glucose, average=average)
+                           weight=weight, glucose=glucose, average=average, fname=fname)
 
 
 @app.route('/user_weight.json', methods=['GET', 'POST'])
@@ -238,8 +240,8 @@ def user_weight_trends():
                 "label": 'Weight Over Time',
                 "data": monthly_values,
                 "backgroundColor": [
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
                 ],
                 "borderColor": [
                     'rgba(75, 192, 192, 1)',
@@ -285,8 +287,8 @@ def user_glucose_trends():
                 "label": 'Glucose Over Time',
                 "data": monthly_values,
                 "backgroundColor": [
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
                 ],
                 "borderColor": [
                     'rgba(75, 192, 192, 1)',
@@ -317,7 +319,13 @@ def user_trends(user_id):
     name = session["user"].split(" ")
     fname = name[0]
 
-    return render_template("trends.html", fname=fname)
+    weight = get_user_current_weight(session)
+
+    glucose = get_user_current_glucose(session)
+
+    average = get_average_spending(session)
+
+    return render_template("trends.html", fname=fname, weight=weight, glucose=glucose, average=average)
 
 
 @app.route('/trends.json', methods=['GET', 'POST'])
@@ -332,7 +340,7 @@ def user_mood_trends():
     return jsonify(data_dict)
 
 
-@app.route('/user_percent_intake.json')
+@app.route('/user_percent_intake.json', methods=['GET', 'POST'])
 def user_percent_intake():
     """Show user percent daily intake."""
 
@@ -354,8 +362,8 @@ def user_percent_intake():
                 "label": 'Percentage of User Intake',
                 "data": [100 - percent, percent],
                 "backgroundColor": [
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
                 ],
                 "borderColor": [
                     'rgba(75, 192, 192, 1)',
@@ -379,7 +387,7 @@ def user_percent_intake():
     return jsonify(data_dict)
 
 
-@app.route('/user_monthly_intake.json')
+@app.route('/user_monthly_intake.json', methods=['GET', 'POST'])
 def user_monthly_intake():
     """Show user monthly intake."""
 
@@ -404,8 +412,8 @@ def user_monthly_intake():
                 "label": '2019 Monthly Intake',
                 "data": monthly_values,
                 "backgroundColor": [
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
                 ],
                 "borderColor": [
                     'rgba(75, 192, 192, 1)',
