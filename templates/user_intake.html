@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="well spaced" style="width:40%;">
+<div class="well-spaced" style="width:40%;">
 
 <h1>Profile</h1>
 
-     <div class="form-group">
+{#     <div class="form-group">#}
         <form action="/user_dashboard/{{ user_id }}" method="POST">
-            <div class="well-spaced">
+            <div class="well-spaced form-group">
                 <label>
                     <p>Weight</p>
                     <input type="number" name="weight" class="form-control">
@@ -14,11 +14,11 @@
                 </label>
             </div>
         </form>
-    </div>
 
-    <div>
+
+
         <form action="/user_dashboard/{{ user_id }}" method="POST">
-            <div class="well-spaced">
+<div class="well-spaced form-group">
                 <label>
                     <p>Blood-glucose level</p>
                     <input type="number" name="blood-glucose" class="form-control">
@@ -26,6 +26,10 @@
                 </label>
         </form>
     </div>
+    </div>
+
+
+
 
 {#<h1>Track Your Sugar Spending</h1>#}
 {##}

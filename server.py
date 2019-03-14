@@ -325,7 +325,7 @@ def user_trends(user_id):
 
     average = get_average_spending(session)
 
-    return render_template("trends.html", fname=fname, weight=weight, glucose=glucose, average=average)
+    return render_template("trends.html", fname=fname, weight=weight, glucose=glucose, average=average, user_id=user_id)
 
 
 @app.route('/trends.json', methods=['GET', 'POST'])
