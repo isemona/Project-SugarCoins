@@ -22,7 +22,7 @@ from server import app
 fake = Faker()
 
 sweets = ['snickers', 'soda', 'juice', 'M&Ms', 'yogurt', 'cereal']
-alternative = ['stevia', 'orange', 'strawberry', 'blueberry', 'plum']
+# alternative = ['stevia', 'orange', 'strawberry', 'blueberry', 'plum']
 reason = ['tired', 'hangry', 'anxious', 'stressed', 'special event', 'peer-pressure', 'experiencing-loss']
 password = 'testing123'
 name = 'Demo'
@@ -119,26 +119,34 @@ def load_sugar_intake():
 
     # notes = random.choice(reason)
 
-    #time = []
-    # for _ in range(10):
-    #     time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
+    time = []
+    for _ in range(10):
+        # time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
+        time.append(fake.date_between(start_date="-1y", end_date="-90d"))
+
+
     #
-    # for dt in time:
-    #     date_time = dt
+    for dt in time:
+        date_time = dt
     #     notes = random.choice(reason)
     #     #user_id = random.randint(1, 10)
     #     food_id = random.randint(1, 10)
-    date_time = datetime.datetime(2019, 1, 22, 19, 12, 22)
-    notes = random.choice(reason)
-    food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
 
-    sugar_intake = Sugar(notes=notes,
-                         date_time=date_time,
-                         user_id=user_id,
-                         food_id=food_id,
-                         )
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
 
-    db.session.add(sugar_intake)
+        db.session.add(sugar_intake)
+
+
+    # date_time = datetime.datetime(2019, 1, 22, 19, 12, 22)
+
+
+
 
     db.session.commit()
 

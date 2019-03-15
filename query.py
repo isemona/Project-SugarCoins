@@ -1,7 +1,8 @@
 from model import *
 
 from sqlalchemy import cast, Date, func, extract
-from datetime import date
+# from datetime import date
+from datetime import datetime, timedelta
 
 
 # init_app()
@@ -12,9 +13,11 @@ def get_user_list_of_food(session):
     """Info on list of foods and costs"""
 
     # todays_sugar is a list of objects
-    todays_sugar = db.session.query(Sugar).filter(cast(Sugar.date_time, Date) == date.today(),
-                                                  Sugar.user_id == session['user_id']).all()
+    # todays_sugar = db.session.query(Sugar).filter(cast(Sugar.date_time, Date) == date.today(),
+    #                                               Sugar.user_id == session['user_id']).all()
 
+    todays_sugar = db.session.query(Sugar).filter(cast(Sugar.date_time, Date) > datetime.utcnow() - timedelta(days=1),
+                                                  Sugar.user_id == session['user_id']).all()
     list_of_foods = []
 
     for entry in todays_sugar:
@@ -26,12 +29,13 @@ def get_lists_of_food(session):
     """Listing of food and price"""
 
     # todays_sugar is a list of objects
-    todays_sugar = db.session.query(Sugar).filter(cast(Sugar.date_time, Date) == date.today(),
-                                                  Sugar.user_id == session['user_id']).all()
+    todays_sugar = db.session.query(Sugar).filter(
+        cast(Sugar.date_time, Date) > datetime.utcnow() - timedelta(days=1),
+        Sugar.user_id == session['user_id']).all()
 
     foods = []
     for entry in todays_sugar:
-        foods.append(entry.food.food_name + " " + str(entry.food.cost))
+        foods.append((entry.food.food_name + "________________________" + str(entry.food.cost)))
 
     return foods
 
@@ -60,7 +64,7 @@ def get_user_daily_spending(session):
 
     total = sum([cost for _, cost in get_user_list_of_food(session)])
 
-    return get_user_allowance(session) - total
+    return total
 
 def get_user_daily_balance(session):
     """Info on remaining"""
@@ -113,7 +117,7 @@ def get_average_spending(session):
 
 def get_user_notes(session):
     #user_sugar = db.session.query(Sugar).filter(Sugar.user_id == session['user_id']).all()
-    todays_sugar = db.session.query(Sugar).filter(cast(Sugar.date_time, Date) == date.today(),
+    todays_sugar = db.session.query(Sugar).filter(cast(Sugar.date_time, Date) > datetime.utcnow() - timedelta(days=1),
                                                   Sugar.user_id == session['user_id']).all()
 
     user_notes = [object.notes for object in todays_sugar]

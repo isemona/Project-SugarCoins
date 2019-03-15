@@ -168,6 +168,7 @@ def user_dashboard_main(user_id):
 
     # user_id = session["user_id"] # no need this here because it is already passed in as a variable
     foods = get_lists_of_food(session)
+    print(foods)
     allowance = get_user_allowance(session)
     daily_in = get_user_daily_spending(session)
 
@@ -349,18 +350,18 @@ def user_percent_intake():
     session["user_id"]
 
     percent = calculate_user_daily_spending_percentage(session)
-
+    print(percent)
     data_dict = {
         "labels": [
             "User Intake",
-            "Remaining"
+            "Remaining",
 
         ],
 
         "datasets": [
             {
                 "label": 'Percentage of User Intake',
-                "data": [100 - percent, percent],
+                "data": [percent,max(0,100-percent)],
                 "backgroundColor": [
                     'rgba(75, 192, 192, 1)',
                     'rgba(54, 162, 235, 1)',
@@ -409,13 +410,33 @@ def user_monthly_intake():
 
         "datasets": [
             {
-                "label": '2019 Monthly Intake',
+                "label": '2018 Monthly Intake',
                 "data": monthly_values,
                 "backgroundColor": [
                     'rgba(75, 192, 192, 1)',
                     'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
                 ],
                 "borderColor": [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(54, 162, 235, 1)',
                 ],

@@ -1,25 +1,26 @@
 <!doctype html>
 <html>
-<head>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SugarCoins</title>
+{#<head>#}
+{##}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#    <title>SugarCoins</title>#}
     {#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"#}
     {#          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
     {##}
     {#    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">#}
     {#    <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js></script>#}
-
+{##}
     {#    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='styles.css') }}/>#}
-
-</head>
+{##}
+{#</head>#}
 
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
     <title>SugarCoins</title>
 
     <!-- Bootstrap -->
@@ -32,7 +33,19 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href={{ url_for('static', filename='styles.css') }}/>
 
+<style>
+    @import url(http://weloveiconfonts.com/api/?family=entypo|fontelico);
 
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+/* fontelico */
+[class*="fontelico-"]:before {
+  font-family: 'fontelico', sans-serif;
+}
+</style>
 
 </head>
 

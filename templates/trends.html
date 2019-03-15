@@ -19,6 +19,9 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">SugarCoin</a>
+                <img class="coin-img"
+                         src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
+                         alt="sugarcoin" height="50" width="50" align="center">
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -57,10 +60,21 @@
     <main class="container-fluid">
         <meta charset="UTF-8">
         <title>D3 Correlation Matrix</title>
-        <h1>{{ fname }}'s Sugar Dependency Trends</h1>
-
+        <div class="row">
         <div id="border">
-            <h4>Mood & Behavioral Factors</h4>
+        <h1>{{ fname }}'s Sugar Dependency Trends</h1>
+        </div>
+
+            <div class="row form-group">
+            <section class="splash-header col-lg-2 left">
+                <div class="well-spaced">
+                    <p>Mood & Behavioral Factors</p>
+                </div>
+
+            </section>
+
+{#            <h4>Mood & Behavioral Factors</h4>#}
+            <section class="splash-header col-lg-10">
             <div class="mood-border">
             <div id="chart"></div>
 
@@ -149,10 +163,10 @@
 
             </script>
                 </div>
+    </section>
         </div>
 
-
-        <div id="border" class="row form-group">
+        <div class="row form-group">
             <section class="splash-header col-lg-2 left">
                 <div class="well-spaced">
                     <p>Average spending</p>
@@ -186,7 +200,7 @@
         </div>
 
 
-        <div id="border" class="row form-group">
+        <div class="row form-group">
             <section class="splash-header col-lg-2 left">
                 <div class="well-spaced">
                     <p>Current Weight</p>
@@ -219,7 +233,7 @@
             </section>
         </div>
 
-        <div id="border" class="row form-group">
+        <div class="row form-group">
             <section class="splash-header col-lg-2 left">
                 <div class="well-spaced">
                     <p>Current Glucose Level</p>
