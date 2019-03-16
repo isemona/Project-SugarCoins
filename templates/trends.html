@@ -3,8 +3,8 @@
 
 
 
-  <!-- Static navbar -->
-  <nav class="navbar navbar-default">
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button"
@@ -20,8 +20,8 @@
                 </button>
                 <a class="navbar-brand" href="#">SugarCoin</a>
                 <img class="coin-img"
-                         src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
-                         alt="sugarcoin" height="50" width="50" align="center">
+                     src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
+                     alt="sugarcoin" height="50" width="50" align="center">
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -52,8 +52,8 @@
 
 
 
-  <script src="http://code.jquery.com/jquery.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 
 
@@ -61,221 +61,233 @@
         <meta charset="UTF-8">
         <title>D3 Correlation Matrix</title>
         <div class="row">
-        <div id="border">
-        <h1>{{ fname }}'s Sugar Dependency Trends</h1>
-        </div>
+            <div id="border">
+                <h1>{{ fname }}'s Sugar Dependency Trends</h1>
+            </div>
 
             <div class="row form-group">
-            <section class="splash-header col-lg-2 left">
-                <div class="well-spaced">
-                    <p>Mood & Behavioral Factors</p>
-                </div>
+                <section class="splash-header col-lg-2 left">
+                    <div class="well-spaced">
+                        <p>Mood & Behavioral Factors</p>
+                    </div>
 
-            </section>
+                </section>
 
-{#            <h4>Mood & Behavioral Factors</h4>#}
-            <section class="splash-header col-lg-10">
-            <div class="mood-border">
-            <div id="chart"></div>
+                {#            <h4>Mood & Behavioral Factors</h4>#}
+                <section class="splash-header col-lg-10">
+                    <div class="mood-border">
+                        <div id="chart"></div>
 
-            <script src="http://code.jquery.com/jquery.js"></script>
-            <script src="//d3js.org/d3.v3.js"></script>
-            <script>
-                $(function () {
-                    console.log('jquery is working!');
-                    createGraph();
-                });
+                        <script src="http://code.jquery.com/jquery.js"></script>
+                        <script src="//d3js.org/d3.v3.js"></script>
+                        <script>
+                            $(function () {
+                                console.log('jquery is working!');
+                                createGraph();
+                            });
 
-                function createGraph() {
-                    // Code goes here
-                }
+                            function createGraph() {
+                                // Code goes here
+                            }
 
-                var width = 660; // chart width
-                var height = 400; // chart height
-                var format = d3.format(",d");  // convert value to integer
-                var color = d3.scale.category20();  // create ordinal scale with 20 colors
-                var sizeOfRadius = d3.scale.pow().domain([-100, 100]).range([-50, 50]);  // https://github.com/mbostock/d3/wiki/Quantitative-Scales#pow
-
-
-                var bubble = d3.layout.pack()
-                    .sort(null)  // disable sorting, use DOM tree traversal
-                    .size([width, height])  // chart layout size
-                    .padding(1)  // padding between circles
-                    .radius(function (d) {
-                        return 20 + (sizeOfRadius(d) * 30);
-                    });  // radius for each circle
+                            var width = 660; // chart width
+                            var height = 400; // chart height
+                            var format = d3.format(",d");  // convert value to integer
+                            var color = d3.scale.category20();  // create ordinal scale with 20 colors
+                            var sizeOfRadius = d3.scale.pow().domain([-100, 100]).range([-50, 50]);  // https://github.com/mbostock/d3/wiki/Quantitative-Scales#pow
 
 
-                var svg = d3.select("#chart").append("svg")
-                    .attr("width", width)
-                    .attr("height", height)
-                    .attr("class", "bubble");
+                            var bubble = d3.layout.pack()
+                                .sort(null)  // disable sorting, use DOM tree traversal
+                                .size([width, height])  // chart layout size
+                                .padding(1)  // padding between circles
+                                .radius(function (d) {
+                                    return 20 + (sizeOfRadius(d) * 30);
+                                });  // radius for each circle
 
-                // REQUEST THE DATA
-                d3.json("/trends.json", function (error, quotes) {
-                    var node = svg.selectAll('.node')
-                        .data(bubble.nodes(quotes)
-                            .filter(function (d) {
-                                return !d.children;
-                            }))
-                        .enter().append('g')
-                        .attr('class', 'node')
-                        .attr('transform', function (d) {
-                            return 'translate(' + d.x + ',' + d.y + ')'
+
+                            var svg = d3.select("#chart").append("svg")
+                                .attr("width", width)
+                                .attr("height", height)
+                                .attr("class", "bubble");
+
+                            var tooltip = d3.select("body")
+                                .append("div")
+                                .style("position", "absolute")
+                                .style("z-index", "10")
+                                .style("visibility", "hidden")
+                                .style("color", "white")
+                                .style("padding", "8px")
+                                .style("background-color", "rgba(0, 0, 0, 0.75)")
+                                .style("border-radius", "6px")
+                                .style("font", "12px sans-serif")
+                                .text("tooltip");
+
+                            // REQUEST THE DATA
+                            d3.json("/trends.json", function (error, quotes) {
+                                var node = svg.selectAll('.node')
+                                    .data(bubble.nodes(quotes)
+                                        .filter(function (d) {
+                                            return !d.children;
+                                        }))
+                                    .enter().append('g')
+                                    .attr('class', 'node')
+                                    .attr('transform', function (d) {
+                                        return 'translate(' + d.x + ',' + d.y + ')'
+                                    });
+
+                                node.append('circle')
+                                    .attr('r', function (d) {
+                                        return d.r;
+                                    })
+                                    .style('fill', function (d) {
+                                        return color(d.symbol);
+                                    });
+
+                                node.append('text')
+                                    .attr("dy", ".3em")
+                                    .style('text-anchor', 'middle')
+                                    .text(function (d) {
+                                        return d.symbol;
+                                    });
+                            });
+
+
+
+                            node.append("circle")
+                                .attr("r", function (d) {
+                                    return d.r;
+                                })
+                                .style('fill', function (d) {
+                                    return color(d.symbol);
+                                })
+
+                                .on("mouseover", function (d) {
+                                    tooltip.text(d.name + ": $" + d.price);
+                                    tooltip.style("visibility", "visible");
+                                })
+                                .on("mousemove", function () {
+                                    return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+                                })
+                                .on("mouseout", function () {
+                                    return tooltip.style("visibility", "hidden");
+                                });
+
+
+                        </script>
+                    </div>
+                </section>
+            </div>
+
+            <div class="row form-group">
+                <section class="splash-header col-lg-2 left">
+                    <div class="well-spaced">
+                        <p>Average spending</p>
+                        <p id="info-trends">{{ average }}</p>
+                    </div>
+
+                </section>
+                <section class="col-lg-10 right">
+                    <h3></h3>
+
+                    <div>
+                        <canvas id="barChart" width="300px" height="100px"></canvas>
+                    </div>
+
+                    <script src="http://code.jquery.com/jquery.js"></script>
+                    <script>
+
+                        let ctx_bar = $("#barChart").get(0).getContext('2d');
+
+                        $.get('/user_monthly_intake.json', function (data) {
+                            let barChart = new Chart(ctx_bar, {
+                                type: 'bar',
+                                data: data,
+                                options: data.options
+                            })
                         });
+                    </script>
+                </section>
+            </div>
 
-                    node.append('circle')
-                        .attr('r', function (d) {
-                            return d.r;
-                        })
-                        .style('fill', function (d) {
-                            return color(d.symbol);
+
+            <div class="row form-group">
+                <section class="splash-header col-lg-2 left">
+                    <div class="well-spaced">
+                        <p>Current Weight</p>
+                        <p id="info-trends">{{ weight }}</p>
+                    </div>
+                </section>
+
+                <section class="col-lg-10 right">
+
+                    <h3></h3>
+
+                    <div>
+                        <canvas id="weightChart" width="300px" height="100px"></canvas>
+                    </div>
+
+                    <script src="http://code.jquery.com/jquery.js"></script>
+                    <script>
+
+                        let ctx_line = $("#weightChart").get(0).getContext('2d');
+
+                        $.get('/user_weight.json', function (data) {
+                            let myChart = new Chart(ctx_line, {
+                                type: 'line',
+                                data: data,
+                                options: data.options
+                            })
                         });
+                    </script>
 
-                    node.append('text')
-                        .attr("dy", ".3em")
-                        .style('text-anchor', 'middle')
-                        .text(function (d) {
-                            return d.symbol;
+                </section>
+            </div>
+
+            <div class="row form-group">
+                <section class="splash-header col-lg-2 left">
+                    <div class="well-spaced">
+                        <p>Current Glucose Level</p>
+                        <p id="info-trends">{{ glucose }}</p>
+                    </div>
+                </section>
+
+                <section class="col-lg-10 right">
+
+                    <h3></h3>
+
+                    <div>
+                        <canvas id="glucoseChart" width="300px" height="100px"></canvas>
+                    </div>
+
+                    <script src="http://code.jquery.com/jquery.js"></script>
+                    <script>
+
+
+                        let ctx_glucose_line = $("#glucoseChart").get(0).getContext('2d');
+
+                        $.get('/user_glucose.json', function (data) {
+                            let my_Chart = new Chart(ctx_glucose_line, {
+                                type: 'line',
+                                data: data,
+                                options: data.options
+                            })
                         });
-                });
+                    </script>
+
+                </section>
+            </div>
 
 
-                node.append("circle")
-                    .attr("r", function (d) {
-                        return d.r;
-                    })
-                    .style('fill', function (d) {
-                        return color(d.symbol);
-                    })
-
-                    .on("mouseover", function (d) {
-                        tooltip.text(d.name + ": $" + d.price);
-                        tooltip.style("visibility", "visible");
-                    })
-                    .on("mousemove", function () {
-                        return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
-                    })
-                    .on("mouseout", function () {
-                        return tooltip.style("visibility", "hidden");
-                    });
-
-
-            </script>
-                </div>
-    </section>
-        </div>
-
-        <div class="row form-group">
-            <section class="splash-header col-lg-2 left">
-                <div class="well-spaced">
-                    <p>Average spending</p>
-                    <p id="info-trends">{{ average }}</p>
-                </div>
-
-            </section>
-            <section class="col-lg-10 right">
-                <h3></h3>
-
-                <div>
-                    <canvas id="barChart" width="300px" height="100px"></canvas>
-                </div>
-
-                <script src="http://code.jquery.com/jquery.js"></script>
-                <script>
-                    const options = {
-                        responsive: true
-                    };
-                    let ctx_bar = $("#barChart").get(0).getContext('2d');
-
-                    $.get('/user_monthly_intake.json', function (data) {
-                        let barChart = new Chart(ctx_bar, {
-                            type: 'bar',
-                            data: data,
-                            options: options
-                        })
-                    });
-                </script>
-            </section>
-        </div>
-
-
-        <div class="row form-group">
-            <section class="splash-header col-lg-2 left">
-                <div class="well-spaced">
-                    <p>Current Weight</p>
-                    <p id="info-trends">{{ weight }}</p>
-                </div>
-            </section>
-
-            <section class="col-lg-10 right">
-
-                <h3></h3>
-
-                <div>
-                    <canvas id="weightChart" width="300px" height="100px"></canvas>
-                </div>
-
-                <script src="http://code.jquery.com/jquery.js"></script>
-                <script>
-
-                    let ctx_line = $("#weightChart").get(0).getContext('2d');
-
-                    $.get('/user_weight.json', function (data) {
-                        let myChart = new Chart(ctx_line, {
-                            type: 'line',
-                            data: data,
-                            options: options
-                        })
-                    });
-                </script>
-
-            </section>
-        </div>
-
-        <div class="row form-group">
-            <section class="splash-header col-lg-2 left">
-                <div class="well-spaced">
-                    <p>Current Glucose Level</p>
-                    <p id="info-trends">{{ glucose }}</p>
-                </div>
-            </section>
-
-            <section class="col-lg-10 right">
-
-                <h3></h3>
-
-                <div>
-                    <canvas id="glucoseChart" width="300px" height="100px"></canvas>
-                </div>
-
-                <script src="http://code.jquery.com/jquery.js"></script>
-                <script>
-
-                    let ctx_glucose_line = $("#glucoseChart").get(0).getContext('2d');
-
-                    $.get('/user_glucose.json', function (data) {
-                        let my_Chart = new Chart(ctx_glucose_line, {
-                            type: 'line',
-                            data: data,
-                            options: options
-                        })
-                    });
-                </script>
-
-            </section>
-        </div>
-
-
-        {#    </head>#}
-        {##}
-        {#    <body>#}
-        {##}
-        {#<script src="/static/trends.js"></script>#}
-        {##}
-        {#    </body>#}
-        {##}
-        {#    </html>#}
+            {#    </head>#}
+            {##}
+            {#    <body>#}
+            {##}
+            {#<script src="/static/trends.js"></script>#}
+            {##}
+            {#    </body>#}
+            {##}
+            {#    </html>#}
 
     </main>
 
