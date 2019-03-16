@@ -35,7 +35,7 @@ def get_lists_of_food(session):
 
     foods = []
     for entry in todays_sugar:
-        foods.append((entry.food.food_name + "________________________" + str(entry.food.cost)))
+        foods.append((entry.food.food_name + "__________________" + str(entry.food.cost)))
 
     return foods
 

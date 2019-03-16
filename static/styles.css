@@ -45,14 +45,27 @@
 /*}*/
 
 
-html, body {
-    width: 100%;
+/*html, body {*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*margin: 0;*/
+/*}*/
+html {
     height: 100%;
 }
 
 body {
-    background-color: rgb(204, 159, 190);
-    /*!*background-color: rgb(201,153,202);*!*/
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+body {
+    background-image: linear-gradient(to bottom, rgb(204, 159, 190), rgb(201, 153, 202));
+    /*background-color: rgb(204, 159, 190);*/
+    /*!*!*background-color: rgb(201,153,202);*!*!*/
     /*background-color: #6757A0;*/
     background-size: cover;
     background-repeat: no-repeat;
@@ -60,6 +73,9 @@ body {
     color: #000;
     line-height: 1.3;
     -webkit-font-smoothing: antialiased;
+    -webkit-font-feature-settings: "lnum";
+    -moz-font-feature-settings: "lnum";
+    font-feature-settings: "lnum";
 }
 
 /*.main {*/
@@ -68,7 +84,7 @@ body {
 /*font-weight: 100;*/
 /*font-size: 60px;*/
 /*color: #fff;*/
-/*font-family: 'Raleway', sans-serif;*/
+/*font-family: 'Montserrat', sans-serif;*/
 /*!*margin-top: 10px;*!*/
 /*!*margin-left: 20px;*!*/
 /*!*margin-right: 20px;*!*/
@@ -81,7 +97,7 @@ h1 {
     font-weight: 100;
     font-size: 40px;
     color: #fff;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     /*margin-top: 10px;*/
     /*margin-left: 20px;*/
     /*margin-right: 20px;*/
@@ -94,7 +110,7 @@ h3 {
     font-weight: 80;
     font-size: 20px;
     color: #fff;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 h4 {
@@ -103,7 +119,7 @@ h4 {
     font-weight: 80;
     font-size: 30px;
     color: #fff;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -111,12 +127,12 @@ h4 {
     background: transparent;
     border: none;
     color: #fff;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-nav li a {
     color: #fff;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 30px;
 
 }
@@ -138,7 +154,7 @@ p {
     font-weight: 100;
     font-size: 30px;
     color: #fff;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 
     margin-top: 10px;
     margin-left: 20px;
@@ -164,15 +180,13 @@ form {
     font-weight: 100;
     font-size: 30px;
     color: #fff;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 
 }
 
-/*img.coin-img {*/
-/*width: 70%;*/
-/*height: 70%;*/
-/*align: right;*/
-/*}*/
+img.coin-img {
+    margin-top: 5%
+}
 
 .form-group {
     text-align: center;
@@ -221,6 +235,7 @@ form {
     border: 1px solid #fff;
     border-radius: 25px;
     margin: auto;
+    /*border-bottom: 1px solid white;*/
     /*padding: ;*/
     /*pading: 10:*/
     /*margin-top: 10px;*/
@@ -238,7 +253,8 @@ form {
     font-weight: 100;
     font-size: 100px;
     color: #fff;
-    font-family: 'Raleway', sans-serif;
+    /*font-family: 'Montserrat', sans-serif;*/
+    font-family: 'Montserrat', sans-serif;
 }
 
 #info-trends {
@@ -247,12 +263,13 @@ form {
     font-weight: 100;
     font-size: 70px;
     color: #fff;
-    font-family: 'Raleway', sans-serif;
+    /*font-family: 'Montserrat', sans-serif;*/
+    font-family: 'Montserrat', sans-serif;
 }
 
 #signup {
     color: #ffd200;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 100;
     color: #fff;
     text-align: center;
@@ -269,7 +286,7 @@ form {
     /*border: 1px solid rgb(241,224,72);*/
     text-transform: uppercase;
     letter-spacing: 0.015em;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 12px;
     font-weight: 300;
     line-height: 1;
@@ -303,7 +320,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
     color: black;
     font-size: 16px;
     text-align: center;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     /*margin: auto;*/
     margin-top: 30px;
     margin-bottom: 30px;
@@ -318,7 +335,7 @@ input[type="submit"] {
     background: transparent;
     text-transform: uppercase;
     letter-spacing: 0.015em;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 12px;
     font-weight: 300;
     line-height: 1;
@@ -333,9 +350,9 @@ input[type="submit"] {
 
 .placeholder-color::placeholder {
     /*color: #fff;*/
-    color: rgb(255, 255, 255,0.5);
+    color: rgb(255, 255, 255, 0.5);
     font-size: 1.2em;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /*input[type="submit"] input[type="text"], input[type="password"], input[type="number"], input[type="email"]:hover {*/
