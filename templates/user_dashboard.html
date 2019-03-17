@@ -19,8 +19,8 @@
                 </button>
                 <a class="navbar-brand" href="#">SugarCoin</a>
                 <img class="coin-img"
-                         src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
-                         alt="sugarcoin" height="50" width="50" align="center">
+                     src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
+                     alt="sugarcoin" height="50" width="50" align="center">
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -29,14 +29,14 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <form action="/user_intake/{{ user_id }}" method="GET">
-                            <input type="submit" value="Profile" class="btn">
+                        <form action="/trends/{{ user_id }}" method="GET">
+                            <input type="submit" value="Trends" class="btn">
+                            {#                            <span class="entypo-chart-bar"></span>#}
                         </form>
                     </li>
                     <li>
-                        <form action="/trends/{{ user_id }}" method="GET">
-                            <input type="submit" value="Trends" class="btn">
-                            <span class="entypo-chart-bar"></span>
+                        <form action="/user_intake/{{ user_id }}" method="GET">
+                            <input type="submit" value="Profile" class="btn">
                         </form>
                     </li>
                     <li>
@@ -86,60 +86,24 @@
         <div id="border">
             <h1>{{ fname }}'s Daily Sugar Intake Overview</h1>
         </div>
+
+{#        <div class="row form-group">#}
+{#            <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center">#}
+{#                <div class="coin-card">#}
+{##}
+{#                    <img class="coin-img"#}
+{#                         src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"#}
+{#                         alt="sugarcoin" height="140" width="140" align="center">#}
+{#                    <p id="info" align="center">{{ daily_in }}</p>#}
+{##}
+{##}
+{#                </div>#}
+{#            </section>#}
+{#        </div>#}
+
         <div class="row form-group">
-            <section class="splash-header col-xs-12 col-sm-12 col-md-6 col-lg-6 left">
-                <div class="well-spaced">
-                    <p>Daily Intake Form</p>
-                    <form action="/user_intake/{{ user_id }}" method="POST">
-                        <div class="form-group">
-                            <input type="text" name="food" class="form-group form-control placeholder-color" placeholder="Sweet food">
-                            <input type="number" name="cost" class="form-group form-control placeholder-color" placeholder="Price">
-                            Notes
-                            <select name="notes">
-                                <option></option>
-                                <option value="Meh">Meh</option>
-{#                                <span class="entypo-chart-bar"></span>#}
-                                <option value="Hangry">Hangry</option>
-                                <option value="No time">No time</option>
-                                <option value="Anxious">Anxious</option>
-                                <option value="Stressed">Stressed</option>
-                                <option value="Special-event">Special event</option>
-                                <option value="Peer-pressure">Peer Pressure</option>
-                                <option value="Experiencing-loss">Experiencing Loss</option>
-                                <option value="Sad">Sad</option>
-                                <option value="Angry">Angry</option>
-                                <option value="Tired">Tired</option>
-                                <option value="Regretful">Regretful</option>
-                                <option value="Infatuated">Infatuated</option>
-                                <option value="Holiday">Holiday</option>
-                                <option value="Around friends">Around friends</option>
-                                <option value="Around family">Around family</option>
-                            </select>
-                            <input type="submit" value="Submit" class="btn">
-                        </div>
-                    </form>
-
-                </div>
-                <div class="well-spaced" style="width:640px">
-                    {#                    <form action="/delete/{{ user_id }}" method="POST">#}
-                    <p>Summary of Foods</p>
-
-                    <ul align="center">
-                        {% for food in foods %}
-                            <p>{{ food }}</p>
-{#                            <p>{{ food }}</p>#}
-                        {% endfor %}
-{#                            <input type="submit" value="Edit" class="edit-food">#}
-                    </ul>
-{#                    <p>{{ foods }}</p>#}
-                    {#                    </form>#}
-                </div>
-
-
-            </section>
-
-            <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 right">
-                <div class="well-spaced">
+            <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="white-container">
 
                     <img class="coin-img"
                          src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
@@ -148,49 +112,115 @@
 
 
                 </div>
+            </section>
+            <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
+                <div class="white-container">
+                    <p>Percent Daily Intake</p>
 
-                <div class="well-spaced">
-                    <p>Daily Allowance</p><p id="info">{{ allowance }}</p>
+                    <div id="pie-chart">
+                        <canvas id="myChart" width="300px" height="100px"></canvas>
+                    </div>
+
+                    <script src="http://code.jquery.com/jquery.js"></script>
+                    <script>
+                        const options = {
+                            responsive: true
+                        };
+
+                        let ctx_pie = $("#myChart").get(0).getContext('2d');
+
+                        $.get('/user_percent_intake.json', function (data) {
+                            let myChart = new Chart(ctx_pie, {
+                                type: 'doughnut',
+                                data: data,
+                                options: options
+                            })
+                        });
+                    </script>
+
+                </div>
+            </section>
+
+            <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+
+                <div class="white-container">
+                    <p>Daily Allowance</p>
+                    <p id="info">{{ allowance }}</p>
                 </div>
 
 
-                {#                        <div class="well-spaced">#}
+                {#                        <div class="white-container">#}
                 {#                            <p>Average daily spending</p>#}
                 {#                        </div>#}
-
-
-
-        <div class="well-spaced">
-            <p>Percent Daily Intake</p>
-
-            <div>
-                <canvas id="myChart" width="300px" height="100px"></canvas>
-            </div>
-
-            <script src="http://code.jquery.com/jquery.js"></script>
-            <script>
-                const options = {
-                    responsive: true
-                };
-
-                let ctx_pie = $("#myChart").get(0).getContext('2d');
-
-                $.get('/user_percent_intake.json', function (data) {
-                    let myChart = new Chart(ctx_pie, {
-                        type: 'doughnut',
-                        data: data,
-                        options: options
-                    })
-                });
-            </script>
+            </section>
 
         </div>
-        </section>
+        <div class="row form-group">
+            <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 left">
+                <div class="white-container">
+                    <p>Daily Intake Form</p>
+                    <form action="/user_intake/{{ user_id }}" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="food" class="form-group form-control placeholder-color"
+                                   placeholder="Sweet food">
+                            <input type="number" name="cost" class="form-group form-control placeholder-color"
+                                   placeholder="Price">
+
+                                Notes
+                                <select name="notes">
+                                    <option></option>
+                                    <option value="Meh">Meh</option>
+                                    {#                                <span class="entypo-chart-bar"></span>#}
+                                    <option value="Hangry">Hangry</option>
+                                    <option value="No time">No time</option>
+                                    <option value="Anxious">Anxious</option>
+                                    <option value="Stressed">Stressed</option>
+                                    <option value="Special-event">Special event</option>
+                                    <option value="Peer-pressure">Peer Pressure</option>
+                                    <option value="Experiencing-loss">Experiencing Loss</option>
+                                    <option value="Sad">Sad</option>
+                                    <option value="Angry">Angry</option>
+                                    <option value="Tired">Tired</option>
+                                    <option value="Regretful">Regretful</option>
+                                    <option value="Infatuated">Infatuated</option>
+                                    <option value="Holiday">Holiday</option>
+                                    <option value="Around friends">Around friends</option>
+                                    <option value="Around family">Around family</option>
+                                </select>
+                                <input type="submit" value="Submit" class="btn">
+                            </div>
+
+
+                    </form>
+
+                </div>
+
+            </section>
+
+            <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 right">
+                <div class="white-container">
+                    {#                style="width:640px"#}
+                    {#                    <form action="/delete/{{ user_id }}" method="POST">#}
+                    <p>Food Summary</p>
+
+                    <ul align="center">
+                        {% for food in foods %}
+                            <p>{{ food }}</p>
+                            {#                            <p>{{ food }}</p>#}
+                        {% endfor %}
+                        {#                            <input type="submit" value="Edit" class="edit-food">#}
+                    </ul>
+                    {#                    <p>{{ foods }}</p>#}
+                    {#                    </form>#}
+                </div>
+
+
+            </section>
         </div>
 
 
-        {#        <div class="well-spaced">#}
+        {#        <div class="white-container">#}
         {#            <h3>Monthly Sugar Intake</h3>#}
         {##}
         {#            <div>#}
@@ -213,13 +243,13 @@
         {##}
         {#        <div class="row form-group">#}
         {#            <section class="splash-header col-xs-12 col-sm-12 col-md-6 col-lg-6 left">#}
-        {#                <div class="well-spaced">#}
+        {#                <div class="white-container">#}
         {#                    <p>Current Weight</p>{{ weight }}#}
         {#                </div>#}
         {#            </section>#}
         {##}
         {#            <section class="splash-header col-xs-12 col-sm-12 col-md-6 col-lg-6 right">#}
-        {#                <div class="well-spaced">#}
+        {#                <div class="white-container">#}
         {#                    <h3>Weight Trends</h3>#}
         {##}
         {#                    <div>#}
@@ -245,13 +275,13 @@
         {##}
         {#        <div class="row form-group">#}
         {#            <section class="splash-header col-xs-12 col-sm-12 col-md-6 col-lg-6 left">#}
-        {#                <div class="well-spaced">#}
+        {#                <div class="white-container">#}
         {#                    <p>Current Glucose Level</p>{{ glucose }}#}
         {#                </div>#}
         {#            </section>#}
         {##}
         {#            <section class="splash-header col-xs-12 col-sm-12 col-md-6 col-lg-6 right">#}
-        {#                <div class="well-spaced">#}
+        {#                <div class="white-container">#}
         {#                    <h3>Glucose Trends</h3>#}
         {##}
         {#                    <div>#}

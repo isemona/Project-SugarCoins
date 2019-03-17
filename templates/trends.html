@@ -30,13 +30,13 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <form action="/user_intake/{{ user_id }}" method="GET">
-                            <input type="submit" value="Profile" class="btn">
+                        <form action="/user_dashboard/{{ user_id }}" method="GET">
+                            <input type="submit" value="Dashboard" class="btn">
                         </form>
                     </li>
                     <li>
-                        <form action="/user_dashboard/{{ user_id }}" method="GET">
-                            <input type="submit" value="Dashboard" class="btn">
+                        <form action="/user_intake/{{ user_id }}" method="GET">
+                            <input type="submit" value="Profile" class="btn">
                         </form>
                     </li>
                     <li>
@@ -66,16 +66,17 @@
             </div>
 
             <div class="row form-group">
-                <section class="splash-header col-lg-2 left">
-                    <div class="well-spaced">
+{#                <section class="splash-header col-lg-2 left">#}
+                <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="white-container">
                         <p>Mood & Behavioral Factors</p>
                     </div>
 
                 </section>
 
                 {#            <h4>Mood & Behavioral Factors</h4>#}
-                <section class="splash-header col-lg-10">
-                    <div class="mood-border">
+                <section class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    <div class="white-container">
                         <div id="chart"></div>
 
                         <script src="http://code.jquery.com/jquery.js"></script>
@@ -180,14 +181,14 @@
             </div>
 
             <div class="row form-group">
-                <section class="splash-header col-lg-2 left">
-                    <div class="well-spaced">
+                 <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="white-container">
                         <p>Average spending</p>
                         <p id="info-trends">{{ average }}</p>
                     </div>
 
                 </section>
-                <section class="col-lg-10 right">
+                 <section class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <h3></h3>
 
                     <div>
@@ -212,14 +213,14 @@
 
 
             <div class="row form-group">
-                <section class="splash-header col-lg-2 left">
-                    <div class="well-spaced">
+                <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="white-container">
                         <p>Current Weight</p>
                         <p id="info-trends">{{ weight }}</p>
                     </div>
                 </section>
 
-                <section class="col-lg-10 right">
+                <section class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 
                     <h3></h3>
 
@@ -236,7 +237,8 @@
                             let myChart = new Chart(ctx_line, {
                                 type: 'line',
                                 data: data,
-                                options: data.options
+                                options: data.options, //overrides javascript
+
                             })
                         });
                     </script>
@@ -245,14 +247,15 @@
             </div>
 
             <div class="row form-group">
-                <section class="splash-header col-lg-2 left">
-                    <div class="well-spaced">
+                <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+{#                <section class="splash-header col-lg-2 left">#}
+                    <div class="white-container">
                         <p>Current Glucose Level</p>
                         <p id="info-trends">{{ glucose }}</p>
                     </div>
                 </section>
 
-                <section class="col-lg-10 right">
+                <section class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 
                     <h3></h3>
 

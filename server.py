@@ -235,26 +235,46 @@ def user_weight_trends():
 
     data_dict = {
         "labels": month_day,
-
         "datasets": [
             {
                 "label": 'Weight Over Time',
                 "data": monthly_values,
+                "fill": False,
                 "backgroundColor": [
-                    'rgba(75, 192, 192, 1)',
+                    # 'rgba(75, 192, 192, 1)',
                     'rgba(54, 162, 235, 1)',
                 ],
                 "borderColor": [
-                    'rgba(75, 192, 192, 1)',
+                    # 'rgba(75, 192, 192, 1)',
                     'rgba(54, 162, 235, 1)',
                 ],
-                "borderWidth": 1
+                "borderWidth": 4
             }],
 
         "options": {
+            "legend": {
+                "labels": {
+                    "fontColor": 'white',
+                    "fontSize": 30,
+                }
+            },
+            # "title": {
+            #     "display": True,
+            #     "fontColor": 'blue',
+            #     "text": 'Custom Chart Title'
+            # },
             "scales": {
                 "yAxes": [{
                     "ticks": {
+                        "fontSize": 30,
+                        # "fontColor": 'white',
+                        "beginAtZero": "true"
+                    }
+                }],
+                "xAxes": [{
+                    "ticks": {
+                        "fontSize": 20,
+                        # "fontColor": 'white',
                         "beginAtZero": "true"
                     }
                 }]
@@ -282,26 +302,46 @@ def user_glucose_trends():
 
     data_dict = {
         "labels": month_day,
-
         "datasets": [
             {
-                "label": 'Glucose Over Time',
+                "label": 'Glucose Level Over Time',
                 "data": monthly_values,
+                "fill": False,
                 "backgroundColor": [
-                    'rgba(75, 192, 192, 1)',
+                    # 'rgba(75, 192, 192, 1)',
                     'rgba(54, 162, 235, 1)',
                 ],
                 "borderColor": [
-                    'rgba(75, 192, 192, 1)',
+                    # 'rgba(75, 192, 192, 1)',
                     'rgba(54, 162, 235, 1)',
                 ],
-                "borderWidth": 1
+                "borderWidth": 4
             }],
 
         "options": {
+            "legend": {
+                "labels": {
+                    "fontColor": 'white',
+                    "fontSize": 30,
+                }
+            },
+            # "title": {
+            #     "display": True,
+            #     "fontColor": 'blue',
+            #     "text": 'Custom Chart Title'
+            # },
             "scales": {
                 "yAxes": [{
                     "ticks": {
+                        "fontSize": 30,
+                        # "fontColor": 'white',
+                        "beginAtZero": "true"
+                    }
+                }],
+                "xAxes": [{
+                    "ticks": {
+                        "fontSize": 20,
+                        # "fontColor": 'white',
                         "beginAtZero": "true"
                     }
                 }]
@@ -364,10 +404,12 @@ def user_percent_intake():
                 "data": [percent,max(0,100-percent)],
                 "backgroundColor": [
                     'rgba(75, 192, 192, 1)',
+                    # 'rgba(2, 244, 240, 1)',
                     'rgba(54, 162, 235, 1)',
                 ],
                 "borderColor": [
-                    'rgba(75, 192, 192, 1)',
+                    # 'rgba(75, 192, 192, 1)',
+                    'rgba(2, 244, 240, 1)',
                     'rgba(54, 162, 235, 1)',
                 ],
                 "borderWidth": 1
@@ -377,7 +419,7 @@ def user_percent_intake():
             "scales": {
                 "yAxes": [{
                     "ticks": {
-                        "beginAtZero": "true"
+                        "beginAtZero": True
                     }
                 }]
             }
@@ -407,6 +449,7 @@ def user_monthly_intake():
     # add color hardcoded for every month
     data_dict = {
         "labels": monthly_labels,
+
 
         "datasets": [
             {
@@ -444,10 +487,16 @@ def user_monthly_intake():
             }],
 
         "options": {
+            "legend": {
+                "labels": {
+                    "fontColor": 'white',
+                    "fontSize": 30,
+                }
+            },
             "scales": {
                 "yAxes": [{
                     "ticks": {
-                        "beginAtZero": "true"
+                        "beginAtZero": True
                     }
                 }]
             }

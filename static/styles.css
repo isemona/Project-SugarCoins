@@ -125,15 +125,21 @@ h4 {
 
 .navbar {
     background: transparent;
+    /*background: rgb(201, 153, 202);*/
+    /*background-color: #6757A0;*/
     border: none;
     color: #fff;
     font-family: 'Montserrat', sans-serif;
 }
+/*.navbar-brand {*/
+    /*margin: 20px;*/
+/*}*/
 
 .navbar-default .navbar-brand, .navbar-default .navbar-nav li a {
     color: #fff;
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
+
 
 }
 
@@ -152,11 +158,10 @@ p {
     text-align: center;
     /*font-family: sans-serif;*/
     font-weight: 100;
-    font-size: 30px;
+    font-size: 28px;
     color: #fff;
     font-family: 'Montserrat', sans-serif;
-
-    margin-top: 10px;
+    margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
     padding-bottom: 10px;
@@ -184,8 +189,21 @@ form {
 
 }
 
-img.coin-img {
-    margin-top: 5%
+img.coin-img{
+    margin-top: 5px;
+}
+
+img.coin-img-nav{
+    margin-top: 15px;
+    height: 40px;
+    width: 40px;
+    align-self: center;
+}
+
+select {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
 }
 
 .form-group {
@@ -231,20 +249,33 @@ img.coin-img {
     /*padding-bottom: 10px;*/
 }
 
-.well-spaced {
+.white-container {
     border: 1px solid #fff;
     border-radius: 25px;
-    margin: auto;
     /*border-bottom: 1px solid white;*/
     /*padding: ;*/
     /*pading: 10:*/
     /*margin-top: 10px;*/
     /*margin-left: 30px;*/
     /*margin-right: 30px;*/
-    /*padding-bottom: 10px;*/
+    /*padding-bottom: 20px;*/
     /*background-color: rgb(201,153,202);*/
     /*background-color: #6757A0;*/
+}
 
+#pie-chart {
+    /*border: 1px solid #fff;*/
+    /*border-radius: 25px;*/
+    /*margin: auto;*/
+    /*border-bottom: 1px solid white;*/
+    /*padding: ;*/
+    /*pading: 10:*/
+    /*margin-top: 10px;*/
+    /*margin-left: 30px;*/
+    /*margin-right: 30px;*/
+    padding-bottom: 20px;
+    /*background-color: rgb(201,153,202);*/
+    /*background-color: #6757A0;*/
 }
 
 #info {
@@ -307,6 +338,8 @@ img.coin-img {
 }
 
 
+
+
 input[type="text"], input[type="password"], input[type="number"], input[type="email"] {
     width: 350px;
     padding: 10px 0px;
@@ -317,7 +350,6 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
     border: 1.5px solid white;
     outline: none;
     color: #fff;
-    color: black;
     font-size: 16px;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
@@ -354,6 +386,9 @@ input[type="submit"] {
     font-size: 1.2em;
     font-family: 'Montserrat', sans-serif;
 }
+
+
+
 
 /*input[type="submit"] input[type="text"], input[type="password"], input[type="number"], input[type="email"]:hover {*/
 /*background: #cccccc;*/
