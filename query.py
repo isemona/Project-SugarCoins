@@ -1,3 +1,5 @@
+from builtins import len, int
+
 from model import *
 
 from sqlalchemy import cast, Date, func, extract

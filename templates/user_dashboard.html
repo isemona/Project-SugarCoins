@@ -25,7 +25,6 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
-
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -104,13 +103,10 @@
         <div class="row form-group">
             <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                 <div class="white-container">
-
                     <img class="coin-img"
                          src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
                          alt="sugarcoin" height="140" width="140" align="center">
-                    <p id="info" align="center">{{ daily_in }}</p>
-
-
+                    <div id="daily_allowance_number" class="info" align="center" value={{ daily_in }}></div>
                 </div>
             </section>
             <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -146,7 +142,7 @@
 
                 <div class="white-container">
                     <p>Daily Allowance</p>
-                    <p id="info">{{ allowance }}</p>
+                    <p class="info">{{ allowance }}</p>
                 </div>
 
 
@@ -160,7 +156,7 @@
             <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 left">
                 <div class="white-container">
                     <p>Daily Intake Form</p>
-                    <form action="/user_intake/{{ user_id }}" method="POST">
+                    <form action="/user_intake/{{ user_id }}" method="POST" autocomplete="off">
                         <div class="form-group">
                             <input type="text" name="food" class="form-group form-control placeholder-color"
                                    placeholder="Sweet food">
@@ -342,5 +338,11 @@
         <script src="http://code.jquery.com/jquery.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
+        {# React #}
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="http://unpkg.com/babel-standalone"></script>
+        <!-- Load our React component. -->
+        <script src="../static/components/dailyAllowanceNumber.jsx" type="text/jsx"></script>
     </main>
 {% endblock %}

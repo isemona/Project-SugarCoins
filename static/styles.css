@@ -278,7 +278,11 @@ select {
     /*background-color: #6757A0;*/
 }
 
-#info {
+#chart {
+    color: #fff;
+}
+
+.info {
     text-align: center;
     /*font-family: sans-serif;*/
     font-weight: 100;
