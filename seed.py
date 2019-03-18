@@ -119,15 +119,31 @@ def load_sugar_intake():
 
     # notes = random.choice(reason)
 
-    time = []
-    for _ in range(10):
-        # time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
-        time.append(fake.date_between(start_date="-1y", end_date="today"))
+    # time = []
+    # for _ in range(10):
+    #     # time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
+    #     time.append(fake.date_between(start_date="-1y", end_date="today"))
 
 
     #
-    for dt in time:
-        date_time = dt
+    # for dt in time:
+    #     date_time = dt
+    # #     notes = random.choice(reason)
+    # #     #user_id = random.randint(1, 10)
+    # #     food_id = random.randint(1, 10)
+    #     notes = random.choice(reason)
+    #     food_id = random.randint(1, 10)
+    #
+    #     sugar_intake = Sugar(notes=notes,
+    #                          date_time=date_time,
+    #                          user_id=user_id,
+    #                          food_id=food_id,
+    #                          )
+    #
+    #     db.session.add(sugar_intake)
+
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 1, 22, 19, 12, 22)
     #     notes = random.choice(reason)
     #     #user_id = random.randint(1, 10)
     #     food_id = random.randint(1, 10)
@@ -142,11 +158,183 @@ def load_sugar_intake():
 
         db.session.add(sugar_intake)
 
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 2, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
+
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 3, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
+
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 4, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
+
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 5, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
+
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 6, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
+
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 7, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
+
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 8, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
+
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 9, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
+
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 10, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
+
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 11, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
+
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 12, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
 
     # date_time = datetime.datetime(2019, 1, 22, 19, 12, 22)
-
-
-
 
     db.session.commit()
 
