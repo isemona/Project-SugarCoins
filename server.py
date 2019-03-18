@@ -13,7 +13,9 @@ from model import connect_to_db, db, Gender, User, Food, Sugar, Weight, Glucose
 from query import *
 from twilio.twiml.messaging_response import MessagingResponse
 
-# from send_sms import *
+# turn off when not using continuously
+#testing twilio 1-3 req
+from send_sms import *
 
 app = Flask(__name__)
 app.jinja_env.undefined = StrictUndefined
@@ -364,7 +366,9 @@ def user_trends(user_id):
 
     glucose = get_user_current_glucose(session)
 
-    average = get_average_spending(session)
+    # average = get_average_spending(session)
+    # hard corded for demo purposes return once done
+    average = 36
 
     return render_template("trends.html", fname=fname, weight=weight, glucose=glucose, average=average, user_id=user_id)
 
@@ -527,6 +531,8 @@ if __name__ == "__main__":
     # run the schedule time first
     # schedule.every().day.at("12:00").do(send_msg)
 
+    #testing twilio 2-3 req
+    # schedule.every(60).seconds.do(send_msg)
     # Do not debug for demo
     app.debug = False
     connect_to_db(app)
@@ -534,6 +540,7 @@ if __name__ == "__main__":
     # Use the DebugToolbar
     DebugToolbarExtension(app)
 
+    # testing twilio 3-3 req
     # schedule.run_continuously(1)
 
     app.run(host="0.0.0.0")

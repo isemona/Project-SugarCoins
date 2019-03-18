@@ -18,9 +18,10 @@ def send_msg():
 
     message = client.messages \
                     .create(
-                         body=f"You have 8 coins left in your SugarWallet. Spend wisely! ",
+                        # body=f"Hi {{}}, you have 8 coins left in your SugarWallet. Spend wisely! ",
+                         body=f"Hi Semona, you have 8 coins left in your SugarWallet. Spend wisely!",
                          from_= twilio_number,
-                         to= my_number # phone_number variable here
+                         to= "+17876462316" #my_number # phone_number variable here
                      )
 
     print(message.sid)
@@ -29,6 +30,6 @@ def send_msg():
 
 if __name__ == "__main__":
 
-    # only use when you are running send_sms_pyg
+    # only use when you are running send_sms_py
     schedule.every(20).seconds.do(send_msg)
     schedule.run_continuously(1)
