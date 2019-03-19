@@ -143,54 +143,6 @@ def load_sugar_intake():
     #     db.session.add(sugar_intake)
 
     for _ in range(4):
-        date_time = datetime.datetime(2018, 1, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
-        notes = random.choice(reason)
-        food_id = random.randint(1, 10)
-
-        sugar_intake = Sugar(notes=notes,
-                             date_time=date_time,
-                             user_id=user_id,
-                             food_id=food_id,
-                             )
-
-        db.session.add(sugar_intake)
-
-    for _ in range(4):
-        date_time = datetime.datetime(2018, 2, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
-        notes = random.choice(reason)
-        food_id = random.randint(1, 10)
-
-        sugar_intake = Sugar(notes=notes,
-                             date_time=date_time,
-                             user_id=user_id,
-                             food_id=food_id,
-                             )
-
-        db.session.add(sugar_intake)
-
-    for _ in range(4):
-        date_time = datetime.datetime(2018, 3, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
-        notes = random.choice(reason)
-        food_id = random.randint(1, 10)
-
-        sugar_intake = Sugar(notes=notes,
-                             date_time=date_time,
-                             user_id=user_id,
-                             food_id=food_id,
-                             )
-
-        db.session.add(sugar_intake)
-
-    for _ in range(4):
         date_time = datetime.datetime(2018, 4, 22, 19, 12, 22)
     #     notes = random.choice(reason)
     #     #user_id = random.randint(1, 10)
@@ -334,6 +286,54 @@ def load_sugar_intake():
 
         db.session.add(sugar_intake)
 
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 1, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
+
+    for _ in range(4):
+        date_time = datetime.datetime(2018, 2, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
+
+    for _ in range(0):
+        date_time = datetime.datetime(2018, 3, 22, 19, 12, 22)
+    #     notes = random.choice(reason)
+    #     #user_id = random.randint(1, 10)
+    #     food_id = random.randint(1, 10)
+        notes = random.choice(reason)
+        food_id = random.randint(1, 10)
+
+        sugar_intake = Sugar(notes=notes,
+                             date_time=date_time,
+                             user_id=user_id,
+                             food_id=food_id,
+                             )
+
+        db.session.add(sugar_intake)
+
     # date_time = datetime.datetime(2019, 1, 22, 19, 12, 22)
 
     db.session.commit()
@@ -441,7 +441,7 @@ def load_glucose():
     #     current_glucose = 115
 
     date_time = datetime.datetime(2019, 1, 22, 19, 12, 22)
-    current_glucose = 115
+    current_glucose = 91
 
     user_glucose = Glucose(current_glucose=current_glucose,
                          date_time=date_time,
@@ -469,7 +469,7 @@ def load_glucose_two():
     #     current_glucose = 100
 
     date_time = datetime.datetime(2019, 2, 22, 19, 12, 22)
-    current_glucose = 100
+    current_glucose = 90
 
     user_glucose = Glucose(current_glucose=current_glucose,
                          date_time=date_time,
@@ -497,7 +497,7 @@ def load_glucose_three():
     #     current_glucose = 115
 
     date_time = datetime.datetime(2019, 3, 22, 19, 12, 22)
-    current_glucose = 100
+    current_glucose = 90
 
     user_glucose = Glucose(current_glucose=current_glucose,
                          date_time=date_time,

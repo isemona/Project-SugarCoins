@@ -211,13 +211,14 @@ def user_dashboard_main(user_id):
 
     glucose = get_user_current_glucose(session)
 
-    average = get_average_spending(session)
+    # not used here, average=average,
+    # average = get_average_spending(session)
 
     name = session["user"].split(" ")
     fname = name[0]
 
     return render_template("user_dashboard.html", foods=foods, allowance=allowance, user_id=user_id, daily_in=daily_in,
-                           weight=weight, glucose=glucose, average=average, fname=fname)
+                           weight=weight, glucose=glucose, fname=fname)
 
 
 @app.route('/user_weight.json', methods=['GET', 'POST'])
@@ -368,7 +369,7 @@ def user_trends(user_id):
 
     # average = get_average_spending(session)
     # hard corded for demo purposes return once done
-    average = 36
+    average = 71
 
     return render_template("trends.html", fname=fname, weight=weight, glucose=glucose, average=average, user_id=user_id)
 
