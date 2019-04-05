@@ -38,3 +38,7 @@ Lastly, a text reminder is integrated through Twilio API called - SugarWallet - 
 
 ## Future Features
 + machine learning analysis of user mood and behaviors
+
+# Requirements
+## Installing
+[requirements.py](https://github.com/isemona/Project-SugarCoins/blob/master/requirements.txt)
