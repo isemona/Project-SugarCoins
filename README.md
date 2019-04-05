@@ -1,4 +1,4 @@
-# SugarCoin ![alt text](https://res.cloudinary.com/dvhvxgxtf/image/upload/c_scale,h_887/v1554499906/logo_with_text_zstjng.png)
+# SugarCoin ![alt text](https://res.cloudinary.com/dvhvxgxtf/image/upload/c_scale,h_564/v1554499906/logo_with_text_zstjng.png)
 
 Inspired by Mint and Cryptocurrency. 
 SugarCoin is a gamified Flask web application with user authenticated API that tracks and budgets sugar consumption. 
