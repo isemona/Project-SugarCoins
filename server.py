@@ -124,7 +124,7 @@ def logout():
 
 @app.route('/user_intake/<int:user_id>', methods=['GET', 'POST'])
 def intake_form(user_id):
-    """Show intake form and process."""
+    """Show intake form and process on dashboard."""
     if request.method == 'POST':
 
         if 'user_id' in session:
@@ -228,75 +228,76 @@ def user_dashboard_main(user_id):
 
 @app.route('/user_weight.json', methods=['GET', 'POST'])
 def user_weight_trends():
-    """Show user dashboard."""
+    """Show user trends."""
 
     weights = get_user_weight(session)
 
-    month_day = []
-    monthly_values = []
+    if weights != []:
+        month_day = []
+        monthly_values = []
 
-    for weight in weights:
-        months = month_dict[weight[1]]
-        days = str(int(weight[2]))  # int() will floor your float
-        month_day.append(months + " " + days)
-        monthly_values.append(weight[3])
+        for weight in weights:
+            months = month_dict[weight[1]]
+            days = str(int(weight[2]))  # int() will floor your float
+            month_day.append(months + " " + days)
+            monthly_values.append(weight[3])
 
-    data_dict = {
-        "labels": month_day,
-        "datasets": [
-            {
-                "label": 'Weight Over Time',
-                "data": monthly_values,
-                "fill": False,
-                "backgroundColor": [
-                    # 'rgba(75, 192, 192, 1)',
-                    'rgba(54, 162, 235, 1)',
-                ],
-                "borderColor": [
-                    # 'rgba(75, 192, 192, 1)',
-                    'rgba(54, 162, 235, 1)',
-                ],
-                "borderWidth": 4
-            }],
-
-        "options": {
-            "legend": {
-                "labels": {
-                    "fontColor": 'white',
-                    "fontSize": 30,
-                }
-            },
-            # "title": {
-            #     "display": True,
-            #     "fontColor": 'blue',
-            #     "text": 'Custom Chart Title'
-            # },
-            "scales": {
-                "yAxes": [{
-                    "ticks": {
-                        "fontSize": 30,
-                        # "fontColor": 'white',
-                        "beginAtZero": "true"
-                    }
+        data_dict = {
+            "labels": month_day,
+            "datasets": [
+                {
+                    "label": 'Weight Over Time',
+                    "data": monthly_values,
+                    "fill": False,
+                    "backgroundColor": [
+                        # 'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                    ],
+                    "borderColor": [
+                        # 'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                    ],
+                    "borderWidth": 4
                 }],
-                "xAxes": [{
-                    "ticks": {
-                        "fontSize": 20,
-                        # "fontColor": 'white',
-                        "beginAtZero": "true"
+
+            "options": {
+                "legend": {
+                    "labels": {
+                        "fontColor": 'white',
+                        "fontSize": 30,
                     }
-                }]
+                },
+                # "title": {
+                #     "display": True,
+                #     "fontColor": 'blue',
+                #     "text": 'Custom Chart Title'
+                # },
+                "scales": {
+                    "yAxes": [{
+                        "ticks": {
+                            "fontSize": 30,
+                            # "fontColor": 'white',
+                            "beginAtZero": "true"
+                        }
+                    }],
+                    "xAxes": [{
+                        "ticks": {
+                            "fontSize": 20,
+                            # "fontColor": 'white',
+                            "beginAtZero": "true"
+                        }
+                    }]
+                }
             }
+
         }
 
-    }
-
-    return jsonify(data_dict)
+        return jsonify(data_dict)
 
 
 @app.route('/user_glucose.json', methods=['GET', 'POST'])
 def user_glucose_trends():
-    """Show user dashboard."""
+    """Show user trends."""
 
     glucose = get_user_glucose(session)
     month_day = []
@@ -370,7 +371,14 @@ def user_trends(user_id):
 
     weight = get_user_current_weight(session)
 
+    if not weight:
+        weight = 0
+
+
     glucose = get_user_current_glucose(session)
+
+    if not glucose:
+        glucose = 0
 
     average = get_average_spending(session)
 
@@ -393,7 +401,7 @@ def user_mood_trends():
 
 @app.route('/user_percent_intake.json', methods=['GET', 'POST'])
 def user_percent_intake():
-    """Show user percent daily intake."""
+    """Show user percent daily intake in dashboard."""
 
     # call you helper functions here
     # del session["user_id"]
@@ -442,7 +450,7 @@ def user_percent_intake():
 
 @app.route('/user_monthly_intake.json', methods=['GET', 'POST'])
 def user_monthly_intake():
-    """Show user monthly intake."""
+    """Show user monthly intake in trends."""
 
     # call you helper functions here
     # del session["user_id"]
