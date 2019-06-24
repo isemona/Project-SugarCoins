@@ -8,8 +8,8 @@ import random
 import datetime
 
 # necessary imports to extract data from Faker library
-from faker import Faker
-from faker.providers import profile
+# from faker import Faker
+# from faker.providers import profile
 
 from sqlalchemy import func  # WHAT IS THIS??
 
@@ -19,17 +19,17 @@ from model import connect_to_db, db, Gender, User, Food, Sugar, Weight, Glucose
 # connecting to database aka SQL i.e. connect_to_db(app) has 'app' app comes from ther server so this needs to be imported too
 from server import app
 
-fake = Faker()
+# fake = Faker()
 
 sweets = ['snickers', 'soda', 'juice', 'M&Ms', 'yogurt', 'cereal']
 # alternative = ['stevia', 'orange', 'strawberry', 'blueberry', 'plum']
 reason = ['tired', 'hangry', 'anxious', 'stressed', 'special event', 'peer-pressure', 'experiencing-loss']
 password = 'testing123'
-name = 'Semona'
-email = 'semona@sugarcoin.com'
+name = 'demo'
+email = 'demo@sugarcoin.com'
 gender = 'F'
 user_id = 1
-phone = '+14084124657'
+phone = '+12345678910'
 
 # notes would be different for woman - ['tired', 'hungry', 'anxious', 'stressed', 'special event', 'peer-pressure', 'hormonal-related', 'experiencing-loss']
 

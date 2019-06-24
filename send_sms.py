@@ -33,3 +33,5 @@ if __name__ == "__main__":
     # only use when you are running send_sms_py
     schedule.every(20).seconds.do(send_msg)
     schedule.run_continuously(1)
+
+# within a file two things are done: import the code and run it, if we're running this file as a program run __main__

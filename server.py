@@ -53,7 +53,10 @@ def index():
 def register_form():
     """Show form for user signup and process."""
 
+
     if request.method == 'POST':
+        # import pdb
+        # pdb.set_trace()
         fname = request.form["fname"]
         lname = request.form["lname"]
         name = " ".join([fname, lname])
@@ -62,8 +65,9 @@ def register_form():
         gender = request.form["gender"]
         phone = request.form["pnum"]
 
-        # age = int(request.form["age"]) # maybe this should be under proflie
-
+        # age = int(request.form["age"]) # maybe this should be under profile
+        # import pdb
+        # pdb.set_trace()
         new_user = User(name=name, email=email, password=password, gender_code=gender, phone=phone)
 
         print(new_user)
@@ -101,6 +105,7 @@ def login_form():
         # del session["user_id"]
         session["user_id"] = user.user_id  # this instantiates the session library to include user_id
         session['user'] = user.name  # this instantiates the session library to include user name
+
 
         flash("Logged in")
         return redirect(f"/user_dashboard/{user.user_id}")
@@ -188,28 +193,28 @@ def user_dashboard_main(user_id):
     #     db.session.add(user_glucose)
     #     db.session.commit()
 
-    if request.method == 'POST':
-        if request.form.get('weight'):
-            weight = int(request.form["weight"])
-
-            date_time = datetime.utcnow()
-
-            user_weight = Weight(user_id=user_id, current_weight=weight, date_time=date_time)
-            db.session.add(user_weight)
-            db.session.commit()
-
-        if request.form.get("blood-glucose"):
-            glucose = int(request.form["blood-glucose"])
-
-            date_time = datetime.utcnow()
-
-            user_glucose = Glucose(user_id=user_id, current_glucose=glucose, date_time=date_time)
-            db.session.add(user_glucose)
-            db.session.commit()
-
-    weight = get_user_current_weight(session)
-
-    glucose = get_user_current_glucose(session)
+    # if request.method == 'POST':
+    #     if request.form.get('weight'):
+    #         weight = int(request.form["weight"])
+    #
+    #         date_time = datetime.utcnow()
+    #
+    #         user_weight = Weight(user_id=user_id, current_weight=weight, date_time=date_time)
+    #         db.session.add(user_weight)
+    #         db.session.commit()
+    #
+    #     if request.form.get("blood-glucose"):
+    #         glucose = int(request.form["blood-glucose"])
+    #
+    #         date_time = datetime.utcnow()
+    #
+    #         user_glucose = Glucose(user_id=user_id, current_glucose=glucose, date_time=date_time)
+    #         db.session.add(user_glucose)
+    #         db.session.commit()
+    #
+    # weight = get_user_current_weight(session)
+    #
+    # glucose = get_user_current_glucose(session)
 
     # not used here, average=average,
     # average = get_average_spending(session)
@@ -218,7 +223,7 @@ def user_dashboard_main(user_id):
     fname = name[0]
 
     return render_template("user_dashboard.html", foods=foods, allowance=allowance, user_id=user_id, daily_in=daily_in,
-                           weight=weight, glucose=glucose, fname=fname)
+                           fname=fname)
 
 
 @app.route('/user_weight.json', methods=['GET', 'POST'])
@@ -367,9 +372,9 @@ def user_trends(user_id):
 
     glucose = get_user_current_glucose(session)
 
-    # average = get_average_spending(session)
-    # hard corded for demo purposes return once done
-    average = 71
+    average = get_average_spending(session)
+
+    # average = 71, hard corded for demo purposes return original average once done
 
     return render_template("trends.html", fname=fname, weight=weight, glucose=glucose, average=average, user_id=user_id)
 
@@ -535,7 +540,7 @@ if __name__ == "__main__":
     #testing twilio 2-3 req
     # schedule.every(60).seconds.do(send_msg)
     # Do not debug for demo
-    app.debug = False
+    app.debug = True
     connect_to_db(app)
 
     # Use the DebugToolbar

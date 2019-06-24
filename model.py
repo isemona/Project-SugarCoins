@@ -35,7 +35,8 @@ class User(db.Model):
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return f"<User user_id={self.user_id} name = {self.name} password = {self.password} gender = {self.gender_code} email = {self.email} phone = {self.phone}>"
+        return f"<" \
+            f"User user_id={self.user_id} name = {self.name} password = {self.password} gender = {self.gender_code} email = {self.email} phone = {self.phone}>"
 
 
 class Gender(db.Model):
