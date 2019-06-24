@@ -179,6 +179,15 @@ def user_dashboard_main(user_id):
     allowance = get_user_allowance(session)
     daily_in = get_user_daily_spending(session)
 
+    name = session["user"].split(" ")
+    fname = name[0]
+
+    return render_template("user_dashboard.html", foods=foods, allowance=allowance, user_id=user_id, daily_in=daily_in,
+                           fname=fname)
+
+@app.route('/user_profile/<int:user_id>', methods=['GET', 'POST'])
+def user_profile(user_id):
+    """Show user weight and glucose intake form."""
     # if request.method == 'POST':
     #     weight = int(request.form["weight"])
     #     glucose = int(request.form["blood-glucose"])
@@ -193,25 +202,25 @@ def user_dashboard_main(user_id):
     #     db.session.add(user_glucose)
     #     db.session.commit()
 
-    # if request.method == 'POST':
-    #     if request.form.get('weight'):
-    #         weight = int(request.form["weight"])
-    #
-    #         date_time = datetime.utcnow()
-    #
-    #         user_weight = Weight(user_id=user_id, current_weight=weight, date_time=date_time)
-    #         db.session.add(user_weight)
-    #         db.session.commit()
-    #
-    #     if request.form.get("blood-glucose"):
-    #         glucose = int(request.form["blood-glucose"])
-    #
-    #         date_time = datetime.utcnow()
-    #
-    #         user_glucose = Glucose(user_id=user_id, current_glucose=glucose, date_time=date_time)
-    #         db.session.add(user_glucose)
-    #         db.session.commit()
-    #
+    if request.method == 'POST':
+        if request.form.get('weight'):
+            weight = int(request.form["weight"])
+
+            date_time = datetime.utcnow()
+
+            user_weight = Weight(user_id=user_id, current_weight=weight, date_time=date_time)
+            db.session.add(user_weight)
+            db.session.commit()
+
+        if request.form.get("blood-glucose"):
+            glucose = int(request.form["blood-glucose"])
+
+            date_time = datetime.utcnow()
+
+            user_glucose = Glucose(user_id=user_id, current_glucose=glucose, date_time=date_time)
+            db.session.add(user_glucose)
+            db.session.commit()
+
     # weight = get_user_current_weight(session)
     #
     # glucose = get_user_current_glucose(session)
@@ -219,11 +228,7 @@ def user_dashboard_main(user_id):
     # not used here, average=average,
     # average = get_average_spending(session)
 
-    name = session["user"].split(" ")
-    fname = name[0]
-
-    return render_template("user_dashboard.html", foods=foods, allowance=allowance, user_id=user_id, daily_in=daily_in,
-                           fname=fname)
+    return render_template("user_profile.html", user_id=user_id)
 
 
 @app.route('/user_weight.json', methods=['GET', 'POST'])
