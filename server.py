@@ -221,14 +221,14 @@ def user_profile(user_id):
             db.session.add(user_glucose)
             db.session.commit()
 
-    # weight = get_user_current_weight(session)
-    #
-    # glucose = get_user_current_glucose(session)
-
+    weight = get_user_current_weight(session)
+    #print(user_weight)
+    glucose = get_user_current_glucose(session)
+    print(glucose)
     # not used here, average=average,
     # average = get_average_spending(session)
 
-    return render_template("user_profile.html", user_id=user_id)
+    return render_template("user_profile.html", user_id=user_id, weight=weight, glucose=glucose)
 
 
 @app.route('/user_weight.json', methods=['GET', 'POST'])
@@ -236,68 +236,66 @@ def user_weight_trends():
     """Show user trends."""
 
     weights = get_user_weight(session)
+    month_day = []
+    monthly_values = []
 
-    if weights != []:
-        month_day = []
-        monthly_values = []
+    for weight in weights:
+        months = month_dict[weight[1]]
+        days = str(int(weight[2]))  # int() will floor your float
+        month_day.append(months + " " + days)
+        monthly_values.append(weight[3])
 
-        for weight in weights:
-            months = month_dict[weight[1]]
-            days = str(int(weight[2]))  # int() will floor your float
-            month_day.append(months + " " + days)
-            monthly_values.append(weight[3])
+    data_dict = {
+        "labels": month_day,
+        "datasets": [
+            {
+                "label": 'Weight Over Time',
+                "data": monthly_values,
+                "fill": False,
+                "backgroundColor": [
+                    # 'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                ],
+                "borderColor": [
+                    # 'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                ],
+                "borderWidth": 4
+            }],
 
-        data_dict = {
-            "labels": month_day,
-            "datasets": [
-                {
-                    "label": 'Weight Over Time',
-                    "data": monthly_values,
-                    "fill": False,
-                    "backgroundColor": [
-                        # 'rgba(75, 192, 192, 1)',
-                        'rgba(54, 162, 235, 1)',
-                    ],
-                    "borderColor": [
-                        # 'rgba(75, 192, 192, 1)',
-                        'rgba(54, 162, 235, 1)',
-                    ],
-                    "borderWidth": 4
-                }],
-
-            "options": {
-                "legend": {
-                    "labels": {
-                        "fontColor": 'white',
-                        "fontSize": 30,
-                    }
-                },
-                # "title": {
-                #     "display": True,
-                #     "fontColor": 'blue',
-                #     "text": 'Custom Chart Title'
-                # },
-                "scales": {
-                    "yAxes": [{
-                        "ticks": {
-                            "fontSize": 30,
-                            # "fontColor": 'white',
-                            "beginAtZero": "true"
-                        }
-                    }],
-                    "xAxes": [{
-                        "ticks": {
-                            "fontSize": 20,
-                            # "fontColor": 'white',
-                            "beginAtZero": "true"
-                        }
-                    }]
+        "options": {
+            "legend": {
+                "labels": {
+                    "fontColor": 'white',
+                    "fontSize": 30,
                 }
+            },
+            # "title": {
+            #     "display": True,
+            #     "fontColor": 'blue',
+            #     "text": 'Custom Chart Title'
+            # },
+            "scales": {
+                "yAxes": [{
+                    "ticks": {
+                        "fontSize": 30,
+                        # "fontColor": 'white',
+                        "beginAtZero": "true"
+                    }
+                }],
+                "xAxes": [{
+                    "ticks": {
+                        "fontSize": 20,
+                        # "fontColor": 'white',
+                        "beginAtZero": "true"
+                    }
+                }]
             }
-
         }
 
-        return jsonify(data_dict)
+    }
+
+    return jsonify(data_dict)
 
 
 @app.route('/user_glucose.json', methods=['GET', 'POST'])
@@ -376,7 +374,7 @@ def user_trends(user_id):
 
     weight = get_user_current_weight(session)
 
-    if not weight:
+    if weight:
         weight = 0
 
 
