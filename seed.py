@@ -1,4 +1,4 @@
-"""Utility file to seed sugarcoins database from Faker Python"""
+"""Utility file to seed Sugarcoins database for demo account"""
 
 # to randomize on list of sweets and list of grams spent per day
 # https://www.pythoncentral.io/how-to-generate-a-random-number-in-python/, arguments is a range i.e. from 1 to 26
@@ -7,11 +7,7 @@ import random
 # to use the datetime library and syntax is datetime.datetime
 import datetime
 
-# necessary imports to extract data from Faker library
-# from faker import Faker
-# from faker.providers import profile
-
-from sqlalchemy import func  # WHAT IS THIS??
+from sqlalchemy import func
 
 # need to allow access to these Objects to load/seed data
 from model import connect_to_db, db, Gender, User, Food, Sugar, Weight, Glucose
@@ -19,10 +15,8 @@ from model import connect_to_db, db, Gender, User, Food, Sugar, Weight, Glucose
 # connecting to database aka SQL i.e. connect_to_db(app) has 'app' app comes from ther server so this needs to be imported too
 from server import app
 
-# fake = Faker()
 
 sweets = ['snickers', 'soda', 'juice', 'M&Ms', 'yogurt', 'cereal']
-# alternative = ['stevia', 'orange', 'strawberry', 'blueberry', 'plum']
 reason = ['tired', 'hangry', 'anxious', 'stressed', 'special event', 'peer-pressure', 'experiencing-loss']
 password = 'testing123'
 name = 'demo'
@@ -31,36 +25,9 @@ gender = 'F'
 user_id = 1
 phone = '+12345678910'
 
-# notes would be different for woman - ['tired', 'hungry', 'anxious', 'stressed', 'special event', 'peer-pressure', 'hormonal-related', 'experiencing-loss']
-
-# keeping 'hormonal-related' out because this is past data
-
 
 def load_users():
     """Load users from Faker Library to database"""
-
-    # print statement for testing
-    print('Users')
-
-    # generating 10 user profile objects
-    # user_profiles = []
-    # for _ in range(10):
-    #     user_profiles.append(fake.profile())
-    #
-    # print(user_profiles)
-    #
-    # # accessing properties in individual objects
-    # sugarholics = []
-    # for user in user_profiles:
-    #     sugarholics.append([user['name'], user['mail'], user['sex']])
-    #
-    # print(sugarholics)
-    #
-    # for person in sugarholics:
-    #     name = person[0]
-    #     email = person[1]
-    #     gender = person[2]
-    #     # age = person[3], user['birthdate'] => datetime.date(1991, 9, 22)
 
     user = User(name=name,
                 email=email,
@@ -77,9 +44,6 @@ def load_users():
 def load_gender():
     """Load users from Faker Library to database"""
 
-    # print statement for testing
-    print('Gender')
-
     female = Gender(gender_code='F',
                     allowance=25,
                     )
@@ -88,17 +52,9 @@ def load_gender():
                   allowance=38,
                   )
 
-    db.session.add(female)
-    db.session.add(male)
-
-    db.session.commit()
-
 
 def load_food():
     """Load food from a list of sweets."""
-
-    # print statement for testing
-    print('Food')
 
     for _ in range(10):
         food_name = random.choice(sweets)
@@ -115,38 +71,8 @@ def load_food():
 def load_sugar_intake():
     """Load sugar intake at particular time and why."""
 
-    print('Sugar Intake')
-
-    # notes = random.choice(reason)
-
-    # time = []
-    # for _ in range(10):
-    #     # time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
-    #     time.append(fake.date_between(start_date="-1y", end_date="today"))
-
-
-    #
-    # for dt in time:
-    #     date_time = dt
-    # #     notes = random.choice(reason)
-    # #     #user_id = random.randint(1, 10)
-    # #     food_id = random.randint(1, 10)
-    #     notes = random.choice(reason)
-    #     food_id = random.randint(1, 10)
-    #
-    #     sugar_intake = Sugar(notes=notes,
-    #                          date_time=date_time,
-    #                          user_id=user_id,
-    #                          food_id=food_id,
-    #                          )
-    #
-    #     db.session.add(sugar_intake)
-
     for _ in range(4):
         date_time = datetime.datetime(2018, 4, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
         notes = random.choice(reason)
         food_id = random.randint(1, 10)
 
@@ -160,9 +86,6 @@ def load_sugar_intake():
 
     for _ in range(4):
         date_time = datetime.datetime(2018, 5, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
         notes = random.choice(reason)
         food_id = random.randint(1, 10)
 
@@ -176,9 +99,6 @@ def load_sugar_intake():
 
     for _ in range(4):
         date_time = datetime.datetime(2018, 6, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
         notes = random.choice(reason)
         food_id = random.randint(1, 10)
 
@@ -192,9 +112,6 @@ def load_sugar_intake():
 
     for _ in range(4):
         date_time = datetime.datetime(2018, 7, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
         notes = random.choice(reason)
         food_id = random.randint(1, 10)
 
@@ -208,9 +125,6 @@ def load_sugar_intake():
 
     for _ in range(4):
         date_time = datetime.datetime(2018, 8, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
         notes = random.choice(reason)
         food_id = random.randint(1, 10)
 
@@ -224,9 +138,6 @@ def load_sugar_intake():
 
     for _ in range(4):
         date_time = datetime.datetime(2018, 9, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
         notes = random.choice(reason)
         food_id = random.randint(1, 10)
 
@@ -240,9 +151,6 @@ def load_sugar_intake():
 
     for _ in range(4):
         date_time = datetime.datetime(2018, 10, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
         notes = random.choice(reason)
         food_id = random.randint(1, 10)
 
@@ -256,9 +164,6 @@ def load_sugar_intake():
 
     for _ in range(4):
         date_time = datetime.datetime(2018, 11, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
         notes = random.choice(reason)
         food_id = random.randint(1, 10)
 
@@ -272,9 +177,6 @@ def load_sugar_intake():
 
     for _ in range(4):
         date_time = datetime.datetime(2018, 12, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
         notes = random.choice(reason)
         food_id = random.randint(1, 10)
 
@@ -288,9 +190,6 @@ def load_sugar_intake():
 
     for _ in range(4):
         date_time = datetime.datetime(2018, 1, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
         notes = random.choice(reason)
         food_id = random.randint(1, 10)
 
@@ -304,9 +203,6 @@ def load_sugar_intake():
 
     for _ in range(4):
         date_time = datetime.datetime(2018, 2, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
         notes = random.choice(reason)
         food_id = random.randint(1, 10)
 
@@ -320,9 +216,6 @@ def load_sugar_intake():
 
     for _ in range(0):
         date_time = datetime.datetime(2018, 3, 22, 19, 12, 22)
-    #     notes = random.choice(reason)
-    #     #user_id = random.randint(1, 10)
-    #     food_id = random.randint(1, 10)
         notes = random.choice(reason)
         food_id = random.randint(1, 10)
 
@@ -334,26 +227,10 @@ def load_sugar_intake():
 
         db.session.add(sugar_intake)
 
-    # date_time = datetime.datetime(2019, 1, 22, 19, 12, 22)
-
     db.session.commit()
 
 def load_weight():
     """Load weight over time."""
-
-    print('Weight')
-
-    # time = []
-    # for _ in range(10):
-    #     time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
-    #
-    # for dt in time:
-    #     date_time = dt
-    #     user_id = 1
-    #     #user_id = random.randint(1, 10)
-    #     #current_weight = random.randint(100,250)
-    #     user_id = 1
-    #     current_weight = 133
 
     date_time = datetime.datetime(2019, 1, 22, 19, 12, 22)
     current_weight = 133
@@ -370,19 +247,6 @@ def load_weight():
 def load_weight_two():
     """Load weight over time."""
 
-    print('Weight')
-
-    # time = []
-    # for _ in range(10):
-    #     time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
-    #
-    # for dt in time:
-    #     date_time = dt
-    #     #user_id = random.randint(1, 10)
-    #     #current_weight = random.randint(100,250)
-    #     user_id = 1
-    #     current_weight = 123
-
     date_time = datetime.datetime(2019, 2, 22, 19, 12, 22)
     current_weight = 123
 
@@ -397,19 +261,6 @@ def load_weight_two():
 
 def load_weight_three():
     """Load weight over time."""
-
-    print('Weight')
-
-    # time = []
-    # for _ in range(10):
-    #     time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
-    #
-    # for dt in time:
-    #     date_time = dt
-    #     #user_id = random.randint(1, 10)
-    #     #current_weight = random.randint(100,250)
-    #     user_id = 1
-    #     current_weight = 123
 
     date_time = datetime.datetime(2019, 3, 22, 19, 12, 22)
     current_weight = 123
@@ -427,19 +278,6 @@ def load_weight_three():
 def load_glucose():
     """Load glucose over time."""
 
-    print('Glucose')
-
-    # time = []
-    # for _ in range(10):
-    #     time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
-    #
-    # for dt in time:
-    #     date_time = dt
-    #     #user_id = random.randint(1, 10)
-    #     user_id = 1
-    #     #current_glucose = random.randint(70, 125)
-    #     current_glucose = 115
-
     date_time = datetime.datetime(2019, 1, 22, 19, 12, 22)
     current_glucose = 91
 
@@ -455,19 +293,6 @@ def load_glucose():
 def load_glucose_two():
     """Load glucose over time."""
 
-    print('Glucose')
-
-    # time = []
-    # for _ in range(10):
-    #     time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
-    #
-    # for dt in time:
-    #     date_time = dt
-    #     # user_id = random.randint(1, 10)
-    #     # current_glucose = random.randint(70, 125)
-    #     user_id = 1
-    #     current_glucose = 100
-
     date_time = datetime.datetime(2019, 2, 22, 19, 12, 22)
     current_glucose = 90
 
@@ -482,19 +307,6 @@ def load_glucose_two():
 
 def load_glucose_three():
     """Load glucose over time."""
-
-    print('Glucose')
-
-    # time = []
-    # for _ in range(10):
-    #     time.append(fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None))
-    #
-    # for dt in time:
-    #     date_time = dt
-    #     #user_id = random.randint(1, 10)
-    #     user_id = 1
-    #     #current_glucose = random.randint(70, 125)
-    #     current_glucose = 115
 
     date_time = datetime.datetime(2019, 3, 22, 19, 12, 22)
     current_glucose = 90

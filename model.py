@@ -101,6 +101,7 @@ class Food(db.Model):
 
         return f"<Food food={self.food_name} cost={self.cost}>"
 
+    # food is a 1:many relationship with user through sugar intake
 
 class Sugar(db.Model):
     """Table to track sugar intake of each user."""
