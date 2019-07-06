@@ -203,7 +203,6 @@ def user_profile(user_id):
 @app.route('/user_weight.json', methods=['GET', 'POST'])
 def user_weight_trends():
     """Show user trends."""
-
     weights = get_user_weight(session)
     month_day = []
     monthly_values = []
@@ -270,7 +269,6 @@ def user_weight_trends():
 @app.route('/user_glucose.json', methods=['GET', 'POST'])
 def user_glucose_trends():
     """Show user trends."""
-
     glucose = get_user_glucose(session)
     month_day = []
     monthly_values = []
@@ -337,7 +335,6 @@ def user_glucose_trends():
 @app.route('/trends/<int:user_id>', methods=['GET', 'POST'])
 def user_trends(user_id):
     """Show user trends."""
-
     name = session["user"].split(" ")
     fname = name[0]
 
@@ -359,7 +356,6 @@ def user_trends(user_id):
 @app.route('/trends.json', methods=['GET', 'POST'])
 def user_mood_trends():
     """Show user trends."""
-
     data_dict = get_user_moods(session)
 
     return jsonify(data_dict)
