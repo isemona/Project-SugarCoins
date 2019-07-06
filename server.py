@@ -18,6 +18,8 @@ from twilio.twiml.messaging_response import MessagingResponse
 from send_sms import *
 
 app = Flask(__name__)
+
+# Normally, if you use an undefined variable in Jinja2, it fails silently.
 app.jinja_env.undefined = StrictUndefined
 app.jinja_env.auto_reload = True
 
@@ -40,23 +42,16 @@ month_dict = {
 }
 
 
-# Normally, if you use an undefined variable in Jinja2, it fails silently.
-
 @app.route('/')
 def index():
     """Homepage"""
-
     return render_template("homepage.html")
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_form():
     """Show form for user signup and process."""
-
-
     if request.method == 'POST':
-        # import pdb
-        # pdb.set_trace()
         fname = request.form["fname"]
         lname = request.form["lname"]
         name = " ".join([fname, lname])
@@ -65,9 +60,6 @@ def register_form():
         gender = request.form["gender"]
         phone = request.form["pnum"]
 
-        # age = int(request.form["age"]) # maybe this should be under profile
-        # import pdb
-        # pdb.set_trace()
         new_user = User(name=name, email=email, password=password, gender_code=gender, phone=phone)
 
         print(new_user)
@@ -85,7 +77,6 @@ def register_form():
 @app.route('/login', methods=['GET', 'POST'])
 def login_form():
     """Show login form and process."""
-
     if request.method == 'POST':
         email = request.form["email"]
         print(email)
@@ -101,11 +92,10 @@ def login_form():
         if user.password != password:
             flash("Incorrect password")
             return redirect("/login")
+        session["user_id"]
 
-        # del session["user_id"]
-        session["user_id"] = user.user_id  # this instantiates the session library to include user_id
-        session['user'] = user.name  # this instantiates the session library to include user name
-
+        session["user_id"] = user.user_id
+        session['user'] = user.name
 
         flash("Logged in")
         return redirect(f"/user_dashboard/{user.user_id}")
@@ -172,8 +162,6 @@ def intake_form(user_id):
 @app.route('/user_dashboard/<int:user_id>', methods=['GET', 'POST'])
 def user_dashboard_main(user_id):
     """Show user dashboard."""
-
-    # user_id = session["user_id"] # no need this here because it is already passed in as a variable
     foods = get_lists_of_food(session)
     print(foods)
     allowance = get_user_allowance(session)
@@ -188,20 +176,6 @@ def user_dashboard_main(user_id):
 @app.route('/user_profile/<int:user_id>', methods=['GET', 'POST'])
 def user_profile(user_id):
     """Show user weight and glucose intake form."""
-    # if request.method == 'POST':
-    #     weight = int(request.form["weight"])
-    #     glucose = int(request.form["blood-glucose"])
-    #
-    #     date_time = datetime.utcnow()
-    #
-    #     user_weight = Weight(user_id=user_id, current_weight=weight, date_time=date_time)
-    #     db.session.add(user_weight)
-    #     db.session.commit()
-    #
-    #     user_glucose = Glucose(user_id=user_id, current_glucose=glucose, date_time=date_time)
-    #     db.session.add(user_glucose)
-    #     db.session.commit()
-
     if request.method == 'POST':
         if request.form.get('weight'):
             weight = int(request.form["weight"])
@@ -222,14 +196,9 @@ def user_profile(user_id):
             db.session.commit()
 
     weight = get_user_current_weight(session)
-    #print(user_weight)
     glucose = get_user_current_glucose(session)
-    print(glucose)
-    # not used here, average=average,
-    # average = get_average_spending(session)
 
     return render_template("user_profile.html", user_id=user_id, weight=weight, glucose=glucose)
-
 
 @app.route('/user_weight.json', methods=['GET', 'POST'])
 def user_weight_trends():
@@ -308,7 +277,7 @@ def user_glucose_trends():
 
     for level in glucose:
         months = month_dict[level[1]]
-        days = str(int(level[2]))  # int() will floor your float
+        days = str(int(level[2]))
         month_day.append(months + " " + days)
         monthly_values.append(level[3])
 
@@ -377,15 +346,12 @@ def user_trends(user_id):
     if weight:
         weight = 0
 
-
     glucose = get_user_current_glucose(session)
 
     if not glucose:
         glucose = 0
 
     average = get_average_spending(session)
-
-    # average = 71, hard corded for demo purposes return original average once done
 
     return render_template("trends.html", fname=fname, weight=weight, glucose=glucose, average=average, user_id=user_id)
 
@@ -394,10 +360,7 @@ def user_trends(user_id):
 def user_mood_trends():
     """Show user trends."""
 
-    print("hello")
-    print(get_user_moods(session))
-
-    data_dict = get_user_moods(session)  # array of objects
+    data_dict = get_user_moods(session)
 
     return jsonify(data_dict)
 
@@ -405,11 +368,7 @@ def user_mood_trends():
 @app.route('/user_percent_intake.json', methods=['GET', 'POST'])
 def user_percent_intake():
     """Show user percent daily intake in dashboard."""
-
-    # call you helper functions here
-    # del session["user_id"]
     session["user_id"]
-
     percent = calculate_user_daily_spending_percentage(session)
     print(percent)
     data_dict = {
@@ -450,15 +409,10 @@ def user_percent_intake():
 
     return jsonify(data_dict)
 
-
 @app.route('/user_monthly_intake.json', methods=['GET', 'POST'])
 def user_monthly_intake():
     """Show user monthly intake in trends."""
-
-    # call you helper functions here
-    # del session["user_id"]
     session["user_id"]
-
     months = get_monthly_spending(session)
     monthly_labels = []
     monthly_values = []
