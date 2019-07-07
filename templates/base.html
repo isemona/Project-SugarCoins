@@ -1,141 +1,23 @@
-<!doctype html>
-<html>
-{#<head>#}
-{##}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
-{#    <title>SugarCoins</title>#}
-    {#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"#}
-    {#          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
-    {##}
-    {#    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">#}
-    {#    <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js></script>#}
-{##}
-    {#    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='styles.css') }}/>#}
-{##}
-{#</head>#}
-
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
     <title>SugarCoins</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- Google Font -->
-{#    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">#}
-{#    <link href="https://fonts.googleapis.com/css?family=Montserrat|Quicksand" rel="stylesheet">#}
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <!-- Charts.js -->
     <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js></script>
     <!-- Stylesheet -->
-    <link rel="stylesheet" href={{ url_for('static', filename='styles.css') }}/>
+    <link rel="stylesheet" href={{ url_for('static', filename='styles.css') }}>
 
-<style>
-    @import url(http://weloveiconfonts.com/api/?family=entypo|fontelico);
-
-/* entypo */
-[class*="entypo-"]:before {
-  font-family: 'entypo', sans-serif;
-}
-
-/* fontelico */
-[class*="fontelico-"]:before {
-  font-family: 'fontelico', sans-serif;
-}
-</style>
 
 </head>
 
-{#<body>#}
-{##}
-{#  <!-- Static navbar -->#}
-{#  <nav class="navbar navbar-default">#}
-{#    <div class="container-fluid">#}
-{#      <div class="navbar-header">#}
-{#        <button type="button"#}
-{#                class="navbar-toggle collapsed"#}
-{#                data-toggle="collapse"#}
-{#                data-target="#navbar"#}
-{#                aria-expanded="false"#}
-{#                aria-controls="navbar">#}
-{#          <span class="sr-only">Toggle navigation</span>#}
-{#          <span class="icon-bar"></span>#}
-{#          <span class="icon-bar"></span>#}
-{#          <span class="icon-bar"></span>#}
-{#        </button>#}
-{#        <a class="navbar-brand" href="#">Autumn Leaves Consulting</a>#}
-{#      </div>#}
-{#      <div id="navbar" class="navbar-collapse collapse">#}
-{#        <ul class="nav navbar-nav">#}
-{#          <li><a href="#">Gallery</a></li>#}
-{#          <li><a href="#">About Us</a></li>#}
-{#          <li><a href="#">Contact</a></li>#}
-{#        </ul>#}
-{#        <ul class="nav navbar-nav navbar-right">#}
-{#          <li><a href="#">Log In</a></li>#}
-{#        </ul>#}
-{#      </div>#}
-{#    </div>#}
-{#  </nav>#}
-{##}
-{#  <div class="container-fluid">#}
-{#    <div class="row">#}
-{#      <div class="col-xs-12 main">#}
-{#        <h1 class="main-title">Autumn Leaves Consulting</h1>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
-{##}
-{#  <script src="http://code.jquery.com/jquery.js"></script>#}
-{#  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>#}
-{##}
-{#</body>#}
-{#</html>#}
-
-{#{% with messages = get_flashed_messages() %}#}
-{#    {% if messages %}#}
-{#        <ul>#}
-{#            {% for message in messages %}#}
-{#                <li>{{ message }}</li>#}
-{#            {% endfor %}#}
-{#        </ul>#}
-{#    {% endif %}#}
-{#{% endwith %}#}
-
-{#<nav class="navbar navbar-default">#}
-{#    <div class="container-fluid">#}
-{#        <div class="navbar-header">#}
-{#            <button type="button"#}
-{#                    class="navbar-toggle collapsed"#}
-{#                    data-toggle="collapse"#}
-{#                    data-target="#navbar"#}
-{#                    aria-expanded="false"#}
-{#                    aria-controls="navbar">#}
-{#                <span class="sr-only">Toggle navigation</span>#}
-{#                <span class="icon-bar"></span>#}
-{#                <span class="icon-bar"></span>#}
-{#                <span class="icon-bar"></span>#}
-{#            </button>#}
-{#            <a class="navbar-brand" href="#">testing</a>#}
-{#        </div>#}
-{#        <div id="navbar" class="navbar-collapse collapse">#}
-{#            <ul class="nav navbar-nav">#}
-{#                <li><a href="#">About Us</a></li>#}
-{#                <li><a href="#">Contact</a></li>#}
-{#            </ul>#}
-{#            <ul class="nav navbar-nav navbar-right">#}
-{#                <li><a href="#">Log In</a></li>#}
-{#            </ul>#}
-{#        </div>#}
-{#    </div>#}
-{#</nav>#}
-{#<script src="http://code.jquery.com/jquery.js"></script>#}
-{#<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>#}
 {% block content %}
 
 {% endblock %}
