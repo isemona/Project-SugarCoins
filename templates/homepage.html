@@ -1,67 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button"
-                        class="navbar-toggle collapsed"
-                        data-toggle="collapse"
-                        data-target="#navbar"
-                        aria-expanded="false"
-                        aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">SugarCoin</a>
-                <img class="coin-img"
-                     src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
-                     alt="sugarcoin" height="50" width="50" align="center">
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+<div align="center">
+    <div class="box">
+        <div class="white-container">
+            <div class="splash-header">
+                <form action="/register" method="GET" autocomplete="off">
+                    <p>Track your sugar coin spending today</p>
+                    <img class=logo
+                         src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552330920/sugar_coin logo.png"
+                         alt="sugar coin logo" height="500" width="500">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="submit" value="Register" class="btn">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="submit" value="Log in" class="btn">
+                        </div>
+                    </div>
+                </form>
 
-
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <form action="/login" method="GET">
-                            <!--<input type="submit" value="Log in" class="btn">-->
-                        </form>
-                    </li>
-                    </li>
-                </ul>
             </div>
         </div>
-    </nav>
-    <div class="row form-group">
-        <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 left">
-            <div class="box">
-
-                {#          <p>Track your sugar coin spending today</p>#}
-                <img class=logo src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552330920/sugar_coin logo.png"
-                     alt="sugar coin logo" height="500" width="500">
-            </div>
-        </section>
-
-        <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 right">
-            <div class="box">
-                <!--<p>Track your sugar coin spending today</p>-->
-                <div class="white-container">
-                    <div class="splash-header">
-                        <form action="/register" method="GET" autocomplete="off">
-                            <p>Track your sugar coin spending today</p>
-                            <!--<p>Sign Up</p>-->
-                            <!--<input name="name" type="text" class="form-control placeholder-color" placeholder="Name">-->
-                            <!--<input name="email" type="text" class="form-control placeholder-color" placeholder="Email">-->
-                    </div>
-                    <input type="submit" value="Register" class="btn">
-                    <input type="submit" value="Log in" class="btn">
-                    </form>
-
-                </div>
-            </div>
-        </section>
     </div>
+</div>
 {% endblock %}
