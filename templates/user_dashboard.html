@@ -3,76 +3,76 @@
 
 
 <!-- Static navbar -->
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button"
-                        class="navbar-toggle collapsed"
-                        data-toggle="collapse"
-                        data-target="#navbar"
-                        aria-expanded="false"
-                        aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">SugarCoin</a>
-                <img class="coin-img"
-                     src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
-                     alt="sugarcoin" height="50" width="50" align="center">
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <form action="/trends/{{ user_id }}" method="GET">
-                            <input type="submit" value="Trends" class="btn">
-                            {#                            <span class="entypo-chart-bar"></span>#}
-                        </form>
-                    </li>
-                    <li>
-                        <form action="/user_profile/{{ user_id }}" method="GET">
-                            <input type="submit" value="Profile" class="btn">
-                        </form>
-                    </li>
-                    <li>
-                        <form action="/logout" method="GET">
-                            <input type="submit" value="Log out" class="btn">
-                        </form>
-                    </li>
-                    </li>
-                </ul>
-            </div>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#navbar"
+                    aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">SugarCoin</a>
+            <img class="coin-img"
+                 src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
+                 alt="sugarcoin" height="50" width="50" align="center">
         </div>
-    </nav>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
 
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form action="/trends/{{ user_id }}" method="GET">
+                        <input type="submit" value="Trends" class="btn">
+                        {# <span class="entypo-chart-bar"></span>#}
+                    </form>
+                </li>
+                <li>
+                    <form action="/user_profile/{{ user_id }}" method="GET">
+                        <input type="submit" value="Profile" class="btn">
+                    </form>
+                </li>
+                <li>
+                    <form action="/logout" method="GET">
+                        <input type="submit" value="Log out" class="btn">
+                    </form>
+                </li>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 <!--User dashboard-->
-        <div id="border">
-            <h1>{{ fname }}'s Daily Sugar Intake Overview</h1>
+<div id="border">
+    <h1>{{ fname }}'s Daily Sugar Intake Overview</h1>
+</div>
+<div class="row form-group">
+    <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="white-container">
+            <img class="coin-img"
+                 src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
+                 alt="sugarcoin" height="140" width="140" align="center">
+            <div id="daily_allowance_number" class="info" align="center" value={{ daily_in }}></div>
         </div>
-        <div class="row form-group">
-            <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <div class="white-container">
-                    <img class="coin-img"
-                         src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
-                         alt="sugarcoin" height="140" width="140" align="center">
-                    <div id="daily_allowance_number" class="info" align="center" value={{ daily_in }}></div>
-                </div>
-            </section>
-            <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="white-container">
-                    <p>Percent Daily Intake</p>
-                    <div id="pie-chart">
-                        <canvas id="myChart" width="300px" height="100px"></canvas>
-                    </div>
-                    <script src="http://code.jquery.com/jquery.js"></script>
-                    <script>
+    </section>
+    <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="white-container">
+            <p>Percent Daily Intake</p>
+            <div id="pie-chart">
+                <canvas id="myChart" width="300px" height="100px"></canvas>
+            </div>
+            <script src="http://code.jquery.com/jquery.js"></script>
+            <script>
                         const options = {
                             responsive: true
                         };
@@ -86,68 +86,81 @@
                                 options: options
                             })
                         });
-                    </script>
-                </div>
-            </section>
-            <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <div class="white-container">
-                    <p>Daily Allowance</p>
-                    <p class="info">{{ allowance }}</p>
-                </div>
-            </section>
+
+
+            </script>
         </div>
+    </section>
+    <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="white-container">
+            <p>Daily Allowance</p>
+            <p class="info">{{ allowance }}</p>
+        </div>
+    </section>
+</div>
 
 
 <!--Daily intake form-->
-        <div class="row form-group">
-            <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 left">
-                <div class="white-container">
-                    <p>Daily Intake Form</p>
-                    <form action="/user_intake/{{ user_id }}" method="POST" autocomplete="off">
-                        <div class="form-group">
-                            <input type="text" name="food" class="form-group form-control placeholder-color"
-                                   placeholder="Sweet food">
-                            <input type="number" name="cost" class="form-group form-control placeholder-color"
-                                   placeholder="Price">
-                                Notes
-                                <select name="notes">
-                                    <option></option>
-                                    <option value="No time">No time</option>
-                                    <option value="With friends">With Friends</option>
-                                    <option value="Hangry">Hangry</option>
-                                    <option value="Birthday">Birthday</option>
-                                    <option value="Tired">Tired</option>
-                                    <option value="Meh">Meh</option>
-                                    <option value="Happy">Happy</option>
-                                    <option value="Anxious">Anxious</option>
-                                    <option value="Stressed">Stressed</option>
-                                    <option value="Event">Event</option>
-                                    <option value="Peer-pressure">Peer Pressure</option>
-                                    <option value="Experiencing-loss">Experiencing Loss</option>
-                                    <option value="Sad">Sad</option>
-                                    <option value="Angry">Angry</option>
-                                    <option value="Regretful">Regretful</option>
-                                    <option value="Infatuated">Infatuated</option>
-                                    <option value="Holiday">Holiday</option>
-                                    <option value="With family">With Family</option>
-                                </select>
-                                <input type="submit" value="Submit" class="btn">
-                            </div>
-                    </form>
+<div class="row form-group">
+    <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 left">
+        <div class="white-container">
+            <p>Daily Intake Form</p>
+            <form action="/user_intake/{{ user_id }}" method="POST" autocomplete="off">
+                <div class="form-group">
+                    <input type="text" name="food" class="form-group form-control placeholder-color"
+                           placeholder="Sweet food">
+                    <input type="number" name="cost" class="form-group form-control placeholder-color"
+                           placeholder="Price">
+                    Notes
+                    <select name="notes">
+                        <option></option>
+                        <option value="No time">No time</option>
+                        <option value="With friends">With Friends</option>
+                        <option value="Hangry">Hangry</option>
+                        <option value="Birthday">Birthday</option>
+                        <option value="Tired">Tired</option>
+                        <option value="Meh">Meh</option>
+                        <option value="Happy">Happy</option>
+                        <option value="Anxious">Anxious</option>
+                        <option value="Stressed">Stressed</option>
+                        <option value="Event">Event</option>
+                        <option value="Peer-pressure">Peer Pressure</option>
+                        <option value="Experiencing-loss">Experiencing Loss</option>
+                        <option value="Sad">Sad</option>
+                        <option value="Angry">Angry</option>
+                        <option value="Regretful">Regretful</option>
+                        <option value="Infatuated">Infatuated</option>
+                        <option value="Holiday">Holiday</option>
+                        <option value="With family">With Family</option>
+                    </select>
+                    <input type="submit" value="Submit" class="btn">
                 </div>
-
-            </section>
+            </form>
         </div>
+    </section>
+    
 
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<!--List of sugary foods-->
+    <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 right">
+        <div class="white-container">
+            <p>Food Summary</p>
+            <ul align="center">
+                {% for food in foods %}
+                <p>{{ food }}</p>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+</div>
 
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 <!--React -->
-        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-        <script src="http://unpkg.com/babel-standalone"></script>
-        <!-- Load our React component. -->
-        <script src="../static/components/dailyAllowanceNumber.jsx" type="text/jsx"></script>
-    </main>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="http://unpkg.com/babel-standalone"></script>
+<!-- Load our React component. -->
+<script src="../static/components/dailyAllowanceNumber.jsx" type="text/jsx"></script>
+</main>
 {% endblock %}
