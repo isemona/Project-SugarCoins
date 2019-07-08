@@ -1,26 +1,60 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div style="margin: 0 auto; width:40%;">
-<h1 id=register align="center">Register</h1>
-<form action="/register" method="POST" autocomplete="off">
-        <div class="form-group">
-            <input type="text" name="fname" placeholder="Firstname" class="form-control placeholder-color">
-            <input type="text" name="lname" placeholder="Lastname" class="form-control placeholder-color">
-            <input type="text" name="email" placeholder="Email" class="form-control placeholder-color">
-            <input type="password" name="password" placeholder="Password"
-                   class="form-control placeholder-color">
-            <input type="password" name="password" placeholder="Confirm Password"
-                   class="form-control placeholder-color">
-            <input type="text" name="pnum" placeholder="Phone number" class="form-control placeholder-color">
-            <input type="radio" name="gender" value="M"> Male <input type="radio" name="gender" value="F">
-            Female
-            <div class="form-group" align="center">
-                <input type="submit" value="Track my sugar intake!" class="btn">
-                <a href="/">
-                    <input type="submit" class="btn" value="Homepage"/>
-                </a>
-</form>
+<!-- Static navbar -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#navbar"
+                    aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">SugarCoin</a>
+            <img class="coin-img"
+                 src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
+                 alt="sugarcoin" height="50" width="50" align="center">
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">
+                        <input type="submit" class="btn" value="Homepage"/>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
+
+<!-- Registration form -->
+<h1 id=register>Register</h1>
+<form action="/register" method="POST" autocomplete="off">
+    <div class="profile-container" style="margin: 0 auto; width:40%;">
+        <input type="text" name="fname" placeholder="Firstname" class="form-control placeholder-color">
+        <input type="text" name="lname" placeholder="Lastname" class="form-control placeholder-color">
+        <input type="text" name="email" placeholder="Email" class="form-control placeholder-color">
+        <input type="password" name="password" placeholder="Password"
+               class="form-control placeholder-color">
+        <input type="password" name="password" placeholder="Confirm Password"
+               class="form-control placeholder-color">
+        <input type="text" name="pnum" placeholder="Phone number" class="form-control placeholder-color">
+        <input type="radio" style="transform: scale(1.5);" name="gender" value="M"> Male
+        <input type="radio" style="transform: scale(1.5);" name="gender" value="F"> Female
+        <div>
+            <input type="submit" value="Track my sugar intake!" class="btn">
+        </div>
+    </div>
+</form>
+
 
 {% endblock %}
