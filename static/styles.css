@@ -248,7 +248,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
     margin-bottom: 30px;
 }
 
-input[type="submit", input="button"] {
+input[type="submit"] {
     margin: 25px;
     display: inline-block;
     padding: 15px 30px;
