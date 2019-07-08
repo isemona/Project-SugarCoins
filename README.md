@@ -40,4 +40,4 @@ Lastly, a text reminder is integrated through Twilio API called - SugarWallet - 
 + machine learning analysis of user mood and behaviors
 
 ## Requirements: Installing
-$ pip3 install -r [requirements.py](https://github.com/isemona/Project-SugarCoins/blob/master/requirements.txt)
+$ pip3 install -r [requirements.txt](https://github.com/isemona/Project-SugarCoins/blob/master/requirements.txt)
