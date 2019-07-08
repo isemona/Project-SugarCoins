@@ -149,6 +149,12 @@ select {
     align-self: center;
 }
 
+.profile-container {
+    border: 1px solid #fff;
+    border-radius: 25px;
+    margin: 0 auto;
+}
+
 .white-container {
     border: 1px solid #fff;
     border-radius: 25px;

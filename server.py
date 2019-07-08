@@ -41,12 +41,10 @@ month_dict = {
     12.0: 'Dec'
 }
 
-
 @app.route('/')
 def index():
     """Homepage"""
     return render_template("homepage.html")
-
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_form():
@@ -72,7 +70,6 @@ def register_form():
         return redirect("/login")
 
     return render_template("register_form.html")
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_form():
@@ -105,7 +102,6 @@ def logout():
     del session["user_id"]
 
     return redirect("/")
-
 
 @app.route('/user_intake/<int:user_id>', methods=['GET', 'POST'])
 def intake_form(user_id):
@@ -149,10 +145,6 @@ def intake_form(user_id):
         return redirect(f"/user_dashboard/{user_id}")  # route to be a string
 
     return render_template("user_intake.html", user_id=user_id)
-
-
-# @app.route('/user_weight.json', methods=['GET', 'POST'])
-# def user_weight_trends():
 
 @app.route('/user_dashboard/<int:user_id>', methods=['GET', 'POST'])
 def user_dashboard_main(user_id):
@@ -259,7 +251,6 @@ def user_weight_trends():
     }
 
     return jsonify(data_dict)
-
 
 @app.route('/user_glucose.json', methods=['GET', 'POST'])
 def user_glucose_trends():
@@ -402,7 +393,6 @@ def user_monthly_intake():
         monthly_labels.append(month_dict[month[1]])
         monthly_values.append(month[2])
 
-    # add color hardcoded for every month
     data_dict = {
         "labels": monthly_labels,
 
@@ -462,7 +452,6 @@ def user_monthly_intake():
 
     return jsonify(data_dict)
 
-
 @app.route("/sms", methods=['GET', 'POST'])
 def sms_ahoy_reply():
     """Respond to incoming messages with a friendly SMS."""
@@ -473,7 +462,6 @@ def sms_ahoy_reply():
     resp.message("Ahoy! Thanks so much for your message.")  # message sent when you need a response from the user
 
     return str(resp)
-
 
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the point
