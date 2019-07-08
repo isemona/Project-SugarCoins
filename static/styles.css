@@ -210,7 +210,26 @@ select {
 .btn:hover {
     color: #fff;
     border-color: #BFFF97;
+}
 
+button {
+    margin: 25px;
+    display: inline-block;
+    padding: 15px 30px;
+    border: 1px solid #fff;
+    background: transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.015em;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1;
+    color: #fff;
+    text-decoration: none;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
 
 }
 
@@ -229,7 +248,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
     margin-bottom: 30px;
 }
 
-input[type="submit"] {
+input[type="submit", input="button"] {
     margin: 25px;
     display: inline-block;
     padding: 15px 30px;
