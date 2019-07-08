@@ -251,7 +251,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
     font-size: 16px;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    margin: 30px auto;
+    margin: 10px auto;
 }
 
 input[type="submit"] {
