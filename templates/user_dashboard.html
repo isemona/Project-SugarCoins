@@ -2,7 +2,7 @@
 {% block content %}
 
 
-    <!-- Static navbar -->
+<!-- Static navbar -->
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -49,57 +49,12 @@
         </div>
     </nav>
 
-
-
-    {#    <div class="container-fluid">#}
-    {#        <div class="row">#}
-    {#            <div class="col-xs-12 main">#}
-    {#                <h1 class="main-title">Autumn Leaves Consulting</h1>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#    </div>#}
-
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-
-
-    {#    <div>#}
-    {#        <form action="/" method="GET">#}
-    {#            <input type="submit" value="Log Out">#}
-    {#        </form>#}
-    {#    </div>#}
-    {##}
-    {#    <div>#}
-    {#        <form action="/user_intake/{{ user_id }}" method="GET">#}
-    {#            <input type="submit" value="Profile">#}
-    {#        </form>#}
-    {#    </div>#}
-    {##}
-    {#    <div>#}
-    {#        <form action="/trends/{{ user_id }}" method="GET">#}
-    {#            <input type="submit" value="Trends">#}
-    {#        </form>#}
-    {#    </div>#}
-    <main class="">
         <div id="border">
             <h1>{{ fname }}'s Daily Sugar Intake Overview</h1>
         </div>
-
-{#        <div class="row form-group">#}
-{#            <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center">#}
-{#                <div class="coin-card">#}
-{##}
-{#                    <img class="coin-img"#}
-{#                         src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"#}
-{#                         alt="sugarcoin" height="140" width="140" align="center">#}
-{#                    <p id="info" align="center">{{ daily_in }}</p>#}
-{##}
-{##}
-{#                </div>#}
-{#            </section>#}
-{#        </div>#}
-
         <div class="row form-group">
             <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                 <div class="white-container">
@@ -110,14 +65,11 @@
                 </div>
             </section>
             <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-
                 <div class="white-container">
                     <p>Percent Daily Intake</p>
-
                     <div id="pie-chart">
                         <canvas id="myChart" width="300px" height="100px"></canvas>
                     </div>
-
                     <script src="http://code.jquery.com/jquery.js"></script>
                     <script>
                         const options = {
@@ -134,24 +86,18 @@
                             })
                         });
                     </script>
-
                 </div>
             </section>
-
             <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-
                 <div class="white-container">
                     <p>Daily Allowance</p>
                     <p class="info">{{ allowance }}</p>
                 </div>
-
-
-                {#                        <div class="white-container">#}
-                {#                            <p>Average daily spending</p>#}
-                {#                        </div>#}
             </section>
-
         </div>
+
+
+<!--Daily intake form-->
         <div class="row form-group">
             <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 left">
                 <div class="white-container">
@@ -162,7 +108,6 @@
                                    placeholder="Sweet food">
                             <input type="number" name="cost" class="form-group form-control placeholder-color"
                                    placeholder="Price">
-
                                 Notes
                                 <select name="notes">
                                     <option></option>
@@ -187,159 +132,17 @@
                                 </select>
                                 <input type="submit" value="Submit" class="btn">
                             </div>
-
-
                     </form>
-
                 </div>
-
-            </section>
-
-            <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 right">
-                <div class="white-container">
-                    {#                style="width:640px"#}
-                    {#                    <form action="/delete/{{ user_id }}" method="POST">#}
-                    <p>Food Summary</p>
-
-                    <ul align="center">
-                        {% for food in foods %}
-                            <p>{{ food }}</p>
-                            {#                            <p>{{ food }}</p>#}
-                        {% endfor %}
-                        {#                            <input type="submit" value="Edit" class="edit-food">#}
-                    </ul>
-                    {#                    <p>{{ foods }}</p>#}
-                    {#                    </form>#}
-                </div>
-
 
             </section>
         </div>
 
-
-        {#        <div class="white-container">#}
-        {#            <h3>Monthly Sugar Intake</h3>#}
-        {##}
-        {#            <div>#}
-        {#                <canvas id="barChart" width="300px" height="100px"></canvas>#}
-        {#            </div>#}
-        {##}
-        {#            <script src="http://code.jquery.com/jquery.js"></script>#}
-        {#            <script>#}
-        {#                let ctx_bar = $("#barChart").get(0).getContext('2d');#}
-        {##}
-        {#                $.get('/user_monthly_intake.json', function (data) {#}
-        {#                    let barChart = new Chart(ctx_bar, {#}
-        {#                        type: 'bar',#}
-        {#                        data: data,#}
-        {#                        options: options#}
-        {#                    })#}
-        {#                });#}
-        {#            </script>#}
-        {#        </div>#}
-        {##}
-        {#        <div class="row form-group">#}
-        {#            <section class="splash-header col-xs-12 col-sm-12 col-md-6 col-lg-6 left">#}
-        {#                <div class="white-container">#}
-        {#                    <p>Current Weight</p>{{ weight }}#}
-        {#                </div>#}
-        {#            </section>#}
-        {##}
-        {#            <section class="splash-header col-xs-12 col-sm-12 col-md-6 col-lg-6 right">#}
-        {#                <div class="white-container">#}
-        {#                    <h3>Weight Trends</h3>#}
-        {##}
-        {#                    <div>#}
-        {#                        <canvas id="weightChart" width="300px" height="100px"></canvas>#}
-        {#                    </div>#}
-        {##}
-        {#                    <script src="http://code.jquery.com/jquery.js"></script>#}
-        {#                    <script>#}
-        {##}
-        {#                        let ctx_line = $("#weightChart").get(0).getContext('2d');#}
-        {##}
-        {#                        $.get('/user_weight.json', function (data) {#}
-        {#                            let myChart = new Chart(ctx_line, {#}
-        {#                                type: 'line',#}
-        {#                                data: data,#}
-        {#                                options: options#}
-        {#                            })#}
-        {#                        });#}
-        {#                    </script>#}
-        {#                </div>#}
-        {#            </section>#}
-        {#        </div>#}
-        {##}
-        {#        <div class="row form-group">#}
-        {#            <section class="splash-header col-xs-12 col-sm-12 col-md-6 col-lg-6 left">#}
-        {#                <div class="white-container">#}
-        {#                    <p>Current Glucose Level</p>{{ glucose }}#}
-        {#                </div>#}
-        {#            </section>#}
-        {##}
-        {#            <section class="splash-header col-xs-12 col-sm-12 col-md-6 col-lg-6 right">#}
-        {#                <div class="white-container">#}
-        {#                    <h3>Glucose Trends</h3>#}
-        {##}
-        {#                    <div>#}
-        {#                        <canvas id="glucoseChart" width="300px" height="100px"></canvas>#}
-        {#                    </div>#}
-        {##}
-        {#                    <script src="http://code.jquery.com/jquery.js"></script>#}
-        {#                    <script>#}
-        {##}
-        {#                        let ctx_glucose_line = $("#glucoseChart").get(0).getContext('2d');#}
-        {##}
-        {#                        $.get('/user_glucose.json', function (data) {#}
-        {#                            let my_Chart = new Chart(ctx_glucose_line, {#}
-        {#                                type: 'line',#}
-        {#                                data: data,#}
-        {#                                options: options#}
-        {#                            })#}
-        {#                        });#}
-        {#                    </script>#}
-        {#                </div>#}
-        {#            </section>#}
-        {#        </div>#}
-        {#    </div>#}
-        {#<script type="text/javascript" src="/static/user_dashboard.js"></script>#}
-
-
-        {#    <div>#}
-        {#        <form action="/trends/{{ user_id }}" method="GET">#}
-        {#            <input type="submit" value="Health Trends">#}
-        {#        </form>#}
-        {#    </div>#}
-        {##}
-        {#    <div>#}
-        {#        <form action="/user_dashboard/{{ user_id }}" method="GET">#}
-        {#            <input type="submit" value="User Dashboard">#}
-        {#        </form>#}
-        {#    </div>#}
-
-
-        <!--
-
-        <form>
-          <div class="form-group">
-            <input type="submit" value="Submit" class="btn btn-sugar">
-          </div>
-        </form>
-
-        generate alternative sugars here from the USDA API using AJAX-->
-
-
-        {#</div>#}
-        {#    <div>#}
-        {#    <form action="/" method="GET">#}
-        {#    <input type="submit" value="Log Out" >#}
-        {#    </form>#}
-        {#    </div>#}
-
         <script src="http://code.jquery.com/jquery.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-        {# React #}
+
+<!--React -->
         <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
         <script src="http://unpkg.com/babel-standalone"></script>
