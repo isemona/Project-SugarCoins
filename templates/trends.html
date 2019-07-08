@@ -2,95 +2,87 @@
 {% block content %}
 
 
-
-    <!-- Static navbar -->
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button"
-                        class="navbar-toggle collapsed"
-                        data-toggle="collapse"
-                        data-target="#navbar"
-                        aria-expanded="false"
-                        aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">SugarCoin</a>
-                <img class="coin-img"
-                     src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
-                     alt="sugarcoin" height="50" width="50" align="center">
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-
-
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <form action="/user_dashboard/{{ user_id }}" method="GET">
-                            <input type="submit" value="Dashboard" class="btn">
-                        </form>
-                    </li>
-                    <li>
-                        <form action="/user_intake/{{ user_id }}" method="GET">
-                            <input type="submit" value="Profile" class="btn">
-                        </form>
-                    </li>
-                    <li>
-                        <form action="/logout" method="GET">
-                            <input type="submit" value="Log out" class="btn">
-                        </form>
-                    </li>
-                    </li>
-                </ul>
-            </div>
+<!-- Static navbar -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#navbar"
+                    aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">SugarCoin</a>
+            <img class="coin-img"
+                 src="https://res.cloudinary.com/dvhvxgxtf/image/upload/v1552451429/COIN_IMAGE_idcjxe.png"
+                 alt="sugarcoin" height="50" width="50" align="center">
         </div>
-    </nav>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
 
 
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form action="/user_dashboard/{{ user_id }}" method="GET">
+                        <input type="submit" value="Dashboard" class="btn">
+                    </form>
+                </li>
+                <li>
+                    <form action="/user_profile/{{ user_id }}" method="GET">
+                        <input type="submit" value="Profile" class="btn">
+                    </form>
+                </li>
+                <li>
+                    <form action="/logout" method="GET">
+                        <input type="submit" value="Log out" class="btn">
+                    </form>
+                </li>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 
+<meta charset="UTF-8">
+<title>D3 Correlation Matrix</title>
+<div class="row">
+    <div id="border">
+        <h1>{{ fname }}'s Sugar Dependency Trends</h1>
+    </div>
 
-    <main class="container-fluid">
-        <meta charset="UTF-8">
-        <title>D3 Correlation Matrix</title>
-        <div class="row">
-            <div id="border">
-                <h1>{{ fname }}'s Sugar Dependency Trends</h1>
+    <!--Moods and behavior bubble graph-->
+    <div class="row form-group">
+        <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="white-container">
+                <p>Mood & Behavioral Factors</p>
             </div>
 
-            <div class="row form-group">
-{#                <section class="splash-header col-lg-2 left">#}
-                <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="white-container">
-                        <p>Mood & Behavioral Factors</p>
-                    </div>
+        </section>
+        <section class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <div class="white-container">
+                <div id="chart"></div>
 
-                </section>
-
-                {#            <h4>Mood & Behavioral Factors</h4>#}
-                <section class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-                    <div class="white-container">
-                        <div id="chart"></div>
-
-                        <script src="http://code.jquery.com/jquery.js"></script>
-                        <script src="//d3js.org/d3.v3.js"></script>
-                        <script>
+                <script src="http://code.jquery.com/jquery.js"></script>
+                <script src="//d3js.org/d3.v3.js"></script>
+                <script>
                             $(function () {
                                 console.log('jquery is working!');
                                 createGraph();
                             });
-
                             function createGraph() {
                                 // Code goes here
                             }
-
                             var width = 660; // chart width
                             var height = 400; // chart height
                             var format = d3.format(",d");  // convert value to integer
@@ -125,8 +117,11 @@
                                 .style("font", "12px sans-serif")
                                 .text("tooltip");
 
-                            // REQUEST THE DATA
+                            // REQUEST THE DATA HERE
                             d3.json("/trends.json", function (error, quotes) {
+
+                                //Conditional default for no moods or behaviors inputted
+                                if (quotes.children.length > 0){
                                 var node = svg.selectAll('.node')
                                     .data(bubble.nodes(quotes)
                                         .filter(function (d) {
@@ -137,6 +132,7 @@
                                     .attr('transform', function (d) {
                                         return 'translate(' + d.x + ',' + d.y + ')'
                                     });
+
 
                                 node.append('circle')
                                     .attr('r', function (d) {
@@ -162,52 +158,29 @@
                                     .text(function (d) {
                                         return d.symbol;
                                     });
+                            }
                             });
-
-
-
-                            {#node.append("circle")#}
-                            {#    .attr("r", function (d) {#}
-                            {#        return d.r;#}
-                            {#    })#}
-                            {#    .style('fill', function (d) {#}
-                            {#        return color(d.symbol);#}
-                            {#    })#}
-                            {##}
-                            {#    .on("mouseover", function (d) {#}
-                            {#        tooltip.text(d.name + ": $" + d.price);#}
-                            {#        tooltip.style("visibility", "visible");#}
-                            {#    })#}
-                            {#    .on("mousemove", function () {#}
-                            {#        return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");#}
-                            {#    })#}
-                            {#    .on("mouseout", function () {#}
-                            {#        return tooltip.style("visibility", "hidden");#}
-                            {#    });#}
-
-
                         </script>
-                    </div>
-                </section>
+            </div>
+        </section>
+    </div>
+
+    <!--Average spending number and monthly intake-->
+    <div class="row form-group">
+        <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="white-container">
+                <p>Average spending</p>
+                <p id="info-trends">{{ average }}</p>
             </div>
 
-            <div class="row form-group">
-                 <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="white-container">
-                        <p>Average spending</p>
-                        <p id="info-trends">{{ average }}</p>
-                    </div>
+        </section>
+        <section class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <div>
+                <canvas id="barChart" width="300px" height="100px"></canvas>
+            </div>
 
-                </section>
-                 <section class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-                    <h3></h3>
-
-                    <div>
-                        <canvas id="barChart" width="300px" height="100px"></canvas>
-                    </div>
-
-                    <script src="http://code.jquery.com/jquery.js"></script>
-                    <script>
+            <script src="http://code.jquery.com/jquery.js"></script>
+            <script>
 
                         let ctx_bar = $("#barChart").get(0).getContext('2d');
 
@@ -218,29 +191,31 @@
                                 options: data.options
                             })
                         });
-                    </script>
-                </section>
+
+                </script>
+        </section>
+    </div>
+
+
+    <!--Current weight number and weight over time graph-->
+    <div class="row form-group">
+        <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="white-container">
+                <p>Current Weight (lb)</p>
+                <p id="info-trends">{{ weight }}</p>
+            </div>
+        </section>
+
+        <section class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+
+            <h3></h3>
+
+            <div>
+                <canvas id="weightChart" width="300px" height="100px"></canvas>
             </div>
 
-
-            <div class="row form-group">
-                <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="white-container">
-                        <p>Current Weight (lb)</p>
-                        <p id="info-trends">{{ weight }}</p>
-                    </div>
-                </section>
-
-                <section class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-
-                    <h3></h3>
-
-                    <div>
-                        <canvas id="weightChart" width="300px" height="100px"></canvas>
-                    </div>
-
-                    <script src="http://code.jquery.com/jquery.js"></script>
-                    <script>
+            <script src="http://code.jquery.com/jquery.js"></script>
+            <script>
 
                         let ctx_line = $("#weightChart").get(0).getContext('2d');
 
@@ -252,32 +227,28 @@
 
                             })
                         });
-                    </script>
 
-                </section>
+                </script>
+
+        </section>
+    </div>
+
+    <!--Current glucose number and glucose over time graph-->
+    <div class="row form-group">
+        <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="white-container">
+                <p>Current Glucose Level (mg/dL)</p>
+                <p id="info-trends">{{ glucose }}</p>
+            </div>
+        </section>
+
+        <section class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <div>
+                <canvas id="glucoseChart" width="300px" height="100px"></canvas>
             </div>
 
-            <div class="row form-group">
-                <section class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-{#                <section class="splash-header col-lg-2 left">#}
-                    <div class="white-container">
-                        <p>Current Glucose Level (mg/dL)</p>
-                        <p id="info-trends">{{ glucose }}</p>
-                    </div>
-                </section>
-
-                <section class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-
-                    <h3></h3>
-
-                    <div>
-                        <canvas id="glucoseChart" width="300px" height="100px"></canvas>
-                    </div>
-
-                    <script src="http://code.jquery.com/jquery.js"></script>
-                    <script>
-
-
+            <script src="http://code.jquery.com/jquery.js"></script>
+            <script>
                         let ctx_glucose_line = $("#glucoseChart").get(0).getContext('2d');
 
                         $.get('/user_glucose.json', function (data) {
@@ -288,21 +259,7 @@
                             })
                         });
                     </script>
+        </section>
+    </div>
 
-                </section>
-            </div>
-
-
-            {#    </head>#}
-            {##}
-            {#    <body>#}
-            {##}
-            {#<script src="/static/trends.js"></script>#}
-            {##}
-            {#    </body>#}
-            {##}
-            {#    </html>#}
-
-    </main>
-
-{% endblock %}
+    {% endblock %}

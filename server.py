@@ -79,12 +79,8 @@ def login_form():
     """Show login form and process."""
     if request.method == 'POST':
         email = request.form["email"]
-        print(email)
         password = request.form["password"]
-        print(password)
         user = User.query.filter_by(email=email).first()
-        print(user)
-
         if not user:
             flash("No such user")
             return redirect("/login")
@@ -92,7 +88,6 @@ def login_form():
         if user.password != password:
             flash("Incorrect password")
             return redirect("/login")
-        session["user_id"]
 
         session["user_id"] = user.user_id
         session['user'] = user.name
@@ -337,21 +332,11 @@ def user_trends(user_id):
     """Show user trends."""
     name = session["user"].split(" ")
     fname = name[0]
-
     weight = get_user_current_weight(session)
-
-    if weight:
-        weight = 0
-
     glucose = get_user_current_glucose(session)
-
-    if not glucose:
-        glucose = 0
-
     average = get_average_spending(session)
 
     return render_template("trends.html", fname=fname, weight=weight, glucose=glucose, average=average, user_id=user_id)
-
 
 @app.route('/trends.json', methods=['GET', 'POST'])
 def user_mood_trends():

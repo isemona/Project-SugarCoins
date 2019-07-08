@@ -52,6 +52,11 @@ def load_gender():
                   allowance=38,
                   )
 
+    db.session.add(female)
+    db.session.add(male)
+
+    db.session.commit()
+
 
 def load_food():
     """Load food from a list of sweets."""

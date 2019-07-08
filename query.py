@@ -113,7 +113,11 @@ def get_average_spending(session):
     for item in user_spending:
         spent = item[2]
 
-    user_average = spent/len(dates)
+    # default value for new users
+    if len(dates) == 0:
+        return 0
+    else:
+        user_average = spent/len(dates)
 
     return int(user_average)
 
@@ -180,7 +184,11 @@ def get_user_current_weight(session):
     for weight in user_weight_list:
         current_weight.append(weight.current_weight)
 
-    return current_weight[-1]
+    # default value for new users
+    if current_weight == []:
+        return 0
+    else:
+        return current_weight[-1]
 
 def get_user_current_glucose(session):
     glucose_list = get_user_glucose(session)
@@ -189,6 +197,10 @@ def get_user_current_glucose(session):
     for level in glucose_list:
         current_glucose.append(level.current_glucose)
 
-    return current_glucose[-1]
+    # default value for new users
+    if current_glucose == []:
+        return 0
+    else:
+        return current_glucose[-1]
 
 
