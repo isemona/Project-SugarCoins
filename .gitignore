@@ -1,4 +1,4 @@
-xenv
+env
 *.pyc
 __pycache__
 secrets.sh
