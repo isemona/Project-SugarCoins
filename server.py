@@ -8,7 +8,7 @@ from datetime import datetime
 # need to allow access to database
 from typing import Any
 
-from model import connect_to_db, db, Gender, User, Food, Sugar, Weight, Glucose
+from models import connect_to_db, db, Gender, User, Food, Sugar, Weight, Glucose
 
 from query import *
 from twilio.twiml.messaging_response import MessagingResponse

@@ -1,6 +1,6 @@
 from builtins import len, int
 
-from model import *
+from models import *
 
 from sqlalchemy import cast, Date, func, extract
 # from datetime import date

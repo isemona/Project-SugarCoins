@@ -10,7 +10,7 @@ import datetime
 from sqlalchemy import func
 
 # need to allow access to these Objects to load/seed data
-from model import connect_to_db, db, Gender, User, Food, Sugar, Weight, Glucose
+from models import connect_to_db, db, Gender, User, Food, Sugar, Weight, Glucose
 
 # connecting to database aka SQL i.e. connect_to_db(app) has 'app' app comes from ther server so this needs to be imported too
 from server import app

@@ -12,7 +12,7 @@ def test_index(client):
 def test_register_form(client):
     res = client.get(url_for('register_form'))
     assert res.status_code == 200
-
+    assert b'Register', res.data
 #
 # def test_login_form(client):
 #     res = client.get(url_for('login_form'))
