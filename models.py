@@ -2,6 +2,7 @@
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import bcrypt
 
 # This is the connection to the PostgreSQL database; we're getting
 # this through the Flask-SQLAlchemy helper library. On this, we can
@@ -24,7 +25,7 @@ class User(db.Model):
                         autoincrement=True,
                         primary_key=True)
     name = db.Column(db.String(64), nullable=True)
-    password = db.Column(db.String(64), nullable=True)
+    password = db.Column(db.String(255), nullable=True)
     email = db.Column(db.String(64), nullable=True)
     phone = db.Column(db.String(64), nullable=True)
     gender_code = db.Column(db.String(1), db.ForeignKey('gender.gender_code'))
@@ -32,6 +33,12 @@ class User(db.Model):
     gender = db.relationship("Gender", backref="user")
     weight = db.relationship("Weight", backref="user")
     glucose = db.relationship("Glucose", backref="user")
+
+    # Encrypt user password
+    def __init__(self, **kwargs):
+        super(User, self).__init__(**kwargs)
+        self.password = bcrypt.hashpw(self.password.encode('utf8'), bcrypt.gensalt())
+        self.password_hash = pwhash.decode('utf8')
 
     def __repr__(self):
         """Provide helpful representation when printed."""

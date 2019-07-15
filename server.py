@@ -4,6 +4,7 @@ from flask import Flask, flash, redirect, request, render_template, session, jso
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
 from datetime import datetime
+import bcrypt
 
 # need to allow access to database
 from typing import Any
@@ -74,6 +75,8 @@ def register_form():
 @app.route('/login', methods=['GET', 'POST'])
 def login_form():
     """Show login form and process."""
+    # import pdb
+    # pdb.set_trace()
     if request.method == 'POST':
         email = request.form["email"]
         password = request.form["password"]
@@ -82,7 +85,13 @@ def login_form():
             flash("No such user")
             return redirect("/login")
 
-        if user.password != password:
+        # Added encryption
+        # hashed = bcrypt.hashpw(password.encode('utf8'), bcrypt.gensalt())
+
+        # import pdb
+        # pdb.set_trace()
+
+        if bcrypt.checkpw(password.encode('utf8'), user.password) is False:
             flash("Incorrect password")
             return redirect("/login")
 
@@ -475,7 +484,7 @@ if __name__ == "__main__":
     # schedule.every(60).seconds.do(send_msg)
 
     # Turn on debugger only for testing app
-    app.debug = False
+    app.debug = True
     connect_to_db(app)
 
     # Use the DebugToolbar
