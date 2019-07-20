@@ -487,7 +487,7 @@ if __name__ == "__main__":
     # schedule.every(60).seconds.do(send_msg)
 
     # Turn on debugger only for testing app
-    app.debug = True
+    app.debug = False
     connect_to_db(app)
 
     # Use the DebugToolbar
