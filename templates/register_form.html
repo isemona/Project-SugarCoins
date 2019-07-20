@@ -48,8 +48,14 @@
         <input type="password" name="password" placeholder="Confirm Password"
                class="form-control placeholder-color">
         <input type="text" name="pnum" placeholder="Phone number" class="form-control placeholder-color">
-        <input type="radio" style="transform: scale(1.5);" name="gender" value="M"> Male
-        <input type="radio" style="transform: scale(1.5);" name="gender" value="F"> Female
+        
+        <select name="gender">
+            <option value=""selected disabled hidden>Choose Gender</option>
+            <option value="F">Female</option>
+            <option value="M">Male</option>
+        </select>
+        <!-- <input type="radio" style="transform: scale(1.5);" name="gender" value="M"> Male
+        <input type="radio" style="transform: scale(1.5);" name="gender" value="F"> Female -->
         <div>
             <input type="submit" value="Track my sugar intake!" class="btn">
         </div>
