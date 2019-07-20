@@ -35,10 +35,20 @@ class User(db.Model):
     glucose = db.relationship("Glucose", backref="user")
 
     # Encrypt user password
+    # def __init__(self, **kwargs):
+    #     super(User, self).__init__(**kwargs)
+    #     self.password = bcrypt.hashpw(self.password.encode('utf8'), bcrypt.gensalt())
+    #     self.password = hashed.decode('utf8')
+
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
-        self.password = bcrypt.hashpw(self.password.encode('utf8'), bcrypt.gensalt())
-        self.password_hash = pwhash.decode('utf8')
+
+        # Get the hased password
+        hashed = bcrypt.hashpw(
+            self.password.encode('utf8'), bcrypt.gensalt())
+
+        # Decode the hashed pw before saving
+        self.password = hashed.decode('utf8')
 
     def __repr__(self):
         """Provide helpful representation when printed."""

@@ -90,10 +90,13 @@ def login_form():
 
         # import pdb
         # pdb.set_trace()
-
-        if bcrypt.checkpw(password.encode('utf8'), user.password) is False:
+        if bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf8')) is False:
             flash("Incorrect password")
             return redirect("/login")
+
+        # if bcrypt.checkpw(password.encode('utf8'), user.password) is False:
+        #     flash("Incorrect password")
+        #     return redirect("/login")
 
         session["user_id"] = user.user_id
         session['user'] = user.name

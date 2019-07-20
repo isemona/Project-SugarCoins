@@ -10,7 +10,8 @@ body {
 }
 
 body {
-    background-image: linear-gradient(to bottom, rgb(204, 159, 190), rgb(201, 153, 202));
+    /* RGB value */
+    background-color: rgb(255, 255, 128);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
