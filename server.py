@@ -233,7 +233,7 @@ def user_weight_trends():
         "options": {
             "legend": {
                 "labels": {
-                    "fontColor": 'white',
+                    "fontColor": 'green',
                     "fontSize": 30,
                 }
             },
@@ -298,7 +298,7 @@ def user_glucose_trends():
         "options": {
             "legend": {
                 "labels": {
-                    "fontColor": 'white',
+                    "fontColor": 'green',
                     "fontSize": 30,
                 }
             },
@@ -411,7 +411,7 @@ def user_monthly_intake():
 
         "datasets": [
             {
-                "label": '2018 Monthly Intake',
+                "label": 'Monthly Intake',
                 "data": monthly_values,
                 "backgroundColor": [
                     'rgba(75, 192, 192, 1)',
@@ -447,7 +447,7 @@ def user_monthly_intake():
         "options": {
             "legend": {
                 "labels": {
-                    "fontColor": 'white',
+                    "fontColor": 'green',
                     "fontSize": 30,
                 }
             },

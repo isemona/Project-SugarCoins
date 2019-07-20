@@ -34,12 +34,6 @@ class User(db.Model):
     weight = db.relationship("Weight", backref="user")
     glucose = db.relationship("Glucose", backref="user")
 
-    # Encrypt user password
-    # def __init__(self, **kwargs):
-    #     super(User, self).__init__(**kwargs)
-    #     self.password = bcrypt.hashpw(self.password.encode('utf8'), bcrypt.gensalt())
-    #     self.password = hashed.decode('utf8')
-
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
 

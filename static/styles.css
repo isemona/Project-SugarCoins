@@ -11,7 +11,7 @@ body {
 
 body {
     /* RGB value */
-    background-color: rgb(255, 255, 128);
+    background-color:white;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -27,7 +27,7 @@ h1 {
     text-align: center;
     font-weight: 100;
     font-size: 40px;
-    color: #fff;
+    color: green;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -35,7 +35,7 @@ h3 {
     text-align: center;
     font-weight: 80;
     font-size: 20px;
-    color: #fff;
+    color: black;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -43,19 +43,19 @@ h4 {
     text-align: center;
     font-weight: 80;
     font-size: 30px;
-    color: #fff;
+    color: black;
     font-family: 'Montserrat', sans-serif;
 }
 
 .navbar {
     background: transparent;
     border: none;
-    color: #fff;
+    color: black;
     font-family: 'Montserrat', sans-serif;
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-nav li a {
-    color: #fff;
+    color: black;
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
 }
@@ -74,7 +74,7 @@ p {
     text-align: center;
     font-weight: 100;
     font-size: 28px;
-    color: #fff;
+    color: green;
     font-family: 'Montserrat', sans-serif;
     margin-top: 20px;
     margin-left: 20px;
@@ -93,7 +93,7 @@ form {
     text-align: center;
     font-weight: 100;
     font-size: 30px;
-    color: #fff;
+    color: black;
     font-family: 'Montserrat', sans-serif;
 
 }
@@ -134,7 +134,7 @@ select {
 }
 
 #border {
-    border: 1px solid #fff;
+    border: 1px solid black;
     border-radius: 15px;
     width: 1250px;
     margin: auto;
@@ -143,7 +143,7 @@ select {
 
 
 .mood-border {
-    border: 1px solid #fff;
+    border: 1px solid black;
     border-radius: 25px;
     width: 900px;
     margin: auto;
@@ -151,14 +151,14 @@ select {
 }
 
 .profile-container {
-    border: 1px solid #fff;
+    border: 1px solid black;
     border-radius: 25px;
     margin: 0 auto;
     text-align: center;
 }
 
 .white-container {
-    border: 1px solid #fff;
+    border: 1px solid black;
     border-radius: 25px;
 }
 
@@ -167,14 +167,14 @@ select {
 }
 
 #chart {
-    color: #fff;
+    color: black;
 }
 
 .info {
     text-align: center;
     font-weight: 100;
     font-size: 100px;
-    color: #fff;
+    color: black;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -182,7 +182,7 @@ select {
     text-align: center;
     font-weight: 100;
     font-size: 70px;
-    color: #fff;
+    color: black;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -190,7 +190,7 @@ select {
     color: #ffd200;
     font-family: 'Montserrat', sans-serif;
     font-weight: 100;
-    color: #fff;
+    color: black;
     text-align: center;
     padding-bottom: 10px;
     margin-top: 125px;
@@ -200,14 +200,14 @@ select {
     margin: 25px;
     display: inline-block;
     padding: 15px 30px;
-    border: 1px solid #fff;
+    border: 1px solid black;
     text-transform: uppercase;
     letter-spacing: 0.015em;
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
     font-weight: 300;
     line-height: 1;
-    color: #fff;
+    color: black;
     text-decoration: none;
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
@@ -216,7 +216,7 @@ select {
 }
 
 .btn:hover {
-    color: #fff;
+    color: black;
     border-color: #BFFF97;
 }
 
@@ -224,7 +224,7 @@ button {
     margin: 25px;
     display: inline-block;
     padding: 15px 30px;
-    border: 1px solid #fff;
+    border: 1px solid black;
     background: transparent;
     text-transform: uppercase;
     letter-spacing: 0.015em;
@@ -232,7 +232,7 @@ button {
     font-size: 12px;
     font-weight: 300;
     line-height: 1;
-    color: #fff;
+    color: black;
     text-decoration: none;
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
@@ -246,9 +246,9 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
     padding: 10px 0px;
     background: transparent;
     border: 0;
-    border: 1.5px solid white;
+    border: 1.5px solid black;
     outline: none;
-    color: #fff;
+    color: black;
     font-size: 16px;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
@@ -259,7 +259,7 @@ input[type="submit"] {
     margin: 25px;
     display: inline-block;
     padding: 15px 30px;
-    border: 1px solid #fff;
+    border: 1px solid black;
     background: transparent;
     text-transform: uppercase;
     letter-spacing: 0.015em;
@@ -267,7 +267,7 @@ input[type="submit"] {
     font-size: 12px;
     font-weight: 300;
     line-height: 1;
-    color: #fff;
+    color: black;
     text-decoration: none;
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
@@ -276,7 +276,7 @@ input[type="submit"] {
 }
 
 .placeholder-color::placeholder {
-    color: rgb(255, 255, 255, 0.5);
+    color: black;
     font-size: 1.2em;
     font-family: 'Montserrat', sans-serif;
 }
