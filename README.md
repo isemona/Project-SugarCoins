@@ -6,7 +6,7 @@ Using D3 visualization, this app will pinpoint any sweet-tooth dependency factor
 And since added sugar directly affects weight and glucose levels, the app will monitor these data points using Charts.js. 
 Lastly, a text reminder is integrated through Twilio API called - SugarWallet - which reports the user's current balance. 
 
-Deployed on AWS Lightsail - sugarcoin.io
+Deployed on AWS Lightsail - [sugarcoin.io](http://sugarcoin.io/)
 
 ## MVP Features
 + a daily allowance count 
