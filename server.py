@@ -464,16 +464,27 @@ def user_monthly_intake():
 
     return jsonify(data_dict)
 
-@app.route("/sms", methods=['GET', 'POST'])
-def sms_ahoy_reply():
-    """Respond to incoming messages with a friendly SMS."""
-    # Start our response
-    resp = MessagingResponse()
+@app.route('/sms_test/<int:user_id>', methods=['GET', 'POST'])
+def send_balance_update(user_id):
+    """Show user dashboard."""
+    message = send_msg()
 
-    # Add a message
-    resp.message("Ahoy! Thanks so much for your message.")  # message sent when you need a response from the user
+    return "<h1>hello</h1>"
 
-    return str(resp)
+
+# @app.route("/sms_test", methods=['GET', 'POST'])
+# def sms_balance_update():
+#     """Update the user with their current balance."""
+#     # balance = send_msg
+#     return render_template("user_dashboard.html") 
+
+# @app.route("/sms", methods=['GET', 'POST'])
+# def sms_ahoy_reply():
+#     """Respond to incoming messages with a friendly SMS."""
+#     # Start our response
+#     send_msg(session)
+
+#     return str(resp)
 
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the point
@@ -484,8 +495,9 @@ if __name__ == "__main__":
     # schedule.every().day.at("12:00").do(send_msg)
 
     #testing twilio 2-3 req
-    schedule.every(60).seconds.do(send_msg)
+    # schedule.every(60).seconds.do(send_msg)
 
+    
     # Turn on debugger only for testing app
     app.debug = False
     connect_to_db(app)
