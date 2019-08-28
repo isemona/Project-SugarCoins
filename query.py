@@ -38,34 +38,34 @@ def get_lists_of_food(session):
     foods = []
     for entry in todays_sugar:
         foods.append((entry.food.food_name + "__________________" + str(entry.food.cost)))
-
     return foods
 
 
 def get_users(session):
     """Info on daily spending"""
     users = User.query.all()
-
     return users
 
 def get_user(session):
     """Info on daily spending"""
     user = User.query.filter(User.user_id == session['user_id']).first()
-
     return user
+
+def get_phone_num(session):
+    """Info on daily spending"""
+    phone = User.query.filter(User.user_id == session['phone']).first()
+    return phone
 
 def get_user_allowance(session):
     """Info on daily spending"""
     user = User.query.filter(User.user_id == session['user_id']).first()
     user_allowance = user.gender.allowance
-
     return user_allowance
 
 def get_user_daily_spending(session):
     """Info on daily spending"""
 
     total = sum([cost for _, cost in get_user_list_of_food(session)])
-
     return total
 
 def get_user_daily_balance(session):
@@ -80,7 +80,6 @@ def calculate_user_daily_spending_percentage(session):
     """Info on daily spending as a percentage"""
 
     daily_spending = get_user_daily_spending(session)
-
     return daily_spending / get_user_allowance(session) * 100
 
 
@@ -90,7 +89,6 @@ def get_monthly_spending(session):
     user_monthly_info = (db.session.query(Sugar.user_id, extract('month', Sugar.date_time), func.sum(Food.cost))
                          .filter(Sugar.user_id == session['user_id'])
                          .join(Food).group_by(Sugar.user_id, extract('month', Sugar.date_time)).all())
-
     return user_monthly_info
 
 def get_average_spending(session):
@@ -105,10 +103,8 @@ def get_average_spending(session):
                     .join(Food).group_by(Sugar.user_id, Sugar.date_time).all())
 
     dates = []
-
     for date in user_date_time:
         dates.append(date)
-
     spent = 0
     for item in user_spending:
         spent = item[2]

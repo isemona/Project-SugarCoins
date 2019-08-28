@@ -1,10 +1,12 @@
 # Download the helper library from https://www.twilio.com/docs/python/install
+from flask import session
 from twilio.rest import Client
 import schedule
 import time
 import os
-#from model import connect_to_db, db, User
-#from query import *
+from models import connect_to_db, db, User
+from query import get_user, get_user_daily_balance
+
 
 
 account_sid = os.environ.get('TWILIO_ACCOUNT_ID')
@@ -13,13 +15,12 @@ my_number = os.environ.get('MY_NUMBER')
 twilio_number = os.environ.get('TWILIO_NUMBER')
 
 def send_msg():
-
+    user = get_user(session) # this changes everytime for each user so add it under the function
+    balance = get_user_daily_balance(session) # this changes everytime for each user so add it under the function
     client = Client(account_sid, auth_token)
-
     message = client.messages \
                     .create(
-                        # body=f"Hi {{}}, you have 8 coins left in your SugarWallet. Spend wisely! ",
-                         body=f"Hi Semona, you have 8 coins left in your SugarWallet. Spend wisely!",
+                         body=f"Hi {user}, you have {balance} coins left in your SugarWallet. Spend wisely!",
                          from_= twilio_number,
                          to= "+17876462316" #my_number # phone_number variable here
                      )
@@ -27,11 +28,11 @@ def send_msg():
     print(message.sid)
 
 
-
 if __name__ == "__main__":
 
     # only use when you are running send_sms_py
     schedule.every(20).seconds.do(send_msg)
-    schedule.run_continuously(1)
+    # schedule.run_continuously(1)
+    
 
 # within a file two things are done: import the code and run it, if we're running this file as a program run __main__

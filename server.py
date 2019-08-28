@@ -484,7 +484,7 @@ if __name__ == "__main__":
     # schedule.every().day.at("12:00").do(send_msg)
 
     #testing twilio 2-3 req
-    # schedule.every(60).seconds.do(send_msg)
+    schedule.every(60).seconds.do(send_msg)
 
     # Turn on debugger only for testing app
     app.debug = False
