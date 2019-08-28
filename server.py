@@ -472,20 +472,6 @@ def send_balance_update(user_id):
     return "<h1>hello</h1>"
 
 
-# @app.route("/sms_test", methods=['GET', 'POST'])
-# def sms_balance_update():
-#     """Update the user with their current balance."""
-#     # balance = send_msg
-#     return render_template("user_dashboard.html") 
-
-# @app.route("/sms", methods=['GET', 'POST'])
-# def sms_ahoy_reply():
-#     """Respond to incoming messages with a friendly SMS."""
-#     # Start our response
-#     send_msg(session)
-
-#     return str(resp)
-
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the point
     # that we invoke the DebugToolbarExtension
