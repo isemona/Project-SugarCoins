@@ -483,7 +483,6 @@ if __name__ == "__main__":
     #testing twilio 2-3 req
     # schedule.every(60).seconds.do(send_msg)
 
-    
     # Turn on debugger only for testing app
     app.debug = False
     connect_to_db(app)
