@@ -42,7 +42,8 @@ twilio_number = os.environ.get('TWILIO_NUMBER')
 def send_msg():
     users = User.query.filter(User.phone != None)
     for user in users:
-        firstname = user.name.split(' ',1) # guarantees that it will split it once
+        name = user.name.split(' ',1) # guarantees that it will split it once
+        firstname =  name[0]
         user_allowance = user.gender.allowance
         todays_sugar = db.session.query(Sugar).filter(
             cast(Sugar.date_time, Date) > datetime.utcnow() - timedelta(days=1),
