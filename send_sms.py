@@ -40,7 +40,7 @@ twilio_number = os.environ.get('TWILIO_NUMBER')
 #     print(message.sid)
 
 def send_msg():
-    users = User.query.filter(User.phone is not None)
+    users = User.query.filter(User.phone != None)
     for user in users:
         firstname = user.name.split(' ',1) # guarantees that it will split it once
         user_allowance = user.gender.allowance
