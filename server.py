@@ -483,19 +483,19 @@ if __name__ == "__main__":
     # schedule.every().day.at("12:00").do(send_msg)
 
     #testing twilio 2-3 req
-    # schedule.every(60).seconds.do(send_msg, firstname = name_lst[0], balance = get_user_daily_balance(session), phone_number = get_phone_number(session))
+    schedule.every(2).seconds.do(send_msg)
     
-    # cease_continuous_run = threading.Event()
+    cease_continuous_run = threading.Event()
 
-    # class ScheduleThread(threading.Thread):
-    #     @classmethod
-    #     def run(cls):
-    #         while not cease_continuous_run.is_set():
-    #             schedule.run_pending()
-    #             time.sleep(1)
+    class ScheduleThread(threading.Thread):
+        @classmethod
+        def run(cls):
+            while not cease_continuous_run.is_set():
+                schedule.run_pending()
+                time.sleep(1)
 
-    # continuous_thread = ScheduleThread()
-    # continuous_thread.start()
+    continuous_thread = ScheduleThread()
+    continuous_thread.start()
     
 
     # Turn on debugger only for testing app

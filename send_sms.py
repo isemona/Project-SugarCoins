@@ -55,7 +55,6 @@ def send_msg():
         balance = 0
         if user_allowance - total > 0:
             balance = user_allowance - total
-
         client = Client(account_sid, auth_token)
         # print(f"client.messages \\"
         #     f"      .create("
@@ -84,7 +83,7 @@ if __name__ == "__main__":
     # def job():
     #     print("I'm working...")
 
-    # schedule.every(2).seconds.do(job)
+    # schedule.every(2).seconds.do(send_msg)
 
     # cease_continuous_run = threading.Event()
 
@@ -97,6 +96,6 @@ if __name__ == "__main__":
 
     # continuous_thread = ScheduleThread()
     # continuous_thread.start()
-    # print("Starting the Flask server")
+    print("Starting the Flask server")
 
     # within a file two things are done: import the code and run it, if we're running this file as a program run __main__
