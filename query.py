@@ -47,7 +47,7 @@ def get_user(session):
 def get_phone_number(session):
     """Info on daily spending"""
     # import pdb; pdb.set_trace()
-    #session is a dictionary handled by the browser, limit query in multiple variables
+    #session is a dictionary handled by the browser, limit query in multiple 
     user = User.query.filter(User.user_id == session['user_id']).first()
     phone_number = user.phone
     return phone_number

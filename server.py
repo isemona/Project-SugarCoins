@@ -4,6 +4,9 @@ from flask import Flask, flash, redirect, request, render_template, session, jso
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
 from datetime import datetime
+import schedule
+import time
+import threading
 import bcrypt
 
 # need to allow access to database
@@ -12,7 +15,7 @@ from typing import Any
 from models import connect_to_db, db, Gender, User, Food, Sugar, Weight, Glucose
 
 from query import *
-from twilio.twiml.messaging_response import MessagingResponse
+# from twilio.twiml.messaging_response import MessagingResponse
 
 # turn off when not using continuously
 #testing twilio 1-3 req
@@ -471,7 +474,6 @@ def send_balance_update(user_id):
 
     return "<h1>hello</h1>"
 
-
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the point
     # that we invoke the DebugToolbarExtension
@@ -481,7 +483,20 @@ if __name__ == "__main__":
     # schedule.every().day.at("12:00").do(send_msg)
 
     #testing twilio 2-3 req
-    # schedule.every(60).seconds.do(send_msg)
+    # schedule.every(60).seconds.do(send_msg, firstname = name_lst[0], balance = get_user_daily_balance(session), phone_number = get_phone_number(session))
+    
+    # cease_continuous_run = threading.Event()
+
+    # class ScheduleThread(threading.Thread):
+    #     @classmethod
+    #     def run(cls):
+    #         while not cease_continuous_run.is_set():
+    #             schedule.run_pending()
+    #             time.sleep(1)
+
+    # continuous_thread = ScheduleThread()
+    # continuous_thread.start()
+    
 
     # Turn on debugger only for testing app
     app.debug = False
