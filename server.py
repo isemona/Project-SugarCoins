@@ -17,9 +17,8 @@ from models import connect_to_db, db, Gender, User, Food, Sugar, Weight, Glucose
 from query import *
 # from twilio.twiml.messaging_response import MessagingResponse
 
-# turn off when not using continuously
-#testing twilio 1-3 req
-from send_sms import *
+# testing twilio 1-3 req, turn off when not using continuously
+# from send_sms import *
 
 app = Flask(__name__)
 
@@ -479,33 +478,30 @@ if __name__ == "__main__":
     # that we invoke the DebugToolbarExtension
 
     # turn off schedule.every and schedule.run_continuously(1) bec Twilio will charge per text
-    # run the schedule time first
+    
+    # testing twilio 2-3 req
     # schedule.every().day.at("12:00").do(send_msg)
-
-    #testing twilio 2-3 req
-    schedule.every(2).seconds.do(send_msg)
+    # schedule.every(4).minutes.do(send_msg)
+    # schedule.every(10).seconds.do(send_msg)
     
-    cease_continuous_run = threading.Event()
+    # testing twilio 3-3 req
+    # cease_continuous_run = threading.Event()
 
-    class ScheduleThread(threading.Thread):
-        @classmethod
-        def run(cls):
-            while not cease_continuous_run.is_set():
-                schedule.run_pending()
-                time.sleep(1)
+    # class ScheduleThread(threading.Thread):
+    #     @classmethod
+    #     def run(cls):
+    #         while not cease_continuous_run.is_set():
+    #             schedule.run_pending()
+    #             time.sleep(1)
 
-    continuous_thread = ScheduleThread()
-    continuous_thread.start()
+    # continuous_thread = ScheduleThread()
+    # continuous_thread.start()
     
-
     # Turn on debugger only for testing app
     app.debug = False
     connect_to_db(app)
 
     # Use the DebugToolbar
     DebugToolbarExtension(app)
-
-    # testing twilio 3-3 req
-    # schedule.run_continuously(1)
 
     app.run(host="0.0.0.0")
