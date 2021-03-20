@@ -15,7 +15,7 @@ Flask-WTF==0.14.2
 idna==2.8
 importlib-metadata==0.18
 itsdangerous==1.1.0
-Jinja2==2.10
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 more-itertools==7.1.0
 packaging==17.1
